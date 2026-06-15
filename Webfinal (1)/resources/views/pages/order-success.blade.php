@@ -454,7 +454,6 @@
             .token-pill span:first-child,
             .terminal-header,
             .prod-name,
-            .val-box,
             .fin-row.total,
             .slab-meta strong,
             .a-btn-ghost {

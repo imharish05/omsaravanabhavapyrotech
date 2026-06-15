@@ -213,11 +213,11 @@
                                         <textarea name="top_offer_text" class="form-control summernote"
                                             rows="3">{{ $setting->top_offer_text ?? '' }}</textarea>
                                     </div>
-                                    <div class="mb-custom">
+                                    <!-- <div class="mb-custom">
                                         <label class="form-label">Top Offer Bar 2 (Supports HTML)</label>
                                         <textarea name="top_offer_text_2" class="form-control summernote"
                                             rows="3">{{ $setting->top_offer_text_2 ?? '' }}</textarea>
-                                    </div>
+                                    </div> -->
 
                                     <!-- <h5 class="settings-section-title mt-4"><i class="fas fa-terminal"></i> Custom Tracking Codes</h5>
                                             <div class="mb-custom">

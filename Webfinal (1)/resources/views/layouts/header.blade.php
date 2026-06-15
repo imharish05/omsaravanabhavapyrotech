@@ -192,7 +192,7 @@
 
 /* Logo */
 .hdr-logo { flex-shrink: 0; display: flex; align-items: center; }
-.hdr-logo img { height: 48px; width: auto; display: block; transition: opacity 0.2s; }
+.hdr-logo img { height: 70px; width: auto; display: block; transition: opacity 0.2s; }
 .hdr-logo:hover img { opacity: 0.85; }
 
 /* Nav */

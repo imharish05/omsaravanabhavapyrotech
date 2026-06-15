@@ -2275,6 +2275,8 @@
             overflow: hidden;
             position: relative;
             width: 100%;
+            padding: 20px 0;
+            display: flex;
         }
 
         .brands-marquee-wrap::before,
@@ -2284,65 +2286,112 @@
             top: 0;
             bottom: 0;
             width: 150px;
-            z-index: 2;
+            z-index: 10;
             pointer-events: none;
         }
 
         .brands-marquee-wrap::before {
             left: 0;
-            background: linear-gradient(90deg, #080810, transparent);
+            background: linear-gradient(90deg, #080810, transparent) !important;
         }
 
         .brands-marquee-wrap::after {
             right: 0;
-            background: linear-gradient(-90deg, #080810, transparent);
+            background: linear-gradient(-90deg, #080810, transparent) !important;
         }
 
         .brands-track {
-            display: flex;
-            width: max-content;
+            display: flex !important;
+            width: max-content !important;
+            animation: marquee 35s linear infinite !important;
             will-change: transform;
         }
 
-        @keyframes marquee {
-            from {
-                transform: translateX(0);
-            }
+        .brands-track:hover {
+            animation-play-state: paused !important;
+        }
 
-            to {
-                transform: translateX(-50%);
+        .brands-group {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-around !important;
+            flex-shrink: 0 !important;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translate3d(0, 0, 0);
+            }
+            100% {
+                transform: translate3d(-50%, 0, 0);
             }
         }
 
         .brand-card {
-            width: 180px;
+            width: 190px;
             height: 150px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 28px;
+            margin: 0 24px;
             flex-shrink: 0;
-            /*filter: grayscale(100%) brightness(1.5) opacity(.3);*/
-            /* Base state for dark bg */
-            transition: all .4s cubic-bezier(.23, 1, .32, 1);
-            background: #ffffff;
-            border: 1px solid rgba(255, 255, 255, .1);
-            border-radius: 12px;
-            padding: 12px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            background: #FFFFFF !important;
+            border: 1px solid rgba(0, 0, 0, 0.05) !important;
+            border-radius: 18px !important;
+            padding: 16px 24px !important;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04) !important;
             box-sizing: border-box;
-        }
-
-        .brand-card:hover {
-            filter: grayscale(0%) brightness(1) opacity(1);
-            background: #ffffff;
-            border-color: rgba(255, 255, 255, .3);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+            cursor: pointer;
         }
 
         .brand-card img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: contain !important;
+            opacity: 0.9;
+            transition: all 0.3s ease !important;
+        }
+
+        .brand-card:hover {
+            transform: scale(1.05) !important;
+            box-shadow: 0 12px 25px rgba(240, 168, 50, 0.15), 0 4px 10px rgba(0, 0, 0, 0.05) !important;
+            border-color: rgba(240, 168, 50, 0.3) !important;
+            z-index: 5;
+        }
+
+        .brand-card:hover img {
+            opacity: 1 !important;
+            filter: brightness(1.05);
+        }
+
+        /* Responsive Marquee Behavior */
+        @media (max-width: 991px) {
+            .brand-card {
+                width: 160px !important;
+                height: 100px !important;
+                margin: 0 16px !important;
+                border-radius: 14px !important;
+                padding: 12px 18px !important;
+            }
+            .brands-marquee-wrap::before,
+            .brands-marquee-wrap::after {
+                width: 100px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .brand-card {
+                width: 130px !important;
+                height: 80px !important;
+                margin: 0 10px !important;
+                border-radius: 12px !important;
+                padding: 10px 14px !important;
+            }
+            .brands-marquee-wrap::before,
+            .brands-marquee-wrap::after {
+                width: 60px;
+            }
         }
 
         /* ========================
@@ -3651,13 +3700,21 @@
         <span class="section-bar"></span>
     </div>
     <div class="brands-marquee-wrap">
-        @php $brandsFull = $brands->concat($brands); @endphp
         <div class="brands-track" id="brandsTrack">
-            @foreach($brandsFull as $brand)
-            <div class="brand-card">
-                <img src="{{ env('MAIN_URL', '/') . $brand->logo }}" alt="Brand Partner">
+            <div class="brands-group">
+                @foreach($brands as $brand)
+                <div class="brand-card">
+                    <img src="{{ env('MAIN_URL', '/') . $brand->logo }}" alt="Brand Partner">
+                </div>
+                @endforeach
             </div>
-            @endforeach
+            <div class="brands-group">
+                @foreach($brands as $brand)
+                <div class="brand-card">
+                    <img src="{{ env('MAIN_URL', '/') . $brand->logo }}" alt="Brand Partner">
+                </div>
+                @endforeach
+            </div>
         </div>
     </div>
 </section>
@@ -3948,48 +4005,7 @@ alt="Order Process">
     });
 })();
 </script>
-<script>
-/* ===== BRANDS JS MARQUEE ===== */
-(function () {
-    var wrap = document.querySelector('.brands-marquee-wrap');
-    var track = document.getElementById('brandsTrack');
-    if (!wrap || !track) return;
-
-    // Clone all children for seamless loop
-    var origChildren = Array.from(track.children);
-    origChildren.forEach(function (card) {
-        track.appendChild(card.cloneNode(true));
-    });
-
-    var pos = 0;
-    var speed = 0.4;
-    var paused = false;
-    var halfW = 0;
-
-    function getHalf() {
-        halfW = origChildren.reduce(function (sum, c) {
-            return sum + c.offsetWidth + parseInt(getComputedStyle(c).marginLeft || 0) + parseInt(getComputedStyle(c).marginRight || 0);
-        }, 0);
-    }
-
-    function step() {
-        if (!paused) {
-            pos -= speed;
-            if (halfW > 0 && Math.abs(pos) >= halfW) pos = 0;
-            track.style.transform = 'translateX(' + pos + 'px)';
-        }
-        requestAnimationFrame(step);
-    }
-
-    wrap.addEventListener('mouseenter', function () { paused = true; });
-    wrap.addEventListener('mouseleave', function () { paused = false; });
-
-    // Wait for images to load before measuring
-    window.addEventListener('load', function () { getHalf(); requestAnimationFrame(step); });
-    setTimeout(function () { getHalf(); }, 500);
-    requestAnimationFrame(step);
-})();
-</script>
+<!-- BRANDS MARQUEE ANIMATION HANDLED VIA CSS KEYFRAMES FOR 60FPS SMOOTHNESS -->
 @endpush
 
 

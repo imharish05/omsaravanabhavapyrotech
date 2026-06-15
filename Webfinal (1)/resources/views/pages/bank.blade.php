@@ -426,7 +426,7 @@
         text-transform: uppercase; color: rgba(255,255,255,0.4);
     }
 
-    .f-val { font-size: 1.15rem; font-weight: 700; color: #fff; line-height: 1.4; word-break: break-all; }
+    .f-val { font-size: 1.15rem; font-weight: 700; color: #000; line-height: 1.4; word-break: break-all; }
     .f-val.highlight { 
         color: var(--gold-light); 
         display: flex; 
@@ -451,7 +451,7 @@
         margin-top: auto; padding-top: 30px;
         border-top: 1px solid rgba(255,255,255,0.08);
         display: flex; align-items: center; gap: 15px;
-        color: rgba(255,255,255,0.6); font-weight: 700;
+        color: rgba(5,0,0,0.6); font-weight: 700;
     }
 
     .f-account-holder i { color: #25D366; font-size: 1.4rem; }
