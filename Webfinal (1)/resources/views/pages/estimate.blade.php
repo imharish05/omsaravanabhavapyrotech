@@ -510,8 +510,9 @@ thead th {
 }
 
 .cart-item-info { flex-grow: 1; }
-.cart-item-title { font-weight: 800; font-size: 0.95rem; color: var(--ink); }
-.cart-item-meta { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
+.cart-item-title { font-weight: 800; font-size: 0.95rem; color: #fff !important; }
+.cart-item-meta { font-size: 0.8rem; color: #fff !important; margin-top: 4px; }
+.cart-item-total { color: #fff !important; font-weight: 700; }
 
 .cart-drawer-footer {
     padding: 30px;
@@ -598,7 +599,7 @@ thead th {
 
 .order-form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
 .order-field { display: flex; flex-direction: column; gap: 8px; }
-.order-label { font-size: 0.75rem; font-weight: 800; color: var(--ink); letter-spacing: 0.5px; opacity: 0.8; }
+.order-label { font-size: 0.75rem; font-weight: 800; color: var(--ink); letter-spacing: 0.5px; opacity: 0.8;margin-top : 20px}
 .order-input {
     background: var(--off-white); border: 1px solid var(--stone); padding: 16px 20px; border-radius: 12px;
     font-size: 1rem; font-weight: 600; color: var(--ink); transition: 0.3s; width: 100%;
@@ -687,11 +688,14 @@ thead th {
         margin: 0 !important; 
         padding-right: 40px !important;
         color: var(--gold-light) !important;
+        display: block !important;
+        width: 100% !important;
+        margin-bottom: 8px !important;
     }
 
     /* Video Icon positioning */
     .product-row td:nth-child(3) { 
-        position: absolute; 
+        /* position: absolute;  */
         right: 15px; 
         top: 20px; 
         padding: 0 !important;
@@ -702,6 +706,8 @@ thead th {
         font-size: 0.85rem; 
         color: rgba(255,255,255,0.6); 
         margin-bottom: 8px !important;
+        display: block !important;
+        width: 100% !important;
     }
     
     /* Pricing */
@@ -908,21 +914,13 @@ thead th {
 .product-name,
 .rowTotal,
 .category td,
-.cart-item-title,
-.cart-summary-row.total,
-.order-modal-title,
-.order-label,
-.qty,
-.order-input,
-.cart-item-total {
+.qty {
     color: #fff !important;
 }
 
 .summary-label,
 thead th,
-.cart-item-meta,
-.min-order-status,
-.order-input::placeholder {
+.min-order-status {
     color: rgba(255,255,255,0.58);
 }
 
@@ -951,9 +949,7 @@ thead th,
     color: var(--gold-light);
 }
 
-.qty-wrapper,
-.order-input,
-.order-modal-close {
+.qty-wrapper {
     background: rgba(255,255,255,0.06);
     border-color: rgba(255,255,255,0.12);
 }
@@ -962,40 +958,6 @@ thead th,
     background: rgba(255,255,255,0.08);
     color: #fff;
     border-color: rgba(255,255,255,0.14);
-}
-
-.cart-drawer,
-.order-modal-box {
-    background: rgba(15,15,28,0.98);
-    border-left: 1px solid rgba(240,168,50,0.22);
-}
-
-.cart-drawer-header,
-.order-net-strip {
-    background: #080810;
-}
-
-.cart-drawer-footer {
-    background: rgba(255,255,255,0.04);
-    border-top-color: rgba(255,255,255,0.1);
-}
-
-.cart-item-row,
-.cart-summary-row.total {
-    border-color: rgba(255,255,255,0.1);
-}
-
-.order-submit-btn,
-.btn-gold {
-    background: linear-gradient(135deg, var(--gold-light), var(--gold));
-    color: #080810;
-    box-shadow: 0 16px 34px rgba(240,168,50,0.24);
-}
-
-.order-submit-btn:hover,
-.btn-gold:hover {
-    background: #fff;
-    color: #080810;
 }
 
 @media (max-width: 767px) {
@@ -1017,6 +979,542 @@ thead th,
 }
 .table-wrap{
     overflow: hidden;
+}
+
+/* ===========================================
+   PREMIUM LIGHT MODALS STYLES
+   =========================================== */
+
+/* Backdrop Overlays */
+.cart-overlay,
+.order-modal-overlay {
+    background: rgba(15, 23, 42, 0.45) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+}
+
+/* 1. Order Summary Modal (Cart Drawer) */
+.cart-drawer {
+    background: #FFFFFF !important;
+    border-left: 1px solid #E5E7EB !important;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.08) !important;
+    border-top-left-radius: 24px !important;
+    border-bottom-left-radius: 24px !important;
+}
+
+.cart-drawer-header {
+    background: #FFFFFF !important;
+    color: #111827 !important;
+    border-bottom: 1px solid #E5E7EB !important;
+    padding: 24px 30px !important;
+}
+
+.cart-drawer-title {
+    font-family: var(--font-display) !important;
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    color: #111827 !important;
+}
+
+.cart-drawer-title i {
+    color: #FF5E36 !important; /* Premium branding color for header icon */
+    margin-right: 8px;
+}
+
+.cart-close-btn {
+    background: none !important;
+    border: none !important;
+    color: #4B5563 !important;
+    font-size: 1.5rem !important;
+    cursor: pointer !important;
+    transition: color 0.2s, transform 0.2s !important;
+}
+
+.cart-close-btn:hover {
+    color: #111827 !important;
+    transform: scale(1.1);
+}
+
+.cart-close-btn:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(255, 94, 54, 0.4) !important;
+    border-radius: 4px;
+}
+
+.cart-drawer-body {
+    background: #FFFFFF !important;
+    padding: 24px 30px !important;
+}
+
+/* Cart Items inside Drawer */
+.cart-item-row {
+    border-bottom: 1px solid #E5E7EB !important;
+    padding: 16px 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.cart-item-info {
+    flex-grow: 1;
+}
+
+.cart-item-title {
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    color: #1F2937 !important; /* Product names: #1F2937 */
+}
+
+.cart-item-meta-value {
+    font-size: 0.85rem !important;
+    color: #4B5563 !important; /* Labels: #4B5563 */
+    margin-top: 4px;
+}
+
+.cart-item-total-price {
+    color: #111827 !important; /* Prices and totals: #111827 */
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+}
+
+/* Cart Drawer Footer */
+.cart-drawer-footer {
+    background: #FFFFFF !important;
+    border-top: 1px solid #E5E7EB !important;
+    padding: 24px 30px !important;
+}
+
+/* Progress bar inside Drawer */
+.min-order-wrap {
+    margin-bottom: 20px !important;
+}
+
+.min-order-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-weight: 700 !important;
+    font-size: 0.8rem !important;
+    text-transform: uppercase;
+    color: #4B5563 !important; /* Labels: #4B5563 */
+}
+
+.min-order-label {
+    color: #4B5563 !important;
+}
+
+.min-order-value {
+    color: #111827 !important; /* Prices and totals: #111827 */
+}
+
+.min-order-bar-track {
+    height: 8px !important;
+    background: #E5E7EB !important; /* Light divider color for track */
+    border-radius: 9999px !important;
+    overflow: hidden;
+}
+
+.min-order-bar-fill {
+    height: 100% !important;
+    background: linear-gradient(135deg, #FF5E36, #F02D00) !important; /* Orange/red gradient */
+    border-radius: 9999px !important;
+    transition: 0.5s;
+}
+
+.order-status, #minOrderStatus {
+    font-size: 0.85rem !important;
+    color: #4B5563 !important;
+    margin-top: 8px !important;
+    font-weight: 600 !important;
+}
+
+/* Cart Summary Rows */
+.cart-summary-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px !important;
+}
+
+.cart-summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    color: #4B5563 !important; /* Labels: #4B5563 */
+}
+
+.cart-summary-row span:last-child {
+    color: #111827 !important; /* Prices and totals: #111827 */
+}
+
+.cart-summary-row.total {
+    font-size: 1.25rem !important;
+    color: #111827 !important;
+    padding-top: 16px !important;
+    margin-top: 4px !important;
+    border-top: 1px solid #E5E7EB !important;
+}
+
+.cart-summary-row.total span:last-child {
+    font-size: 1.35rem !important;
+    font-weight: 800 !important;
+    color: #111827 !important;
+}
+
+/* Buttons inside Drawer */
+.btn-gold#confirmOrderBtn {
+    width: 100%;
+    background: linear-gradient(135deg, #FF5E36, #F02D00) !important; /* Premium orange/red CTA */
+    color: #FFFFFF !important;
+    border: none !important;
+    padding: 16px !important;
+    border-radius: 12px !important;
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 4px 14px rgba(240, 45, 0, 0.2) !important;
+}
+
+.btn-gold#confirmOrderBtn:hover {
+    background: linear-gradient(135deg, #F02D00, #C22000) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(240, 45, 0, 0.3) !important;
+}
+
+.btn-gold#confirmOrderBtn:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 4px rgba(255, 94, 54, 0.4) !important;
+}
+
+.btn-gold#confirmOrderBtn:disabled {
+    background: #E5E7EB !important;
+    color: #9CA3AF !important;
+    box-shadow: none !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+}
+
+.btn-continue#continueShopBtn {
+    color: #4B5563 !important; /* Labels: #4B5563 */
+    font-weight: 700 !important;
+    margin-top: 12px !important;
+    font-size: 0.9rem !important;
+    transition: color 0.2s !important;
+}
+
+.btn-continue#continueShopBtn:hover {
+    color: #111827 !important;
+}
+
+.btn-continue#continueShopBtn:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(75, 85, 99, 0.3) !important;
+    border-radius: 4px;
+}
+
+
+/* 2. Estimate / Checkout Form Modal */
+.order-modal-box {
+    background: #FFFFFF !important;
+    border-radius: 24px !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid #E5E7EB !important;
+    max-width: 650px !important;
+    width: 100% !important;
+}
+
+@media (max-width: 850px) {
+    .order-modal-box {
+        width: 95% !important;
+        border-radius: 24px !important;
+    }
+}
+
+.order-modal-close {
+    background: #F3F4F6 !important;
+    border: 1px solid #E5E7EB !important;
+    color: #4B5563 !important;
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    z-index: 10 !important;
+    transition: all 0.2s ease-in-out !important;
+    font-size: 1.25rem !important;
+}
+
+.order-modal-close:hover {
+    background: #FF5E36 !important;
+    color: #FFFFFF !important;
+    border-color: #FF5E36 !important;
+    transform: rotate(90deg) !important;
+}
+
+.order-modal-close:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(255, 94, 54, 0.4) !important;
+}
+
+.order-modal-header {
+    padding: 32px 40px 10px !important;
+    text-align: center !important;
+}
+
+@media (max-width: 850px) {
+    .order-modal-header {
+        padding: 24px 20px 10px !important;
+    }
+}
+
+.order-modal-eyebrow {
+    font-size: 0.75rem !important;
+    font-weight: 800 !important;
+    color: #FF5E36 !important; /* Eyebrow matching the orange/red */
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+    margin-bottom: 8px !important;
+}
+
+.order-modal-title {
+    font-family: var(--font-display) !important;
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+    color: #111827 !important; /* Headings: #111827 */
+    margin-bottom: 12px !important;
+}
+
+.order-modal-bar {
+    width: 40px !important;
+    height: 3px !important;
+    background: #FF5E36 !important; /* bar deep orange/red */
+    margin: 12px auto !important;
+    border-radius: 2px;
+}
+
+/* Net Strip inside Checkout Modal */
+.order-net-strip {
+    background: #F9FAFB !important;
+    border: 1px solid #E5E7EB !important;
+    margin: 15px 40px 25px !important;
+    border-radius: 16px !important;
+    padding: 20px 30px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    color: #111827 !important;
+}
+
+@media (max-width: 850px) {
+    .order-net-strip {
+        margin: 15px 20px 20px !important;
+        padding: 16px 20px !important;
+    }
+}
+
+.net-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.net-label {
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    color: #4B5563 !important; /* Labels: #4B5563 */
+    letter-spacing: 1px !important;
+    opacity: 1 !important;
+    text-transform: uppercase;
+}
+
+.net-value {
+    font-size: 1.8rem !important;
+    font-weight: 800 !important;
+    color: #111827 !important; /* Prices and totals: #111827 */
+}
+
+.net-icon {
+    font-size: 1.5rem !important;
+    color: #FF5E36 !important; /* Brand orange/red */
+    opacity: 0.8 !important;
+}
+
+/* Checkout Form spacing & layout */
+#orderForm {
+    padding: 0 40px 40px !important;
+}
+
+@media (max-width: 850px) {
+    #orderForm {
+        padding: 0 20px 30px !important;
+    }
+}
+
+.order-form-grid-2 {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 20px !important;
+    margin-bottom: 20px !important;
+}
+
+@media (max-width: 850px) {
+    .order-form-grid-2 {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+        margin-bottom: 16px !important;
+    }
+}
+
+.order-field {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+}
+
+.order-label {
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    color: #374151 !important; /* Labels: #374151 */
+    letter-spacing: 0.5px !important;
+    margin-top: 0 !important; /* Clean layout spacing */
+    text-transform: uppercase !important;
+    opacity: 1 !important;
+}
+
+/* Inputs, Textareas and Dropdowns styling */
+.order-input {
+    background: #FFFFFF !important;
+    border: 1px solid #D1D5DB !important; /* Light gray border */
+    padding: 12px 16px !important;
+    border-radius: 8px !important;
+    font-size: 0.95rem !important;
+    font-weight: 500 !important;
+    color: #111827 !important; /* Dark text */
+    transition: all 0.2s ease-in-out !important;
+    width: 100% !important;
+    box-shadow: none !important;
+}
+
+.order-input::placeholder {
+    color: #6B7280 !important; /* Placeholder color: #6B7280 */
+    font-weight: 400 !important;
+    opacity: 1 !important;
+}
+
+.order-input:focus {
+    border-color: #FF5E36 !important; /* branding orange/red focus state */
+    background: #FFFFFF !important;
+    outline: none !important;
+    box-shadow: 0 0 0 4px rgba(255, 94, 54, 0.15) !important; /* Visible focus state */
+}
+
+.order-textarea {
+    resize: none !important;
+    min-height: 80px !important;
+    font-family: inherit !important;
+}
+
+.order-select {
+    cursor: pointer !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    color-scheme: light !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234B5563' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 15px center !important;
+    background-size: 15px !important;
+    padding-right: 40px !important;
+}
+
+.order-select option {
+    background-color: #FFFFFF !important; /* light options background */
+    color: #111827 !important; /* dark options text */
+    padding: 10px !important;
+}
+
+/* Submit button inside Checkout Modal */
+.order-submit-btn {
+    width: 100% !important;
+    padding: 16px 20px !important;
+    background: linear-gradient(135deg, #FF5E36, #F02D00) !important; /* orange/red gradient */
+    color: #FFFFFF !important;
+    border: none !important;
+    border-radius: 12px !important;
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    transition: all 0.2s ease-in-out !important;
+    margin-top: 10px !important;
+    box-shadow: 0 4px 14px rgba(240, 45, 0, 0.2) !important;
+}
+
+.order-submit-btn:hover {
+    background: linear-gradient(135deg, #F02D00, #C22000) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(240, 45, 0, 0.3) !important;
+}
+
+.order-submit-btn:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 4px rgba(255, 94, 54, 0.4) !important;
+}
+
+@media (max-width: 850px) {
+    .order-submit-btn {
+        border-radius: 12px !important;
+        margin-top: 15px !important;
+        padding: 16px 20px !important;
+    }
+    .order-field {
+        padding: 0 !important;
+    }
+}
+
+@media (max-width: 500px) {
+    .cart-drawer {
+        width: 100% !important;
+        right: -100% !important;
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+    }
+    .cart-drawer.active {
+        right: 0 !important;
+    }
+    .cart-drawer-header {
+        padding: 18px 20px !important;
+    }
+    .cart-drawer-title {
+        font-size: 1.3rem !important;
+    }
+    .cart-drawer-body {
+        padding: 20px !important;
+    }
+    .cart-drawer-footer {
+        padding: 20px !important;
+    }
+    .cart-item-row {
+        padding: 12px 0 !important;
+    }
+    .cart-item-title {
+        font-size: 0.9rem !important;
+    }
 }
 
 </style>
@@ -1113,10 +1611,10 @@ thead th,
                                             <img src="{{ $product->product_image ? env('MAIN_URL') . $product->product_image : 'https://via.placeholder.com/100' }}" alt="{{ $product->product_name }}" loading="lazy">
                                         </td>
                                         <td class="product-name">{{ $product->product_name }}</td>
-                                        <td>
+                                        <!-- <td>
                                             {{-- Video button removed for estimate page --}}
-                                        </td>
-                                        <td class="notranslate">{{ $product->product_content }}</td>
+                                        </td> -->
+                                        <td class="rowTotal notranslate">{{ $product->product_content }}</td>
                                         <td class="actual notranslate">{{ $product->product_mrp_price }}</td>
                                         <td class="price notranslate">{{ $product->product_regular_price }}</td>
                                         <td>
@@ -1156,12 +1654,12 @@ thead th,
                     <div class="min-order-bar-track">
                         <div class="min-order-bar-fill" id="minOrderBar"></div>
                     </div>
-                    <div class="min-order-status" id="minOrderStatus"></div>
+                    <div class="order-status" id="minOrderStatus"></div>
                 </div>
             @endif
             <div class="cart-summary-rows">
                 <div class="cart-summary-row"><span>Cart Subtotal</span><span id="cartActual">₹0</span></div>
-                <div class="cart-summary-row" style="color: #2ecc71;"><span>Your Savings</span><span id="cartSave">- ₹0</span></div>
+                <div class="cart-summary-row" style="color: #16A34A; font-weight: 700;"><span>Your Savings</span><span id="cartSave">- ₹0</span></div>
                 <div class="cart-summary-row total"><span>Net Amount</span><span id="cartNet">₹0</span></div>
             </div>
             <button class="btn-gold" id="confirmOrderBtn" onclick="closeCart(); checkOrder();">
@@ -1405,9 +1903,9 @@ thead th,
                     <div class="cart-item-row">
                         <div class="cart-item-info">
                             <div class="cart-item-title">${row.querySelector(".product-name").innerText}</div>
-                            <div class="cart-item-meta">${qty} x ₹${price.toFixed(2)}</div>
+                            <div class="cart-item-meta-value">${qty} x ₹${price.toFixed(2)}</div>
                         </div>
-                        <div class="cart-item-total">₹${rowTotal.toFixed(2)}</div>
+                        <div class="cart-item-total-price">₹${rowTotal.toFixed(2)}</div>
                     </div>
                 `;
             }
@@ -1445,7 +1943,7 @@ thead th,
         bar.style.width = pct + '%';
         
         if (met) {
-            status.innerHTML = '<span style="color:#2ecc71;">✅ Minimum order requirement met!</span>';
+            status.innerHTML = '<span style="color:#16A34A; font-weight: 700;">✅ Minimum order requirement met!</span>';
             confirmBtn.disabled = false;
             confirmBtn.style.opacity = '1';
             if (continueBtn) continueBtn.style.display = 'none';

@@ -366,12 +366,12 @@
     .order-input {
         background: rgba(0,0,0,0.04) !important;
         border-color: rgba(0,0,0,0.12) !important;
-        color: #000 !important;
+        /* color: #000 !important; */
     }
 
     input::placeholder,
     textarea::placeholder {
-        color: rgba(0,0,0,0.45) !important;
+        /* color: rgba(0,0,0,0.45) !important; */
     }
 
     input:focus,
