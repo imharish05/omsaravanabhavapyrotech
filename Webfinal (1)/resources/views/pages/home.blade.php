@@ -3299,7 +3299,7 @@
 
             {{-- <div class="slide-content">
                         @if($index === 0)
-                            <div class="hero-eyebrow">Sivakasi's Finest Since 1999</div>
+                            <div class="hero-eyebrow">Om Saravanabhava Pyrotech</div>
                             <h1 class="hero-title">
                                 {!! str_replace(' ', ' ', $settings->welcome_heading) !!}
                                 <!-- <em>.</em> -->

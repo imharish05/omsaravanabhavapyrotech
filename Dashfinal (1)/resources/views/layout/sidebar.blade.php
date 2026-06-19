@@ -179,12 +179,12 @@
                             <span data-key="t-dashboard" style="color:#eebe6c">SEO Details</span>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="{{ url('/blog/view') }}">
                             <i class="fab fa-font-awesome-flag " aria-hidden="true" style="color:#eebe6c"></i>
                             <span data-key="t-dashboard" style="color:#eebe6c">Blog</span>
                         </a>
-                    </li>
+                    </li> -->
 
                     <li class="menu-title text-white" data-key="t-menu">Settings</li>
                     <li>

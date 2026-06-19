@@ -334,7 +334,7 @@
                             {!! $terms->content !!}
                         @else
                             <h2>1. Acceptance of Terms</h2>
-                            <p>Welcome to <strong>Sri Shyam Crackers</strong>. By accessing this website, you acknowledge that
+                            <p>Welcome to <strong>Om Saravanabhava Pyrotech</strong>. By accessing this website, you acknowledge that
                                 you have read, understood, and agreed to be bound by these Terms and Conditions. These terms
                                 apply to all visitors, users, and others who access or use our services.</p>
 

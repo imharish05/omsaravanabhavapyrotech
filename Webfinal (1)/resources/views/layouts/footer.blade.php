@@ -8,7 +8,7 @@
             <a href="{{ url('/') }}" class="f-logo-wrap">
                 <img src="{{ env('MAIN_URL', '/') . $global_settings->logo }}" alt="Sri Shyam Crackers">
             </a>
-            <div class="f-brand-tag">Est. 2026 • Sivakasi's Premier Fireworks About</div>
+            <div class="f-brand-tag">Om Saravanabhava Pyrotech</div>
             <div class="f-social-row">
                 <a href="{{ $global_settings->facebook_link }}" target="_blank" class="s-link" title="Facebook"><i
                         class="fa-brands fa-facebook-f"></i></a>
