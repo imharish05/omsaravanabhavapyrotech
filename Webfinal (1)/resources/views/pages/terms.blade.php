@@ -345,7 +345,7 @@
 
                             <h2>3. Safety Compliance</h2>
                             <p>Your safety is our priority. Users are strictly advised to follow all packaging instructions, use
-                                crackers in open spaces, and maintain a safe distance. <strong>Sri Shyam Crackers</strong> is
+                                crackers in open spaces, and maintain a safe distance. <strong>Om Saravanabhava Pyrotech</strong> is
                                 not liable for any incidents resulting from improper handling.</p>
 
                             <h2>4. Delivery & Returns</h2>

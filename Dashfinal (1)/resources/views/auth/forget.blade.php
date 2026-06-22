@@ -4,9 +4,9 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>{{ $globalSetting->company_name ?? 'Sri Shyam Crackers' }} | Admin Dashboard</title>
+    <title>{{ $globalSetting->company_name ?? 'Om Saravanabhava Pyrotech' }} | Admin Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="{{ $globalSetting->company_name ?? 'Sri Shyam Crackers' }} Admin Dashboard" name="description" />
+    <meta content="{{ $globalSetting->company_name ?? 'Om Saravanabhava Pyrotech' }} Admin Dashboard" name="description" />
     <meta content="Sai Techno Solutions" name="author" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- App favicon -->
@@ -41,14 +41,14 @@
                                         <img src="{{ $globalSetting && $globalSetting->logo ? asset($globalSetting->logo) : asset('assets/images/logo/ram_logo1.png') }}"
                                             alt="{{ $globalSetting->company_name ?? 'Logo' }}" width="240">
                                         <span
-                                            class="logo-txt">{{ $globalSetting->company_name ?? 'Sri Shyam Crackers' }}</span>
+                                            class="logo-txt">{{ $globalSetting->company_name ?? 'Om Saravanabhava Pyrotech' }}</span>
                                     </a>
                                 </div>
                                 <div class="auth-content my-auto">
                                     <div class="text-center">
                                         <h5 class="mb-0">Welcome Back Admin!</h5>
                                         <p class="text-muted mt-2">Sign in to continue to
-                                            {{ $globalSetting->company_name ?? 'Sri Shyam Crackers' }}
+                                            {{ $globalSetting->company_name ?? 'Om Saravanabhava Pyrotech' }}
                                         </p>
                                     </div>
                                     <form class="mt-4 pt-2" action="" id="forget_form">

@@ -6,7 +6,7 @@
         <!-- Brand Centerpiece -->
         <div class="f-brand-block">
             <a href="{{ url('/') }}" class="f-logo-wrap">
-                <img src="{{ env('MAIN_URL', '/') . $global_settings->logo }}" alt="Sri Shyam Crackers">
+                <img src="{{ env('MAIN_URL', '/') . $global_settings->logo }}" alt="Om Saravanabhava Pyrotech">
             </a>
             <div class="f-brand-tag">Om Saravanabhava Pyrotech</div>
             <div class="f-social-row">
@@ -29,7 +29,7 @@
                     <li><a href="{{ url('/about') }}">About Us</a></li>
                     <li><a href="{{ url('/blog') }}">Safety Tips</a></li>
                     <li><a href="{{ url('/contact') }}">Contact Us</a></li>
-                    <li><a href="{{ url('/bank') }}">Bank Details</a></li>
+                    {{-- <li><a href="{{ url('/bank') }}">Bank Details</a></li> --}}
                 </ul>
             </div>
             <div class="f-col">

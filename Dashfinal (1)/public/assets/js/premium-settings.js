@@ -137,12 +137,7 @@ $(document).ready(function () {
     function updateProductCounter() {
         const count = $('.product-select-card.active').length;
         $productCounter.text(`${count} / 7 Selected`);
-
-        if (count === 7) {
-            $productCounter.removeClass('error').addClass('at-limit');
-        } else {
-            $productCounter.removeClass('at-limit').addClass('error');
-        }
+        $productCounter.removeClass('error').addClass('at-limit');
     }
 
     // Initial count
@@ -163,7 +158,7 @@ $(document).ready(function () {
             } else {
                 Swal.fire({
                     title: 'Limit Reached',
-                    text: 'You can only select exactly 7 featured products.',
+                    text: 'You can only select up to 7 featured products.',
                     icon: 'warning',
                     timer: 2000,
                     showConfirmButton: false
@@ -179,15 +174,15 @@ $(document).ready(function () {
         }
     });
 
-    // Enforce exactly 7 on form submit
+    // Enforce up to 7 on form submit
     $form.on('submit', function (e) {
         if ($productGrid.length > 0) {
             const count = $('.product-select-card.active').length;
-            if (count !== 7) {
+            if (count > 7) {
                 e.preventDefault();
                 Swal.fire({
                     title: 'Selection Error',
-                    text: `Please select exactly 7 products. Currently you have ${count} selected.`,
+                    text: `Please select at most 7 products. Currently you have ${count} selected.`,
                     icon: 'error'
                 });
                 return false;

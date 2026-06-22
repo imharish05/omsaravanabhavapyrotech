@@ -25,7 +25,7 @@ class EstimateMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: ' Order Confirmed – ' . $this->orderId . ' |Sri Shyam Crackers',
+            subject: ' Order Confirmed – ' . $this->orderId . ' |Om Saravanabhava Pyrotech',
         );
     }
 

@@ -16,7 +16,7 @@
                     <h1 class="hero-display-title">{!! $payment->hero_title ?? 'Payment <span>Details</span>' !!}</h1>
                     <div class="hero-sep"></div>
                     <p class="hero-subtitle">
-                        {{ $payment->hero_subtitle ?? 'Official bank and UPI details for Sri Shyam Crackers. Verify your order with our team before completing payment.' }}
+                        {{ $payment->hero_subtitle ?? 'Official bank and UPI details for Om Saravanabhava Pyrotech. Verify your order with our team before completing payment.' }}
                     </p>
                 </div>
             </div>

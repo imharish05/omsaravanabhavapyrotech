@@ -8,9 +8,9 @@
         </div>
         <div class="card-body">
             <div class="mb-5 text-end">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addbulkModal">
+                {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addbulkModal">
                     Bulk Upload
-                </button>
+                </button> --}}
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addcityModal">
                     Add City
                 </button>

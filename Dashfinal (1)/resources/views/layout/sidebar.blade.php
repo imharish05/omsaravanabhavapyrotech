@@ -79,7 +79,7 @@
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
                             <li><a href="{{ url('/state') }}" style="color:#eebe6c">State</a></li>
-                            <li><a href="{{ url('/city') }}" style="color:#eebe6c">City</a></li>
+                            {{-- <li><a href="{{ url('/city') }}" style="color:#eebe6c">City</a></li> --}}
                             <li><a href="{{ url('/area') }}" style="color:#eebe6c">Area</a></li>
                         </ul>
                     </li>
@@ -207,12 +207,12 @@
                             <span data-key="t-dashboard" style="color:#eebe6c">About Us Setup</span>
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="{{ url('/payment-settings') }}">
                             <i class="fas fa-money-check-dollar " aria-hidden="true" style="color:#eebe6c"></i>
                             <span data-key="t-dashboard" style="color:#eebe6c">Payment Setup</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a href="{{ url('/contact-us-settings') }}">
                             <i class="fas fa-address-book " aria-hidden="true" style="color:#eebe6c"></i>

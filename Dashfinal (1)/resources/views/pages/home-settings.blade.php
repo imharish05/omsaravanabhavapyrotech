@@ -56,9 +56,9 @@
                              <button class="nav-link text-start" id="v-pills-offer-tab" data-bs-toggle="pill" data-bs-target="#v-pills-offer" type="button" role="tab">
                                 <i class="fas fa-clock"></i> Offer Countdown
                             </button>
-                            <button class="nav-link text-start" id="v-pills-order-tab" data-bs-toggle="pill" data-bs-target="#v-pills-order" type="button" role="tab">
+                            {{-- <button class="nav-link text-start" id="v-pills-order-tab" data-bs-toggle="pill" data-bs-target="#v-pills-order" type="button" role="tab">
                                 <i class="fas fa-list-ol"></i> How to Order
-                            </button>
+                            </button> --}}
                             {{-- <button class="nav-link text-start" id="v-pills-products-tab" data-bs-toggle="pill" data-bs-target="#v-pills-products" type="button" role="tab">
                                 <i class="fas fa-shopping-bag"></i> Featured Products
                             </button> --}}
@@ -178,8 +178,8 @@
 
                                 <div class="mb-custom">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <label class="form-label mb-0">Select Featured Products (Exactly 7 required)</label>
-                                        <div id="productCounter" class="selection-counter error">0 / 7 Selected</div>
+                                        <label class="form-label mb-0">Select Featured Products (Up to 7 can be selected)</label>
+                                        <div id="productCounter" class="selection-counter at-limit">0 / 7 Selected</div>
                                     </div>
                                     
                                     <div class="product-selection-grid" id="productGrid">
@@ -199,7 +199,7 @@
                                             </div>
                                         @endforeach
                                     </div>
-                                    <div class="hint-text mt-2"><i class="fas fa-info-circle"></i> Click to select. Exactly 7 products must be selected to save.</div>
+                                    <div class="hint-text mt-2"><i class="fas fa-info-circle"></i> Click to select. Up to 7 products can be featured on the homepage.</div>
                                 </div>
                             </div>
                         </div>
@@ -337,7 +337,7 @@
                         </div>
                     </div>
  
-                     <!-- 5. How to Order Tab -->
+                     {{-- <!-- 5. How to Order Tab -->
                      <div class="tab-pane fade" id="v-pills-order" role="tabpanel">
                          <div class="card settings-card">
                              <div class="card-body">
@@ -372,7 +372,7 @@
                                  </div>
                              </div>
                          </div>
-                     </div>
+                     </div> --}}
  
                      <!-- 6. CTA Banner Tab -->
                      <div class="tab-pane fade" id="v-pills-cta" role="tabpanel">

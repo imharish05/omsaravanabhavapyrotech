@@ -1546,8 +1546,8 @@ thead th,
                 <div class="summary-item">
                     <div class="summary-icon"><i class="fa-solid fa-receipt"></i></div>
                     <div class="summary-info">
-                        <span class="summary-label">Net Total</span>
-                        <span class="summary-value notranslate">₹<span id="netTotal">0</span></span>
+                        <span class="summary-label">Total MRP</span>
+                        <span class="summary-value notranslate">₹<span id="totalMRP">0</span></span>
                     </div>
                 </div>
 
@@ -1556,8 +1556,8 @@ thead th,
                 <div class="summary-item">
                     <div class="summary-icon" style="background: #2ecc71;"><i class="fa-solid fa-piggy-bank"></i></div>
                     <div class="summary-info">
-                        <span class="summary-label">Total Gained</span>
-                        <span class="summary-value">₹<span id="youSave">0</span></span>
+                        <span class="summary-label">Total Discounted Value</span>
+                        <span class="summary-value">₹<span id="totalDiscount">0</span></span>
                     </div>
                 </div>
 
@@ -1911,9 +1911,9 @@ thead th,
             }
         });
 
-        document.getElementById("netTotal").innerText = netTotal.toLocaleString('en-IN');
+        document.getElementById("totalMRP").innerText = actualTotal.toLocaleString('en-IN');
         document.getElementById("overallTotal").innerText = netTotal.toLocaleString('en-IN');
-        document.getElementById("youSave").innerText = (actualTotal - netTotal).toLocaleString('en-IN');
+        document.getElementById("totalDiscount").innerText = (actualTotal - netTotal).toLocaleString('en-IN');
         document.getElementById("cartCount").innerText = cartCount;
 
         // Drawer Totals

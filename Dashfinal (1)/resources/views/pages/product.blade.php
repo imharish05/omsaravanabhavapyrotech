@@ -12,9 +12,9 @@
                     </a> <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addcategoryModal">
                         Add Discount
                     </button>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addpriceModal">
+                    {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addpriceModal">
                        Bulk Upload
-                    </button>
+                    </button> --}}
                 </div>
 
 

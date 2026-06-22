@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description"
-        content="{{ $global_settings->meta_title ?? 'Sri Shyam Crackers – India\'s Finest Fireworks About' }}">
+        content="{{ $global_settings->meta_title ?? 'Om Saravanabhava Pyrotech – India\'s Finest Fireworks About' }}">
 
-    <title>{{ $global_settings->meta_title ?? 'Sri Shyam Crackers' }}</title>
+    <title>{{ $global_settings->meta_title ?? 'Om Saravanabhava Pyrotech' }}</title>
 
     <link rel="icon" type="image/png"
         href="{{ $global_settings->favicon ? str_replace('http://', '//', env('MAIN_URL', '/')) . $global_settings->favicon : asset('assets/img/favicon.png') }}">

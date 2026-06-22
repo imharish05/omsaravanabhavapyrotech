@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $globalSetting->company_name ?? 'Sri Shyam Crackers' }} - Estimate</title>
+    <title>{{ $globalSetting->company_name ?? 'Om Saravanabhava Pyrotech' }} - Estimate</title>
     <link rel="icon"
         href="{{ $globalSetting && $globalSetting->favicon ? asset($globalSetting->favicon) : asset('/img/favicon/mexi_fav_icon.png') }}"
         sizes="196x196" />
@@ -384,7 +384,7 @@
                 <img src="{{ $globalSetting && $globalSetting->logo ? asset($globalSetting->logo) : asset('assets/images/logo/ram_logo1.png') }}"
                     style="width: 25%" alt="{{ $globalSetting->company_name ?? 'Logo' }}">
                 <h5 style="margin: 4px 0;font-size: 14px;color: #579742;">
-                    {{ $globalSetting->company_name ?? 'Sri Shyam Crackers' }}
+                    {{ $globalSetting->company_name ?? 'Om Saravanabhava Pyrotech' }}
                 </h5>
             </div>
 
