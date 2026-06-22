@@ -3362,7 +3362,7 @@
             </div>
             <img class="about-img-main" src="{{ env('MAIN_URL', '/') . $settings->welcome_image }}"
                 alt="Crackers Store">
-            <img class="about-img-accent" src="{{ asset('assets/images/oms.jpeg') }}" alt="Crackers Store">
+            <img class="about-img-accent" src="{{ asset('assets/images/image.png') }}" alt="Crackers Store">
         </div>
 
         <div class="about-text-col">
