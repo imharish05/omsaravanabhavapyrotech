@@ -3433,7 +3433,7 @@
             </div>
         </div>
         <a href="{{ url($settings->offer_button_link ?? 'estimate') }}" class="offer-btn">
-            <i class="fa-solid fa-bolt"></i> {{ $settings->offer_button_text ?? 'Shop Now' }}
+            <i class="fa-solid fa-clipboard-list"></i> {{ $settings->offer_button_text ?? 'Enquire Now' }}
         </a>
     </div>
 </div>

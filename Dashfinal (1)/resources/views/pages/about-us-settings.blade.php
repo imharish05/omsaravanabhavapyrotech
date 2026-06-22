@@ -231,7 +231,7 @@
                                 <div class="row" style="display:none">
                                     <div class="col-md-6 mb-custom">
                                         <label class="form-label">Button Text</label>
-                                        <input class="form-control" type="text" name="action_button_text" value="{{ old('action_button_text', $aboutUs->action_button_text ?? '') }}" placeholder="Shop Now">
+                                        <input class="form-control" type="text" name="action_button_text" value="{{ old('action_button_text', $aboutUs->action_button_text ?? '') }}" placeholder="Enquire Now">
                                     </div>
                                     <div class="col-md-6 mb-custom">
                                         <label class="form-label">Button Link</label>

@@ -9,6 +9,7 @@
                 <img src="{{ env('MAIN_URL', '/') . $global_settings->logo }}" alt="Om Saravanabhava Pyrotech">
             </a>
             <div class="f-brand-tag">Om Saravanabhava Pyrotech</div>
+            <div class="f-license">License No 655/2025</div>
             <div class="f-social-row">
                 <a href="{{ $global_settings->facebook_link }}" target="_blank" class="s-link" title="Facebook"><i
                         class="fa-brands fa-facebook-f"></i></a>
@@ -135,8 +136,16 @@
         color: #e53a12;
         letter-spacing: 2px;
         text-transform: uppercase;
-        margin-bottom: 35px;
+        margin-bottom: 10px;
         opacity: 0.8;
+    }
+
+    .f-license {
+        font-size: 1rem;
+        color: #666;
+        font-weight: 600;
+        margin-bottom: 35px;
+        letter-spacing: 1px;
     }
 
     .f-social-row {

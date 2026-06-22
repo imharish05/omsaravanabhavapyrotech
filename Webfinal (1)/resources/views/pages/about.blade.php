@@ -43,7 +43,7 @@
                         <div class="visual-accent-border"></div>
                     </div>
                     <div class="visual-stack sub">
-                        <img src="{{ env('MAIN_URL', '/') . $about->main_image }}" alt="Craft">
+                        <img class="about-img-accent" src="{{ asset('assets/images/1773459490_welcome_Untitled design (3).png') }}" alt="Crackers Store">
                     </div>
                     <div class="experience-pill">
                         <span class="n-years">{{ $settings->welcome_badge_count ?? '10+' }}</span>
@@ -169,7 +169,7 @@
                 <h3 class="cta-display">{!! $about->action_text ?? 'Excited to celebrate?' !!}</h3>
                 <p>{{ $about->action_description ?? 'Bringing the magic of lights to your doorstep with unmatched safety and brilliance.' }}</p>
                 <a href="{{ $about->action_button_link ?? '/shop' }}" class="cta-btn-gold">
-                    <span>{{ $about->action_button_text ?? 'Shop Now' }}</span>
+                    <span>{{ $about->action_button_text ?? 'Enquire Now' }}</span>
                     <i class="fa-solid fa-arrow-right"></i>
                 </a>
             </div>

@@ -452,8 +452,8 @@
     <!-- RIGHT FAB GROUP (Utilities) -->
     <div class="luxury-fab-group-right {{ Request::is('estimate') ? 'fab-hide-estimate-mobile' : '' }}">
         @if(!Request::is('estimate'))
-            <a href="{{ url('estimate') }}" class="l-fab est" title="Shop Now">
-                <i class="fa-solid fa-cart-shopping"></i>
+            <a href="{{ url('estimate') }}" class="l-fab est" title="Enquire Now">
+                <i class="fa-solid fa-clipboard-list"></i>
                 <div class="fab-ripple"></div>
             </a>
         @endif

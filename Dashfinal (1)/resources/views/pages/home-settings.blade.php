@@ -300,7 +300,7 @@
                                         <label for="offer_button_text" class="form-label">Button Text</label>
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="fas fa-mouse-pointer"></i></span>
-                                            <input class="form-control" type="text" id="offer_button_text" name="offer_button_text" value="{{ old('offer_button_text', $homeSetting->offer_button_text ?? 'Shop Now') }}">
+                                            <input class="form-control" type="text" id="offer_button_text" name="offer_button_text" value="{{ old('offer_button_text', $homeSetting->offer_button_text ?? 'Enquire Now') }}">
                                         </div>
                                     </div>
                                     <div class="col-md-12 mb-custom">

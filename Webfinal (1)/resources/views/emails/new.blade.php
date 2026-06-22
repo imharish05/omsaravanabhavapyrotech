@@ -1348,7 +1348,7 @@ body {
             <div class="counter-box"><span class="counter-num" id="cnt-min">00</span><div class="counter-lbl">Mins</div></div>
             <div class="counter-box"><span class="counter-num" id="cnt-sec">00</span><div class="counter-lbl">Secs</div></div>
         </div>
-        <a href="{{ url('estimate') }}" class="offer-btn"><i class="fa-solid fa-bolt"></i> Shop Now</a>
+        <a href="{{ url('estimate') }}" class="offer-btn"><i class="fa-solid fa-clipboard-list"></i> Enquire Now</a>
     </div>
 </div>
 

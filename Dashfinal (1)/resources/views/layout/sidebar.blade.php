@@ -72,7 +72,7 @@
                             <span data-key="t-dashboard" style="color:#eebe6c">Customers</span>
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="javascript: void(0);" class="has-arrow">
                             <i class="fas fa-map " aria-hidden="true" style="color:#eebe6c"></i>
                             <span data-key="t-geography" style="color:#eebe6c">Geography</span>
@@ -82,7 +82,7 @@
                             {{-- <li><a href="{{ url('/city') }}" style="color:#eebe6c">City</a></li> --}}
                             <li><a href="{{ url('/area') }}" style="color:#eebe6c">Area</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
                     {{-- <li>
                         <a href="javascript: void(0);" class="has-arrow">
                             <i data-feather="shopping-cart"></i>

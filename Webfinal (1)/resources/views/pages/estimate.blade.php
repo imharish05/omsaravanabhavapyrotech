@@ -428,6 +428,13 @@ thead th {
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
+.box-content {
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 1rem;
+    font-family: 'Outfit', sans-serif;
+}
+
 .category td {
     background: none !important;
     padding: 60px 0 20px !important;
@@ -913,6 +920,7 @@ thead th {
 .summary-value,
 .product-name,
 .rowTotal,
+.box-content,
 .category td,
 .qty {
     color: #fff !important;
@@ -1614,7 +1622,7 @@ thead th,
                                         <!-- <td>
                                             {{-- Video button removed for estimate page --}}
                                         </td> -->
-                                        <td class="rowTotal notranslate">{{ $product->product_content }}</td>
+                                        <td class="box-content notranslate">{{ $product->product_content }}</td>
                                         <td class="actual notranslate">{{ $product->product_mrp_price }}</td>
                                         <td class="price notranslate">{{ $product->product_regular_price }}</td>
                                         <td>
@@ -1658,9 +1666,9 @@ thead th,
                 </div>
             @endif
             <div class="cart-summary-rows">
-                <div class="cart-summary-row"><span>Cart Subtotal</span><span id="cartActual">₹0</span></div>
+                <div class="cart-summary-row"><span>Total MRP Amount</span><span id="cartActual">₹0</span></div>
                 <div class="cart-summary-row" style="color: #16A34A; font-weight: 700;"><span>Your Savings</span><span id="cartSave">- ₹0</span></div>
-                <div class="cart-summary-row total"><span>Net Amount</span><span id="cartNet">₹0</span></div>
+                <div class="cart-summary-row total"><span>Grand Total</span><span id="cartNet">₹0</span></div>
             </div>
             <button class="btn-gold" id="confirmOrderBtn" onclick="closeCart(); checkOrder();">
                 <span>Proceed to Checkout</span> <i class="fa-solid fa-arrow-right"></i>
@@ -1729,39 +1737,24 @@ thead th,
                 </div>
 
                 <div class="order-field">
-                    <label class="order-label">STREET ADDRESS *</label>
+                    <label class="order-label">ADDRESS *</label>
                     <textarea name="address" id="orderAddress" required rows="2" placeholder="Door No, Street Name, Landmark..." class="order-input order-textarea"></textarea>
                 </div>
 
                 <div class="order-form-grid-2">
                     <div class="order-field">
-                        <label class="order-label">SELECT STATE *</label>
-                        <select name="state" id="stateSelect" required onchange="loadCities(this.value)" class="order-input order-select">
-                            <option value="">-- Choose State --</option>
-                            @foreach($states as $state)
-                                <option value="{{ $state->id }}">{{ $state->state }}</option>
-                            @endforeach
-                        </select>
+                        <label class="order-label">STATE *</label>
+                        <input type="text" name="state" id="stateSelect" required placeholder="Ex: Tamil Nadu" class="order-input">
                     </div>
                     <div class="order-field">
-                        <label class="order-label">SELECT CITY *</label>
-                        <select name="city" id="citySelect" required onchange="loadAreas(this.value)" class="order-input order-select">
-                            <option value="">-- First Select State --</option>
-                        </select>
+                        <label class="order-label">CITY *</label>
+                        <input type="text" name="city" id="citySelect" required placeholder="Ex: Chennai" class="order-input">
                     </div>
                 </div>
 
-                <div class="order-form-grid-2">
-                    <div class="order-field">
-                        <label class="order-label">SELECT AREA</label>
-                        <select name="area" id="areaSelect" class="order-input order-select">
-                            <option value="">-- First Select City --</option>
-                        </select>
-                    </div>
-                    <div class="order-field">
-                        <label class="order-label">PINCODE</label>
-                        <input type="text" name="pincode" id="orderPincode" placeholder="600001" class="order-input">
-                    </div>
+                <div class="order-field">
+                    <label class="order-label">PINCODE</label>
+                    <input type="text" name="pincode" id="orderPincode" placeholder="600001" class="order-input">
                 </div>
 
                 <button type="button" onclick="placeOrder()" id="placeOrderBtn" class="order-submit-btn">
@@ -1889,7 +1882,8 @@ thead th,
         document.querySelectorAll(".product-row").forEach(row => {
             const qty = parseInt(row.querySelector(".qty").value) || 0;
             const price = parseFloat(row.querySelector(".price").innerText) || 0;
-            const actual = parseFloat(row.querySelector(".actual").innerText) || 0;
+            const actualVal = parseFloat(row.querySelector(".actual").innerText) || 0;
+            const actual = (actualVal === 0 || actualVal < price) ? price : actualVal;
             const rowTotal = qty * price;
             const actualRow = qty * actual;
 
@@ -1978,6 +1972,7 @@ thead th,
 
     function closeOrderModal() { document.getElementById("orderModal").style.display = "none"; }
 
+    /*
     function loadCities(stateId) {
         if(!stateId) return;
         const citySelect = document.getElementById('citySelect');
@@ -2001,6 +1996,7 @@ thead th,
                 data.forEach(area => { areaSelect.innerHTML += `<option value="${area.id}">${area.area_name}</option>`; });
             });
     }
+    */
 
     function lookupCustomer(phone) {
         if(phone.length < 10) return;

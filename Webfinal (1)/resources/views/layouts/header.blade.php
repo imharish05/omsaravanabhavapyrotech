@@ -51,10 +51,10 @@
                 </div>
             </div>
 
-            <!-- Shop Now CTA -->
+            <!-- Enquire Now CTA -->
             <a href="{{ url('estimate') }}" class="hdr-cta">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <span>Shop Now</span>
+                <i class="fa-solid fa-clipboard-list"></i>
+                <span>Enquire Now</span>
             </a>
 
             <!-- Hamburger -->
@@ -89,7 +89,7 @@
                 <button onclick="changeLang('kn')" class="hdr-mlang-btn" id="btn-kn">ಕನ்ನಡ</button>
             </div>
             <a href="{{ url('estimate') }}" class="hdr-mobile-cta">
-                <i class="fa-solid fa-cart-shopping"></i> Shop Now
+                <i class="fa-solid fa-clipboard-list"></i> Enquire Now
             </a>
             <a href="tel:{{ $global_settings->phone_number }}" class="hdr-mobile-call">
                 <i class="fa-solid fa-phone"></i> {{ $global_settings->phone_number }}
