@@ -245,6 +245,11 @@
         color: #000 !important;
     }
 
+    .box-content {
+        color: #000 !important;
+        font-weight: 800 !important;
+    }
+
     .l-card-excerpt,
     .blog-empty-luxury p,
     .s-card p,
@@ -259,8 +264,7 @@
     thead th,
     .actual,
     .cart-item-meta,
-    .min-order-status,
-    .product-row td:nth-child(4) {
+    .min-order-status {
         color: rgba(0,0,0,0.62) !important;
     }
 

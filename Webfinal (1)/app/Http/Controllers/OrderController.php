@@ -18,12 +18,12 @@ class OrderController extends Controller
         $request->validate([
             'name'         => 'required|string|max:255',
             'email'        => 'required|email|max:255',
-            'phone_number' => 'required|string|max:20',
+            'phone_number' => 'required|regex:/^[0-9]{10}$/',
             'address'      => 'required|string|max:500',
             'state'        => 'nullable|string|max:100',
             'city'         => 'nullable|string|max:100',
             'area'         => 'nullable|string|max:100',
-            'pincode'      => 'nullable|string|max:20',
+            'pincode'      => 'required|regex:/^[0-9]{6}$/',
             'cart_data'    => 'required|string',
             'sub_total'    => 'required|numeric',
             'total'        => 'required|numeric',
@@ -42,7 +42,7 @@ class OrderController extends Controller
             $result = DB::transaction(function () use ($request, $cartItems) {
 
                 $lastId     = DB::table('product_orders')->lockForUpdate()->max('id') ?? 0;
-                $newOrderId = 'order' . str_pad($lastId + 1, 5, '0', STR_PAD_LEFT);
+                $newOrderId = 'enquiry' . str_pad($lastId + 1, 5, '0', STR_PAD_LEFT);
 
                 $customer = Customer::create([
                     'user_id'      => null,
@@ -170,6 +170,25 @@ class OrderController extends Controller
             } catch (\Exception $e) { \Log::error("PDF QR Error (PhonePe): " . $e->getMessage()); }
         }
 
+        $order = \App\Models\Order::where('oeder_id', $data['order_id'])->first();
+        $customer = $order ? \App\Models\Customer::find($order->user_id) : null;
+
+        // Base64 encode logo and Lord Murugan image to bypass CORS in canvas
+        $logo_base64 = null;
+        $global_settings = \App\Models\GlobalSetting::first();
+        if ($global_settings && $global_settings->logo) {
+            $logo_path = base_path('../Dashfinal (1)/public/' . ltrim($global_settings->logo, '/'));
+            if (file_exists($logo_path)) {
+                $logo_base64 = 'data:image/png;base64,' . base64_encode(file_get_contents($logo_path));
+            }
+        }
+
+        $murugan_base64 = null;
+        $murugan_path = public_path('assets/images/lord_murugan.png');
+        if (file_exists($murugan_path)) {
+            $murugan_base64 = 'data:image/png;base64,' . base64_encode(file_get_contents($murugan_path));
+        }
+
         return view('pages.order-success', [
             'order_id'    => $data['order_id'],
             'cartItems'   => $data['cart_items'],
@@ -178,6 +197,10 @@ class OrderController extends Controller
             'payment'     => $payment,
             'gpay_qr'     => $gpay_qr_base64,
             'phonepe_qr'  => $phonepe_qr_base64,
+            'order'       => $order,
+            'customer'    => $customer,
+            'logo_base64' => $logo_base64,
+            'murugan_base64' => $murugan_base64,
         ]);
     }
 }

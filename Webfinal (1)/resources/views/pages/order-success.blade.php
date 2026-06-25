@@ -136,7 +136,7 @@
 
             /* 2. LIGHT DATA TERMINALS */
             .success-container {
-                width: min(100% - 40px, 950px);
+                width: min(100% - 40px, 1200px);
                 margin: -80px auto 0;
                 position: relative;
                 z-index: 20;
@@ -192,7 +192,7 @@
             }
 
             .showcase-table th {
-                padding: 20px 40px;
+                padding: 20px 24px;
                 text-align: left;
                 font-size: 0.75rem;
                 font-weight: 800;
@@ -202,7 +202,7 @@
             }
 
             .showcase-table td {
-                padding: 20px 40px;
+                padding: 20px 24px;
                 border-top: 1px solid #f5f5f5;
             }
 
@@ -238,6 +238,32 @@
                 border-radius: 10px;
                 font-weight: 900;
                 font-size: 0.8rem;
+            }
+
+            .tfoot-row {
+                border-top: 2px solid var(--stone);
+            }
+            .grand-total-label {
+                padding: 20px 40px;
+                font-weight: 800;
+                font-size: 1.1rem;
+                color: var(--ink, #111);
+                white-space: nowrap;
+            }
+            .grand-total-divider {
+                padding: 20px 40px;
+                text-align: center;
+                font-weight: 800;
+                font-size: 1.1rem;
+                color: #888;
+            }
+            .grand-total-value {
+                padding: 20px 40px;
+                text-align: right;
+                font-weight: 900;
+                font-size: 1.4rem;
+                color: var(--gold-deep, #B8860B);
+                white-space: nowrap;
             }
 
             /* 4. FINANCIAL WRAP */
@@ -475,6 +501,19 @@
                 border-top-color: rgba(255,255,255,0.08);
             }
 
+            .grand-total-label {
+                color: #fff !important;
+            }
+            .grand-total-divider {
+                color: rgba(255,255,255,0.4) !important;
+            }
+            .grand-total-value {
+                color: var(--gold-light, #eebe6c) !important;
+            }
+            .tfoot-row {
+                border-top-color: rgba(255,255,255,0.08) !important;
+            }
+
             .qty-tag,
             .fin-row.savings {
                 background: rgba(37,211,102,0.12);
@@ -491,9 +530,184 @@
                 color: #080810;
             }
 
+            @media (max-width: 768px) {
+                /* Hide table header on mobile */
+                .showcase-table thead {
+                    display: none !important;
+                }
+
+                /* Convert table layout to blocks */
+                .showcase-table,
+                .showcase-table tbody,
+                .showcase-table tr,
+                .showcase-table td {
+                    display: block !important;
+                    width: 100% !important;
+                    box-sizing: border-box;
+                }
+                .showcase-table {
+                    min-width: 0 !important;
+                }
+
+                /* Style each row as a card */
+                .showcase-table tbody tr {
+                    background: #fbfbfb !important;
+                    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+                    border-radius: 20px;
+                    padding: 20px !important;
+                    margin-bottom: 20px;
+                    position: relative;
+                    color: #111 !important;
+                }
+
+                /* Style cells */
+                .showcase-table tbody td {
+                    padding: 10px 0 !important;
+                    border: none !important;
+                    text-align: left !important;
+                    font-size: 0.95rem;
+                    display: flex !important;
+                    justify-content: space-between;
+                    align-items: center;
+                    border-bottom: 1px dashed rgba(0, 0, 0, 0.04) !important;
+                    color: #111 !important;
+                }
+
+                .showcase-table tbody td .val-box:not([style]) {
+                    color: #111 !important;
+                }
+
+                .showcase-table tbody td:nth-child(6) .val-box {
+                    color: #111 !important;
+                    font-weight: 800 !important;
+                }
+
+                .showcase-table tbody td .qty-tag {
+                    background: var(--gold-soft, #f4ece1) !important;
+                    color: var(--gold-deep, #B8860B) !important;
+                    display: inline-block !important;
+                }
+
+                /* Product Info cell header */
+                .showcase-table tbody td:nth-child(1) {
+                    display: block !important;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+                    padding-bottom: 12px !important;
+                    margin-bottom: 8px !important;
+                    color: #111 !important;
+                }
+
+                .showcase-table tbody td:nth-child(1) .prod-name {
+                    color: #111 !important;
+                    font-weight: 800;
+                }
+
+                .showcase-table tbody td:nth-child(6) {
+                    border-bottom: none !important;
+                    font-weight: 800;
+                }
+
+                /* Add label prefixes using ::before */
+                .showcase-table tbody td:nth-child(2)::before {
+                    content: 'Quantity:';
+                    font-weight: 700;
+                    opacity: 0.6;
+                    color: #111 !important;
+                }
+                .showcase-table tbody td:nth-child(3)::before {
+                    content: 'MRP Amount:';
+                    font-weight: 700;
+                    opacity: 0.6;
+                    color: #111 !important;
+                }
+                .showcase-table tbody td:nth-child(4)::before {
+                    content: 'Discount:';
+                    font-weight: 700;
+                    opacity: 0.6;
+                    color: #111 !important;
+                }
+                .showcase-table tbody td:nth-child(5)::before {
+                    content: 'Discounted Price:';
+                    font-weight: 700;
+                    opacity: 0.6;
+                    color: #111 !important;
+                }
+                .showcase-table tbody td:nth-child(6)::before {
+                    content: 'Item Total:';
+                    font-weight: 700;
+                    opacity: 0.6;
+                    color: #111 !important;
+                }
+
+                /* Convert table footer to block card */
+                .showcase-table tfoot {
+                    display: block !important;
+                    margin-top: 25px;
+                    background: rgba(240, 168, 50, 0.06) !important;
+                    border: 1px solid rgba(240, 168, 50, 0.15) !important;
+                    border-radius: 20px;
+                    padding: 20px !important;
+                }
+                .showcase-table tfoot tr {
+                    display: flex !important;
+                    justify-content: space-between;
+                    align-items: center;
+                    border: none !important;
+                    width: 100% !important;
+                }
+                .showcase-table tfoot td {
+                    display: block !important;
+                    padding: 0 !important;
+                    border: none !important;
+                }
+                .showcase-table tfoot td.grand-total-divider {
+                    display: none !important;
+                }
+                .showcase-table tfoot td.grand-total-label {
+                    font-size: 1.1rem !important;
+                    color: var(--ink, #111) !important;
+                }
+                .showcase-table tfoot td.grand-total-value {
+                    font-size: 1.4rem !important;
+                    color: var(--gold-deep, #B8860B) !important;
+                    text-align: right !important;
+                }
+
+                /* Dark Mode overrides for mobile cards */
+                .success-page:not([class*="light"]) .showcase-table tbody tr {
+                    background: rgba(255, 255, 255, 0.02) !important;
+                    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+                    color: #fff !important;
+                }
+                .success-page:not([class*="light"]) .showcase-table tbody td {
+                    border-bottom-color: rgba(255, 255, 255, 0.04) !important;
+                    color: #fff !important;
+                }
+                .success-page:not([class*="light"]) .showcase-table tbody td:nth-child(1) {
+                    border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+                    color: #fff !important;
+                }
+                .success-page:not([class*="light"]) .showcase-table tbody td:nth-child(1) .prod-name {
+                    color: #fff !important;
+                }
+                .success-page:not([class*="light"]) .showcase-table tbody td:nth-child(2)::before,
+                .success-page:not([class*="light"]) .showcase-table tbody td:nth-child(3)::before,
+                .success-page:not([class*="light"]) .showcase-table tbody td:nth-child(4)::before,
+                .success-page:not([class*="light"]) .showcase-table tbody td:nth-child(5)::before,
+                .success-page:not([class*="light"]) .showcase-table tbody td:nth-child(6)::before {
+                    color: #fff !important;
+                }
+                .success-page:not([class*="light"]) .showcase-table tfoot td.grand-total-label {
+                    color: #fff !important;
+                }
+                .success-page:not([class*="light"]) .showcase-table tfoot td.grand-total-value {
+                    color: var(--gold-light, #eebe6c) !important;
+                }
+            }
+
             @media (max-width: 575px) {
                 .success-container {
-                    width: min(100% - 24px, 950px);
+                    width: min(100% - 24px, 1200px);
                 }
 
                 .terminal-header,
@@ -509,7 +723,7 @@
         </style>
     @endpush
 
-    <div class="success-page">
+    <div class="success-page light">
 
         <!-- 1. PRISTINE HERO -->
         <section class="success-hero">
@@ -522,13 +736,13 @@
                 </div>
                 <div class="success-eyebrow wow fadeInUp">Celebration Confirmed</div>
                 <h1 class="success-title wow fadeInUp" data-wow-delay="0.2s">
-                    Order Placed <span>Successfully</span>
+                    Enquiry Submitted <span>Successfully</span>
                 </h1>
 
                 <div class="token-pill wow fadeInUp" data-wow-delay="0.4s">
                     <span
-                        style="font-size:0.7rem; opacity:0.5; text-transform:uppercase; letter-spacing:2px; color:var(--ink);">Receipt
-                        Hash</span>
+                        style="font-size:0.7rem; opacity:0.5; text-transform:uppercase; letter-spacing:2px; color:var(--ink);">Enquiry
+                        ID</span>
                     <span class="token-id">#{{ $order_id }}</span>
                 </div>
             </div>
@@ -536,23 +750,30 @@
 
         <div class="success-container">
 
-            <!-- 2. SELECTION SHOWCASE -->
+            <!-- 2. ENQUIRY DETAILS -->
             <div class="terminal-card wow fadeInUp">
                 <div class="terminal-header">
-                    <i class="fa-solid fa-box-open"></i> Selection Showcase ({{ count($cartItems) }})
+                    <i class="fa-solid fa-box-open"></i> Enquiry Details
                 </div>
                 <div class="showcase-table-wrap">
                     <table class="showcase-table">
                         <thead>
                             <tr>
                                 <th>Product Information</th>
-                                <th>Unit Rate</th>
-                                <th>Count</th>
-                                <th style="text-align:right;">Subtotal</th>
+                                <th>Quantity</th>
+                                <th>MRP Amount</th>
+                                <th>Discount(%)</th>
+                                <th>Discounted Price</th>
+                                <th style="text-align:right;">Total</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($cartItems as $item)
+                                @php
+                                    $item_actual = (float)($item['actual'] ?? $item['price']);
+                                    $item_price = (float)$item['price'];
+                                    $discount_percentage = $item_actual > $item_price ? round((1 - ($item_price / $item_actual)) * 100) : 0;
+                                @endphp
                                 <tr>
                                     <td>
                                         <div class="prod-preview">
@@ -563,75 +784,24 @@
                                             <span class="prod-name">{{ $item['product_name'] }}</span>
                                         </div>
                                     </td>
-                                    <td><span class="val-box">₹{{ number_format($item['price'], 2) }}</span></td>
-                                    <td><span class="qty-tag">×{{ $item['qty'] }}</span></td>
+                                    <td><span class="qty-tag">{{ $item['qty'] }}</span></td>
+                                    <td><span class="val-box">₹{{ number_format($item_actual, 2) }}</span></td>
+                                    <td><span class="val-box" style="color:#16A34A; font-weight:700;">{{ $discount_percentage }}%</span></td>
+                                    <td><span class="val-box">₹{{ number_format($item_price, 2) }}</span></td>
                                     <td style="text-align:right;"><span class="val-box"
                                             style="color:var(--ink); font-weight:800;">₹{{ number_format($item['total'], 2) }}</span>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
+                        <tfoot>
+                            <tr class="tfoot-row">
+                                <td colspan="1" class="grand-total-label">Grand Total</td>
+                                <td colspan="4" class="grand-total-divider">-</td>
+                                <td class="grand-total-value">₹{{ number_format($netTotal, 2) }}</td>
+                            </tr>
+                        </tfoot>
                     </table>
-                </div>
-            </div>
-
-            <!-- 3. FINANCIAL BREAKDOWN -->
-            <div class="terminal-card wow fadeInUp">
-                <div class="terminal-header">
-                    <i class="fa-solid fa-receipt"></i> Settlement Details
-                </div>
-                <div class="financial-strip">
-                    <div class="fin-row"><span>Actual Market Value</span><span>₹{{ number_format($actualTotal, 2) }}</span>
-                    </div>
-                    @if($actualTotal > $netTotal)
-                        <div class="fin-row savings">
-                            <div style="display:flex; align-items:center; gap:10px;">
-                                <i class="fas fa-gift"></i> Your Selection Bonus
-                            </div>
-                            <span>- ₹{{ number_format($actualTotal - $netTotal, 2) }}</span>
-                        </div>
-                    @endif
-                    <div class="fin-row total">
-                        <span>Net Payable</span>
-                        <span class="val">₹{{ number_format($netTotal, 2) }}</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 4. PAYMENT INTERFACE -->
-            <div class="terminal-card wow fadeInUp">
-                <div class="terminal-header">
-                    <i class="fa-solid fa-shield-halved"></i> Priority Payment Channels
-                </div>
-                <div class="pay-grid">
-                    <div class="pay-slab">
-                        <div class="success-eyebrow" style="margin-bottom:20px; font-size:0.7rem;">Banking Details</div>
-                        <div class="slab-meta">
-                            <div><strong>Bank:</strong> {{ $payment->bank_name ?? 'N/A' }}</div>
-                            <div><strong>Account No.:</strong> {{ $payment->account_number ?? 'N/A' }}</div>
-                            <div><strong>IFSC Code:</strong> {{ $payment->ifsc_code ?? 'N/A' }}</div>
-                            <div><strong>Account Name:</strong> {{ $payment->account_name ?? 'N/A' }}</div>
-                        </div>
-                    </div>
-
-                    <div class="pay-slab">
-                        <div class="success-eyebrow" style="margin-bottom:20px; font-size:0.7rem;">Instant Settlement</div>
-                        <div class="slab-meta">
-                            <div><strong>Gateway:</strong> Google Pay / PhonePe</div>
-                            <div><strong>Gpay No.:</strong> {{ $payment->gpay_number ?? $payment->phonepe_number ?? 'N/A' }}
-                            </div>
-                        </div>
-                        @if(!empty($payment->gpay_qr_code) || !empty($payment->phonepe_qr_code))
-                            <div class="slab-qr">
-                                @if(!empty($payment->gpay_qr_code))
-                                    <img src="{{ env('MAIN_URL') . $payment->gpay_qr_code }}" alt="UPI">
-                                @endif
-                                @if(!empty($payment->phonepe_qr_code))
-                                    <img src="{{ env('MAIN_URL') . $payment->phonepe_qr_code }}" alt="UPI">
-                                @endif
-                            </div>
-                        @endif
-                    </div>
                 </div>
             </div>
 
@@ -639,7 +809,7 @@
             <div class="action-strip">
                 <a href="/" class="a-btn a-btn-ghost"><i class="fa-solid fa-house"></i> Home</a>
                 <button onclick="downloadOrderPDF()" class="a-btn a-btn-dark"><i class="fa-solid fa-file-pdf"></i> Download
-                    Receipt</button>
+                    Enquiry PDF</button>
                 {{-- <a href="{{ url('/bank') }}" class="a-btn a-btn-gold"><i class="fa-solid fa-credit-card"></i> Pay Now</a> --}}
             </div>
         </div>
@@ -658,8 +828,40 @@
         const ORDER_DATA = {
             orderId: "{{ $order_id }}",
             netTotal: {{ $netTotal }},
-            items: @json($cartItems)
+            items: @json($cartItems),
+            customerName: "{{ $order->name ?? '' }}",
+            customerAddress: "{{ $order->address ?? '' }}",
+            customerArea: "{{ $order->area ?? '' }}",
+            customerCity: "{{ $order->city ?? '' }}",
+            customerState: "{{ $order->state ?? '' }}",
+            customerPincode: "{{ $order->pincode ?? '' }}",
+            customerPhone: "{{ $customer->phone_number ?? '' }}",
+            orderDate: "{{ $order ? date('d-m-Y', strtotime($order->created_at)) : '' }}",
+            logo: "{{ $logo_base64 }}",
+            muruganImage: "{{ $murugan_base64 }}",
+            companyName: "{{ $global_settings->company_name ?? 'OM SARAVANABHAVA PYROTECH' }}",
+            companyAddress: "{!! str_replace(["\r\n", "\r", "\n"], '<br>', e($global_settings->address ?? '')) !!}",
+            companyPhone: "{{ $global_settings->phone_number ?? '' }}",
+            companyWhatsapp: "{{ $global_settings->whatsapp_number ?? '' }}"
         };
+
+        var numberToWordsArr = ['', 'One ', 'Two ', 'Three ', 'Four ', 'Five ', 'Six ', 'Seven ', 'Eight ', 'Nine ', 'Ten ', 'Eleven ',
+            'Twelve ', 'Thirteen ', 'Fourteen ', 'Fifteen ', 'Sixteen ', 'Seventeen ', 'Eighteen ', 'Nineteen '
+        ];
+        var numberToWordsDec = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+
+        function convertNumberToWords(num) {
+            if ((num = num.toString()).length > 9) return 'overflow';
+            let n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+            if (!n) return '';
+            var str = '';
+            str += (n[1] != 0) ? (numberToWordsArr[Number(n[1])] || numberToWordsDec[n[1][0]] + ' ' + numberToWordsArr[n[1][1]]) + 'Crore ' : '';
+            str += (n[2] != 0) ? (numberToWordsArr[Number(n[2])] || numberToWordsDec[n[2][0]] + ' ' + numberToWordsArr[n[2][1]]) + 'Lakh ' : '';
+            str += (n[3] != 0) ? (numberToWordsArr[Number(n[3])] || numberToWordsDec[n[3][0]] + ' ' + numberToWordsArr[n[3][1]]) + 'Thousand ' : '';
+            str += (n[4] != 0) ? (numberToWordsArr[Number(n[4])] || numberToWordsDec[n[4][0]] + ' ' + numberToWordsArr[n[4][1]]) + 'Hundred ' : '';
+            str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (numberToWordsArr[Number(n[5])] || numberToWordsDec[n[5][0]] + ' ' + numberToWordsArr[n[5][1]]) + ' ' : '';
+            return str;
+        }
 
         // PDF GENERATION
         async function downloadOrderPDF() {
@@ -670,44 +872,198 @@
             try {
                 const { jsPDF } = window.jspdf;
                 const doc = new jsPDF('p', 'pt', 'a4');
-                const A4_W = 1000;
                 let rowsHtml = '';
+                let totalQty = 0;
+                let totalActual = 0;
+                let totalDiscount = 0;
+                let totalRegular = 0;
 
                 ORDER_DATA.items.forEach((item, i) => {
-                    const bg = i % 2 === 0 ? '#ffffff' : '#fafafa';
+                    const item_actual = parseFloat(item.actual || item.price);
+                    const item_price = parseFloat(item.price);
+                    const lineActual = item_actual * parseInt(item.qty);
+                    const lineRegular = parseFloat(item.total);
+                    const lineDiscount = lineActual - lineRegular;
+                    const discount_percentage = item_actual > item_price ? Math.round((1 - (item_price / item_actual)) * 100) : 0;
+                    
+                    totalQty += parseInt(item.qty);
+                    totalActual += lineActual;
+                    totalDiscount += lineDiscount;
+                    totalRegular += lineRegular;
+
+                    const codeStr = String(item.product_id || '').padStart(3, '0');
+
                     rowsHtml += `
-                        <tr style="background:${bg}; border-bottom: 1px solid #eee;">
-                            <td style="padding:15px; width:45%; color:#111; font-weight:600;">${item.product_name}</td>
-                            <td style="padding:15px; text-align:center; width:20%; color:#444;">₹${parseFloat(item.price).toFixed(2)}</td>
-                            <td style="padding:15px; text-align:center; width:15%; color:#444;">x${item.qty}</td>
-                            <td style="padding:15px; text-align:right; font-weight:800; width:20%; color:#111;">₹${parseFloat(item.total).toFixed(2)}</td>
+                        <tr style="border: 1px solid #000000; font-family: Arial, sans-serif;">
+                            <td style="padding:10px 5px; text-align:center; border: 1px solid #000000; font-size:14px; font-weight: bold; color:#000;">${i + 1}</td>
+                            <td style="padding:10px 5px; text-align:center; border: 1px solid #000000; font-size:14px; font-weight: bold; color:#000;">${codeStr}</td>
+                            <td style="padding:10px 10px; text-align:left; border: 1px solid #000000; font-size:14px; font-weight: bold; color:#000;">${item.product_name}</td>
+                            <td style="padding:10px 5px; text-align:center; border: 1px solid #000000; font-size:14px; font-weight: bold; color:#000;">${item.qty}</td>
+                            <td style="padding:10px 5px; text-align:center; border: 1px solid #000000; font-size:14px; font-weight: bold; color:#000;">${item_actual.toFixed(2)}</td>
+                            <td style="padding:10px 5px; text-align:center; border: 1px solid #000000; font-size:14px; font-weight: bold; color:#000;">${lineActual.toFixed(2)}</td>
+                            <td style="padding:10px 5px; text-align:center; border: 1px solid #000000; font-size:14px; font-weight: bold; color:#000;">${discount_percentage > 0 ? discount_percentage + '%' : '-'}</td>
+                            <td style="padding:10px 5px; text-align:center; border: 1px solid #000000; font-size:14px; font-weight: bold; color:#000;">${lineDiscount.toFixed(2)}</td>
+                            <td style="padding:10px 5px; text-align:center; border: 1px solid #000000; font-size:14px; font-weight: bold; color:#000;">${lineRegular.toFixed(2)}</td>
                         </tr>`;
                 });
 
+                rowsHtml += `
+                    <tr style="border: 2px solid #000000; font-family: Arial, sans-serif;">
+                        <td style="padding:10px 5px; border: 1px solid #000000;"></td>
+                        <td style="padding:10px 5px; border: 1px solid #000000;"></td>
+                        <td style="padding:10px 5px; border: 1px solid #000000;"></td>
+                        <td style="padding:10px 5px; text-align:center; border: 1px solid #000000; font-size:14px; font-weight:bold; color:#000;">${totalQty}</td>
+                        <td style="padding:10px 5px; border: 1px solid #000000;"></td>
+                        <td style="padding:10px 5px; text-align:right; padding-right:10px; border: 1px solid #000000; font-size:14px; font-weight:bold; color:#000;">${totalActual.toFixed(2)}</td>
+                        <td style="padding:10px 5px; border: 1px solid #000000;"></td>
+                        <td style="padding:10px 5px; text-align:right; padding-right:10px; border: 1px solid #000000; font-size:14px; font-weight:bold; color:#000;">${totalDiscount.toFixed(2)}</td>
+                        <td style="padding:10px 5px; text-align:right; padding-right:10px; border: 1px solid #000000; font-size:14px; font-weight:bold; color:#000;">${totalRegular.toFixed(2)}</td>
+                    </tr>`;
+
+                const wordsStr = convertNumberToWords(Math.floor(totalRegular)) + 'Only';
+
                 const receiptHtml = `
-                    <div id="pdf-receipt-target" style="width: 1000px; background:#ffffff; color:#111; padding:60px 80px;">
-                        <div style="border-bottom:5px solid #B8860B; padding-bottom:30px; margin-bottom:50px; display:flex; justify-content:space-between; align-items:center;">
-                            <div>
-                                <h1 style="color:#B8860B; margin:0; font-size:45px; letter-spacing:2px;">Om Saravanabhava PYROTECH</h1>
-                                <p style="margin:5px 0 0; color:#888; text-transform:uppercase; letter-spacing:4px;">Official Sales Receipt</p>
-                            </div>
-                            <div style="text-align:right; background:#f9f9f9; padding:20px; border-radius:10px;">
-                                <div style="color:#888; font-size:12px;">RECEIPT NO.</div>
-                                <div style="font-size:28px; font-weight:800; color:#111;">#${ORDER_DATA.orderId}</div>
-                            </div>
+                    <div id="pdf-receipt-target" style="width: 1000px; background:#ffffff; color:#111; padding:40px; box-sizing: border-box;">
+                        <!-- Devotional Title outside main container -->
+                        <div style="text-align: center; margin-bottom: 5px;">
+                            <h2 style="font-size: 20px; font-weight: bold; text-transform: uppercase; margin: 0; letter-spacing: 2px; color: #000000; font-family: Arial, sans-serif;">Estimate</h2>
                         </div>
-                        <table style="width:100%; border-collapse:collapse;">
-                            <thead><tr style="background:#f4ece1; color:#B8860B;">
-                                <th style="padding:15px; text-align:left; border:1px solid #e8e4db;">DESCRIPTION</th>
-                                <th style="padding:15px; border:1px solid #e8e4db;">RATE</th>
-                                <th style="padding:15px; border:1px solid #e8e4db;">QTY</th>
-                                <th style="padding:15px; text-align:right; border:1px solid #e8e4db;">TOTAL</th>
-                            </tr></thead>
+
+                        <!-- Header Box -->
+                        <div style="border: 2px solid #000000; padding: 15px; margin-bottom: 15px; font-family: Arial, sans-serif;">
+                            <table style="width: 100%; border-collapse: collapse; border: none; margin: 0;">
+                                <tr>
+                                    <!-- Left: Logo -->
+                                    <td style="width: 20%; text-align: left; vertical-align: middle; border: none; padding: 0;">
+                                        <img src="${ORDER_DATA.logo}" alt="Logo" style="max-height: 120px; max-width: 120px; border-radius: 50%; object-fit: contain;">
+                                    </td>
+                                    
+                                    <!-- Center: Slogans, Name, Address, Contact -->
+                                    <td style="width: 60%; text-align: center; vertical-align: middle; border: none; padding: 0 15px; line-height: 1.5;">
+                                        <!-- Tamil slogans -->
+                                        <div style="font-size: 12px; margin-bottom: 2px; font-weight: bold;">உ</div>
+                                        <div style="font-size: 13px; margin-bottom: 6px; font-weight: bold;">ஓம் முருகன் துணை</div>
+                                        
+                                        <!-- Company Name -->
+                                        <h1 style="font-size: 26px; font-weight: bold; color: #000000; margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.5px;">
+                                            ${ORDER_DATA.companyName}
+                                        </h1>
+                                        
+                                        <!-- Address -->
+                                        <div style="font-size: 13px; color: #000000; font-weight: bold; margin-bottom: 8px; line-height: 1.4;">
+                                            ${ORDER_DATA.companyAddress}
+                                        </div>
+                                        
+                                        <!-- Contact / WhatsApp -->
+                                        <div style="display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: bold;">
+                                            <span style="display: inline-flex; align-items: center; justify-content: center;">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#25D366" viewBox="0 0 16 16" style="vertical-align: middle; margin-right: 5px;">
+                                                    <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.907h.003c4.368 0 7.926-3.559 7.93-7.93a7.897 7.897 0 0 0-2.326-5.645zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.69-4.98c-.202-.1-.1.195-.148-.024-.319-.16-1.89-1.097-2.002-1.14-.113-.043-.195-.065-.278.065-.082.13-.319.4-.392.483-.073.083-.146.092-.348.01A5.135 5.135 0 0 1 5.25 7.08a5.26 5.26 0 0 1-1.078-1.34c-.201-.347-.021-.534.152-.706.156-.155.348-.405.422-.508.073-.103.11-.173.165-.286.055-.113.028-.21-.013-.298-.042-.088-.372-.897-.509-1.229-.134-.325-.268-.28-.369-.285-.101-.005-.217-.005-.333-.005s-.305.044-.464.218C3.045 4.1 2.5 4.634 2.5 5.71c0 1.08.786 2.12 1.078 2.51.293.39 1.542 2.355 3.736 3.3c.523.225.93.36 1.25.463.525.167 1.003.143 1.38.087.42-.062 1.3-.532 1.484-1.047.185-.515.185-.956.13-1.047-.056-.09-.203-.142-.405-.243z"/>
+                                                </svg>
+                                                ${ORDER_DATA.companyWhatsapp}
+                                            </span>
+                                        </div>
+                                    </td>
+                                    
+                                    <!-- Right: Murugan image -->
+                                    <td style="width: 20%; text-align: right; vertical-align: middle; border: none; padding: 0;">
+                                        <img src="${ORDER_DATA.muruganImage}" alt="Lord Murugan" style="max-height: 120px; max-width: 100px; object-fit: contain;">
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <!-- Client Details Box -->
+                        <div style="border: 2px solid #000000; margin-bottom: 15px; font-family: Arial, sans-serif;">
+                            <table style="width: 100%; border-collapse: collapse; border: none; margin: 0;">
+                                <tr>
+                                    <td style="width: 60%; padding: 12px; text-align: left; vertical-align: top; font-size: 14px; border: none;">
+                                        <table style="width: 100%; border-collapse: collapse; border: none; margin: 0;">
+                                            <tr>
+                                                <td style="width: 90px; font-weight: bold; padding: 3px 0; border: none;">Name</td>
+                                                <td style="width: 15px; padding: 3px 0; border: none; text-align: center;">:</td>
+                                                <td style="font-weight: bold; padding: 3px 0; border: none;">${ORDER_DATA.customerName}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold; padding: 3px 0; border: none; vertical-align: top;">Address</td>
+                                                <td style="padding: 3px 0; border: none; text-align: center; vertical-align: top;">:</td>
+                                                <td style="font-weight: bold; padding: 3px 0; border: none; vertical-align: top;">
+                                                    ${ORDER_DATA.customerAddress}<br>
+                                                    ${ORDER_DATA.customerArea ? ORDER_DATA.customerArea + ', ' : ''}${ORDER_DATA.customerCity ? ORDER_DATA.customerCity + ', ' : ''}${ORDER_DATA.customerState ? ORDER_DATA.customerState : ''}${ORDER_DATA.customerPincode ? ' - ' + ORDER_DATA.customerPincode : ''}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold; padding: 3px 0; border: none;">Contact</td>
+                                                <td style="padding: 3px 0; border: none; text-align: center;">:</td>
+                                                <td style="font-weight: bold; padding: 3px 0; border: none;">${ORDER_DATA.customerPhone}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td style="width: 40%; padding: 12px; text-align: left; vertical-align: top; font-size: 14px; border: none; border-left: 2px solid #000000;">
+                                        <table style="width: 100%; border-collapse: collapse; border: none; margin: 0;">
+                                            <tr>
+                                                <td style="width: 110px; font-weight: bold; padding: 3px 0; border: none;">Estimate No</td>
+                                                <td style="width: 15px; padding: 3px 0; border: none; text-align: center;">:</td>
+                                                <td style="font-weight: bold; padding: 3px 0; border: none;">${ORDER_DATA.orderId}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold; padding: 3px 0; border: none;">Date</td>
+                                                <td style="padding: 3px 0; border: none; text-align: center;">:</td>
+                                                <td style="font-weight: bold; padding: 3px 0; border: none;">${ORDER_DATA.orderDate}</td>
+                                            </tr>
+
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <!-- Items Table -->
+                        <table style="width:100%; border-collapse:collapse; border: 2px solid #000000;">
+                            <thead>
+                                <tr style="background:#ffffff; color:#000000; border-bottom: 2px solid #000000; font-family: Arial, sans-serif;">
+                                    <th style="padding:10px 5px; text-align:center; border: 1px solid #000000; font-size:14px; font-weight:bold;">Slno</th>
+                                    <th style="padding:10px 5px; text-align:center; border: 1px solid #000000; font-size:14px; font-weight:bold;">Code</th>
+                                    <th style="padding:10px 10px; text-align:left; border: 1px solid #000000; font-size:14px; font-weight:bold;">Cracker name</th>
+                                    <th style="padding:10px 5px; text-align:center; border: 1px solid #000000; font-size:14px; font-weight:bold;">Quantity</th>
+                                    <th style="padding:10px 5px; text-align:center; border: 1px solid #000000; font-size:14px; font-weight:bold;">Rate</th>
+                                    <th style="padding:10px 5px; text-align:center; border: 1px solid #000000; font-size:14px; font-weight:bold;">Acutal</th>
+                                    <th style="padding:10px 5px; text-align:center; border: 1px solid #000000; font-size:14px; font-weight:bold;">Disc%</th>
+                                    <th style="padding:10px 5px; text-align:center; border: 1px solid #000000; font-size:14px; font-weight:bold;">Discount</th>
+                                    <th style="padding:10px 5px; text-align:center; border: 1px solid #000000; font-size:14px; font-weight:bold;">Total</th>
+                                </tr>
+                            </thead>
                             <tbody>${rowsHtml}</tbody>
                         </table>
-                        <div style="margin-top:50px; text-align:right; padding:30px; background:#f4ece1; border-radius:20px;">
-                            <div style="font-size:28px; font-weight:900; color:#B8860B;">GRAND TOTAL: ₹${ORDER_DATA.netTotal.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</div>
-                            <p style="margin:10px 0 0; color:#888; font-style:italic;">This is an automated receipt generated byOm Saravanabhava Pyrotech Selection Terminal.</p>
+
+                        <!-- Totals & Rupees Table -->
+                        <table style="width: 100%; border-collapse: collapse; border: 2px solid #000000; margin-top: 15px; margin-bottom: 15px; font-family: Arial, sans-serif;">
+                            <tr>
+                                <td style="width: 60%; padding: 15px; text-align: left; vertical-align: middle; font-size: 14px; font-weight: bold; border: none;">
+                                    Rupees : <span style="text-transform: capitalize;">${wordsStr}</span>
+                                </td>
+                                <td style="width: 40%; padding: 12px; text-align: left; vertical-align: top; font-size: 14px; border: none; border-left: 2px solid #000000;">
+                                    <table style="width: 100%; border-collapse: collapse; border: none; margin: 0;">
+                                        <tr>
+                                            <td style="text-align: left; font-weight: bold; padding: 4px 0; border: none;">Discount Items</td>
+                                            <td style="text-align: right; font-weight: bold; padding: 4px 0; border: none;">${totalActual.toFixed(2)}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: left; font-weight: bold; padding: 4px 0; border: none;">Discount</td>
+                                            <td style="text-align: right; font-weight: bold; padding: 4px 0; border: none;">${totalDiscount.toFixed(2)}</td>
+                                        </tr>
+                                        <tr style="border-top: 2px solid #000000;">
+                                            <td style="text-align: left; font-weight: bold; padding: 8px 0 0 0; font-size: 15px; border: none;">Total amount</td>
+                                            <td style="text-align: right; font-weight: bold; padding: 8px 0 0 0; font-size: 15px; border: none;">${totalRegular.toFixed(2)}</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- Thank you slogan -->
+                        <div style="text-align: center; margin-top: 25px; font-size: 16px; font-weight: bold; color: #000000; font-family: Arial, sans-serif;">
+                            Thank you for business with us!
                         </div>
                     </div>`;
 
@@ -720,10 +1076,28 @@
                 document.body.removeChild(wrapper);
 
                 const imgData = canvas.toDataURL('image/jpeg', 0.95);
-                doc.addImage(imgData, 'JPEG', 0, 0, 595.28, (canvas.height * 595.28) / canvas.width);
-                doc.save(`Receipt_Sri Shyam_${ORDER_DATA.orderId}.pdf`);
+                
+                const pageHeight = doc.internal.pageSize.getHeight();
+                const pageWidth = doc.internal.pageSize.getWidth();
+                const imgWidth = pageWidth;
+                const imgHeight = (canvas.height * pageWidth) / canvas.width;
+                
+                let heightLeft = imgHeight;
+                let position = 0;
+                
+                doc.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+                
+                while (heightLeft > 0) {
+                    position = heightLeft - imgHeight;
+                    doc.addPage();
+                    doc.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+                    heightLeft -= pageHeight;
+                }
 
-            } catch (err) { alert('Receipt synchronization failed: ' + err.message); }
+                doc.save(`Enquiry_OMS_${ORDER_DATA.orderId}.pdf`);
+
+            } catch (err) { alert('Enquiry synchronization failed: ' + err.message); }
             finally { btn.innerHTML = originalText; }
         }
     </script>

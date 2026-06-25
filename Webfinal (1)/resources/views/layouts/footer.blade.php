@@ -93,7 +93,7 @@
    ======================== */
     .About-footer {
         background: linear-gradient(180deg, #FFFFFF, #f9f9f9);
-        padding: 120px 40px 40px;
+        padding: 40px 40px 40px;
         position: relative;
         overflow: hidden;
         border-top: 2px solid rgba(229, 58, 18, 0.2);
@@ -183,7 +183,7 @@
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 60px;
-        margin-bottom: 100px;
+        /* margin-bottom: 100px; */
     }
 
     .f-title {

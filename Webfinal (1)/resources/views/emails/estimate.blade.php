@@ -17,7 +17,7 @@
                 <td style="background-color: #101010; padding: 50px 40px; text-align: center;">
                     <div
                         style="letter-spacing: 3px; color: #B8860B; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
-                        Order Confirmation</div>
+                        Enquiry Confirmation</div>
                     <h1
                         style="margin: 0; color: #ffffff; font-size: 32px; font-weight: 400; font-family: 'Cormorant Garamond', Georgia, serif; letter-spacing: 1px;">
                         Price <span style="color: #B8860B;">Estimate</span></h1>

@@ -133,7 +133,7 @@
                         <div class="mb-3">
                             <label for="category_add_input" class="form-label">Banner</label>
                            <input type="file" class="form-control image-validation" name="section_image"  placeholder="Upload price list" accept="image/*">
-                           <small class="text-danger">(1920 x 1080 px)</small>
+                           <small class="text-danger">(1920 x 900 px)</small>
                         </div>
 
 
@@ -164,7 +164,7 @@
                          <div class="mb-3" id="positiondiv">
                             <label for="category_add_input" class="form-label">Banner </label>
                            <input type="file" class="form-control image-validation" name="banner_image"  placeholder="Upload price list" accept="image/*">
-                           <small class="text-danger">(1920 x 1080 px)</small>
+                           <small class="text-danger">(1920 x 900 px)</small>
 
                             <img src="" style="width: 50px" id="bannerimage">
 
@@ -209,7 +209,7 @@
                         <div class="mb-3">
                             <label for="category_add_input" class="form-label">Section Banner</label>
                            <input type="file" class="form-control image-validation" name="section_image"  placeholder="Upload price list" accept="image/*">
-                           <small class="text-danger">(1920 x 1080 px)</small>
+                           <small class="text-danger">(1920 x 900 px)</small>
                         </div>
                         <img src="" style="width: 50px" id="sectionimage">
                         <input type="hidden" name="sectionid" id="sectionid">
@@ -256,8 +256,8 @@
             if (file) {
                 var img = new Image();
                 img.onload = function() {
-                    if (this.width !== 1920 || this.height !== 1080) {
-                        alert('Image dimensions must be exactly 1920x1080 pixels.');
+                    if (this.width !== 1920 || this.height !== 900) {
+                        alert('Image dimensions must be exactly 1920x900 pixels.');
                         $input.val(''); // Clear the input
                     }
                 };

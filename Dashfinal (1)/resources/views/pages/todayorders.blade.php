@@ -9,7 +9,7 @@
                     </button>
                 </div> --}}
                 <div class="container overflow-hidden">
-                    <h2 class="mb-4">Today Orders</h2>
+                    <h2 class="mb-4">Today Enquiries</h2>
                     <table id="datatable-buttons" class="table table-bordered dt-responsive nowrap w-100">
 
 
@@ -19,7 +19,7 @@
                         <thead>
                             <tr>
                                 <th>S.NO</th>
-                                <th>Order NO</th>
+                                <th>Enquiry NO</th>
                                 <th>Customer Name</th>
                                 <th>Phone Number</th>
                                 <th>Amount</th>
@@ -81,7 +81,7 @@
                         <div class="mb-3">
                             <label for="formFile" class="form-label">Status</label>
                             <select class="form-select" aria-label="Default select example" id="add_stock_prod" name="status">
-                                <option selected>Choose Order Status</option>
+                                <option selected>Choose Enquiry Status</option>
                                 @foreach ($status as $stat)
                                     <option value="{{ $stat->order_status }}">{{ $stat->order_status }}</option>
                                 @endforeach
@@ -107,7 +107,7 @@ aria-hidden="true">
 <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
         <div class="modal-header bg-danger">
-            <h6 class="modal-title m-0 text-white" id="exampleModalDanger1">Order Details</h6>
+            <h6 class="modal-title m-0 text-white" id="exampleModalDanger1">Enquiry Details</h6>
             <button type="button" class="close " data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true"><i class="la la-times text-white"></i></span>
             </button>
@@ -116,7 +116,7 @@ aria-hidden="true">
             <div class="col-lg-12">
                 <table class="table table-bordered">
                     <tr>
-                        <th>Order Number</th>
+                        <th>Enquiry Number</th>
                         <td ><span id="oid"></span></td>
                         <th>Customer Name</th>
                         <td><span id="cname"></span></td>

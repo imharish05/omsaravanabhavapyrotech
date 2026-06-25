@@ -22,7 +22,7 @@
     <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
-    <link href="/assets/css/custom.css" id="app-style" rel="stylesheet" type="text/css" />
+     <link href="/assets/css/custom.css?v=1.1" id="app-style" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -39,9 +39,9 @@
                                 <div class="text-center">
                                     <a href="#" class="d-block auth-logo">
                                         <img src="{{ $globalSetting && $globalSetting->logo ? asset($globalSetting->logo) : asset('assets/images/logo/ram_logo1.png') }}"
-                                            alt="{{ $globalSetting->company_name ?? 'Logo' }}" width="240">
+                                            alt="{{ $globalSetting->company_name ?? 'Logo' }}" class="mx-auto d-block" width="240">
                                         <span
-                                            class="logo-txt">{{ $globalSetting->company_name ?? 'Om Saravanabhava Pyrotech' }}</span>
+                                            class="logo-txt d-block mt-3" style="margin-left: 0;">{{ $globalSetting->company_name ?? 'Om Saravanabhava Pyrotech' }}</span>
                                     </a>
                                 </div>
                                 <div class="auth-content my-auto">
@@ -55,7 +55,7 @@
                                         <div class="form-floating form-floating-custom mb-4">
                                             <input type="text" class="form-control" id="emailid"
                                                 placeholder="Enter User Name">
-                                            <label for="input-username">Email Id</label>
+                                            <label for="emailid">Email Id</label>
                                             <div class="form-floating-icon">
                                                 <i data-feather="users"></i>
                                             </div>
@@ -73,7 +73,7 @@
                                                     id="toggleIcon"></i>
                                             </button>
 
-                                            <label for="password_input">New Password</label>
+                                            <label for="newpassword_input">New Password</label>
                                             <div class="form-floating-icon">
                                                 <i data-feather="lock"></i>
                                             </div>
@@ -416,10 +416,10 @@
     <!-- pace js -->
     <script src="/assets/libs/pace-js/pace.min.js"></script>
 
-    <script src="/assets/js/pages/pass-addon.init.js"></script>
+
 
     <script src="/assets/js/pages/feather-icon.init.js"></script>
-    <script src="/assets/js/custom.js"></script>
+    <script src="/assets/js/custom.js?v=1.1"></script>
 
     <script>
         if (window.history.replaceState) {

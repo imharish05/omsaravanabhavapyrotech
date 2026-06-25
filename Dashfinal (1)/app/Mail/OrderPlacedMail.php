@@ -31,7 +31,7 @@ class OrderPlacedMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Order Confirmation - ' . $this->order->oeder_id,
+            subject: 'Enquiry Confirmation - ' . $this->order->oeder_id,
         );
     }
 

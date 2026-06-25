@@ -11,14 +11,14 @@
                 <div class="container overflow-hidden">
                   <div class="row">
                         <div class="col-lg-2">
-                             <h2 class="mb-4">Orders</h2>
+                             <h2 class="mb-4">Enquiries</h2>
                     <p style="font-weight: bold;font-size:16px">Total value: {{ round($total) }}.00 </p>
                         </div>
                          <div class="col-lg-10">
         <div class="col-lg-12 col-xl-4">
                                     <div class="card m-b-30">
                                         <div class="card-body">
-                                            <h4 class="mt-0 header-title">Order Chart</h4>
+                                            <h4 class="mt-0 header-title">Enquiry Chart</h4>
                                            
                                             <div id="pie-chart"></div>
 
@@ -33,7 +33,7 @@
                    
                         <div class="row mb-3 bg-light p-3 mx-0 rounded-3 align-items-end" style="border: 1px solid #dee2e6;">
                             <div class="col-lg-3">
-                                <label class="form-label fw-bold">Order Status</label>
+                                <label class="form-label fw-bold">Enquiry Status</label>
                                 <select id="statusFilter" class="form-select">
                                     <option value="">All Status</option>
                                     @foreach ($status as $stat)
@@ -42,11 +42,11 @@
                                 </select>
                             </div>
                             <div class="col-lg-2">
-                                <label class="form-label fw-bold">Order Type</label>
+                                <label class="form-label fw-bold">Enquiry Type</label>
                                 <select id="typeFilter" class="form-select">
                                     <option value="">All Types</option>
-                                    <option value="online">Online Order</option>
-                                    <option value="billing">Billing Order</option>
+                                    <option value="online">Online Enquiry</option>
+                                    <option value="billing">Billing Enquiry</option>
                                 </select>
                             </div>
                             <div class="col-lg-2">
@@ -69,11 +69,11 @@
                             <tr>
                                 <th>S.NO</th>
                                 <th>Date</th>
-                                <th>Order NO</th>
+                                <th>Enquiry NO</th>
                                 <th>Customer Name</th>
                                 <th>Amount</th>
                                 <th>Type</th>
-                                <th>Order Status</th>
+                                <th>Enquiry Status</th>
                                 <th>Status</th>
                                 <th>Action</th>
                                 <th>Add Products</th>
@@ -143,7 +143,7 @@
                         <div class="mb-3">
                             <label for="formFile" class="form-label">Status</label>
                             <select class="form-select" aria-label="Default select example" id="add_stock_prod" name="status">
-                                <option selected>Choose Order Status</option>
+                                <option selected>Choose Enquiry Status</option>
                                 @foreach ($status as $stat)
                                     <option value="{{ $stat->order_status }}">{{ $stat->order_status }}</option>
                                 @endforeach
@@ -225,7 +225,7 @@ aria-hidden="true">
 <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
         <div class="modal-header bg-danger">
-            <h6 class="modal-title m-0 text-white" id="exampleModalDanger1">Order Details</h6>
+            <h6 class="modal-title m-0 text-white" id="exampleModalDanger1">Enquiry Details</h6>
             <button type="button" class="close " data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true"><i class="la la-times text-white"></i></span>
             </button>
@@ -234,7 +234,7 @@ aria-hidden="true">
             <div class="col-lg-12">
                 <table class="table table-bordered">
                     <tr>
-                        <th>Order Number</th>
+                        <th>Enquiry Number</th>
                         <td ><span id="oid"></span></td>
                         <th>Customer Name</th>
                         <td><span id="cname"></span></td>

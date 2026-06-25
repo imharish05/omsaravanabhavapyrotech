@@ -584,7 +584,7 @@
         /* ── Image Column ── */
         .about-img-col {
             position: relative;
-            padding-bottom: 44px;
+            /* padding-bottom: 44px; */
         }
 
         /* Glowing halo behind main image */
@@ -1359,7 +1359,7 @@
        CATEGORY SHOWCASE — PREMIUM DARK UPLIFT
        ======================== */
         .categories-section {
-            padding: 120px 40px;
+            padding: 40px 40px;
             background: #f7f7f8;
             position: relative;
             overflow: hidden;
@@ -1764,7 +1764,7 @@
        WHY CHOOSE US — LIGHT PROMINENCE
        ======================== */
         .why-section {
-            padding: 120px 0;
+            padding: 40px 0;
             background: #fff;
             position: relative;
             overflow: hidden;

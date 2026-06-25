@@ -29,7 +29,7 @@
     <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
-    <link href="/assets/css/custom.css" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/custom.css?v=1.1" id="app-style" rel="stylesheet" type="text/css" />
     <link href="/assets/plugins/c3/c3.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css">
@@ -100,7 +100,7 @@
     <script src="/assets/pages/c3-chart-init.js"></script>
 
     <script src="/assets/js/app.js"></script>
-    <script src="/assets/js/custom.js"></script>
+    <script src="/assets/js/custom.js?v=1.1"></script>
 
     <script src="/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>

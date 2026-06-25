@@ -558,7 +558,7 @@
                     </div>
                     <div class="row g-2">
                         <div class="col-6">
-                            <input type="text" class="form-control" name="customer_phone" required placeholder="Phone Number *">
+                            <input type="tel" class="form-control" name="customer_phone" required placeholder="Phone Number *" pattern="[0-9]{10}" maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                         </div>
                         <div class="col-6">
                             <input type="text" class="form-control" name="customer_name" required placeholder="Full Name *">

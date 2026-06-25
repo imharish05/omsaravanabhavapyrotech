@@ -79,7 +79,7 @@
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
                             <li><a href="{{ url('/state') }}" style="color:#eebe6c">State</a></li>
-                            {{-- <li><a href="{{ url('/city') }}" style="color:#eebe6c">City</a></li> --}}
+                            <li><a href="{{ url('/city') }}" style="color:#eebe6c">City</a></li>
                             <li><a href="{{ url('/area') }}" style="color:#eebe6c">Area</a></li>
                         </ul>
                     </li> --}}
@@ -102,7 +102,7 @@
                         </ul>
                     </li> --}}
 
-                    <li class="menu-title text-white" data-key="t-menu">Orders</li>
+                    <li class="menu-title text-white" data-key="t-menu">Enquiries</li>
                     <li>
                         <a href="{{ url('/onoff/view') }}">
                             <i class="fas fa-moon " aria-hidden="true" style="color:#eebe6c"></i>
@@ -118,19 +118,19 @@
                     <li>
                         <a href="{{ url('/vendor/ordersstatus') }}">
                             <i class="fas fa-pen-square " style="color:#eebe6c"></i>
-                            <span data-key="t-dashboard" style="color:#eebe6c">Order Status</span>
+                            <span data-key="t-dashboard" style="color:#eebe6c">Enquiry Status</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ url('/todayorder') }}">
                             <i class="fas fa-shopping-basket " style="color:#eebe6c"></i>
-                            <span data-key="t-dashboard" style="color:#eebe6c">Today Orders</span>
+                            <span data-key="t-dashboard" style="color:#eebe6c">Today Enquiries</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ url('/vendor/orders') }}">
                             <i class="fas fa-shopping-cart" style="color:#eebe6c"></i>
-                            <span data-key="t-dashboard" style="color:#eebe6c">All Orders</span>
+                            <span data-key="t-dashboard" style="color:#eebe6c">All Enquiries</span>
                         </a>
                     </li>
 

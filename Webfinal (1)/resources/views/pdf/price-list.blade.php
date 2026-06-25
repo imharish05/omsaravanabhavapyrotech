@@ -5,7 +5,8 @@
     <title>Price List - Shyam Crackers</title>
     <style>
         @page {
-            margin: 0cm 0cm;
+            size: A4;
+            margin: 1cm;
         }
         body {
             font-family: 'DejaVu Sans', sans-serif;

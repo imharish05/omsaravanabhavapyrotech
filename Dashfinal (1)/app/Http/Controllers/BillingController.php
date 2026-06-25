@@ -85,7 +85,7 @@ class BillingController extends Controller
         // 1. Validate incoming request structure
         $request->validate([
             'customer_name'    => 'required|string|max:255',
-            'customer_phone'   => 'required|string|max:20',
+            'customer_phone'   => 'required|regex:/^[0-9]{10}$/',
             'customer_address' => 'nullable|string|max:500',
             'products'         => 'required|array',
             'prices'           => 'required|array',
@@ -161,7 +161,7 @@ class BillingController extends Controller
                 // Generate unique Order ID
                 $maxValue = ProductOrder::lockForUpdate()->max('id');
                 $invID    = ($maxValue !== null) ? $maxValue + 1 : 1;
-                $orderId  = 'order' . str_pad($invID, 5, '0', STR_PAD_LEFT);
+                $orderId  = 'enquiry' . str_pad($invID, 5, '0', STR_PAD_LEFT);
 
                 // Create the master order record
                 $order               = new ProductOrder();

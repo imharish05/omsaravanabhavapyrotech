@@ -29,7 +29,7 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div class="flex-grow-1">
-                                    <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Orders</span>
+                                    <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Enquiries</span>
                                     <h4 class="mb-3">
                                         <span class="counter-value" data-target="0">0</span>
                                     </h4>
@@ -172,7 +172,7 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div class="flex-grow-1">
-                                    <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Orders</span>
+                                    <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Enquiries</span>
                                     <h4 class="mb-3">
                                         <span class="counter-value" data-target="{{ $order }}">0</span>
                                     </h4>
@@ -292,10 +292,10 @@
             <div class="col-xl-9">
                 <div class="card">
                     <div class="card-header align-items-center d-flex">
-                        <h4 class="card-title mb-0 flex-grow-1">Recent Orders</h4>
+                        <h4 class="card-title mb-0 flex-grow-1">Recent Enquiries</h4>
                         <div class="flex-shrink-0">
                             <div class="dropdown align-self-start">
-                                <!--<a class="dropdown-toggle" href="{{ url('/vendor/orders') }}" role="button" data-bs-toggle="dropdown"-->
+                                <!--<a class="dropdown-toggle" href="{{ url('/vendor/enquiries') }}" role="button" data-bs-toggle="dropdown"-->
                                 <!--    aria-haspopup="true" aria-expanded="false">-->
                                 <!--  View All-->
                                 <!--</a>-->

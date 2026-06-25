@@ -5,6 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $globalSetting->company_name ?? 'Om Saravanabhava Pyrotech' }} - Estimate</title>
+    <script>
+        // Set a shorter title for print so date & title don't overlap in browser print header
+        window.addEventListener('beforeprint', function() {
+            document.title = 'Estimate - {{ $productord->oeder_id }}';
+        });
+        window.addEventListener('afterprint', function() {
+            document.title = '{{ addslashes($globalSetting->company_name ?? 'Om Saravanabhava Pyrotech') }} - Estimate';
+        });
+    </script>
     <link rel="icon"
         href="{{ $globalSetting && $globalSetting->favicon ? asset($globalSetting->favicon) : asset('/img/favicon/mexi_fav_icon.png') }}"
         sizes="196x196" />
@@ -20,10 +29,6 @@
     <link rel="icon"
         href="{{ $globalSetting && $globalSetting->favicon ? asset($globalSetting->favicon) : asset('/img/favicon/mexi_fav_icon.png') }}"
         sizes="128x128" />
-    {{--
-    <link rel="stylesheet" href="assets/style.css"> --}}
-
-
 </head>
 <style>
     body {
@@ -31,177 +36,151 @@
         background-color: #ffffff;
         margin: 0;
         padding: 0;
-    }
-
-    th {
-        height: 30px;
+        color: #000000;
     }
 
     .quotation-container {
-        width: 850px;
+        width: 800px;
         margin: 20px auto;
-        /* padding: 20px; */
-        border: 1px solid #ccc;
-
+        padding: 20px;
+        box-sizing: border-box;
     }
 
     @media print {
+        @page {
+            size: A4;
+            margin-top: 12mm;
+            margin-bottom: 12mm;
+            margin-left: 15mm;
+            margin-right: 15mm;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
         .quotation-container {
-            height: 95vh;
+            margin: 0 auto;
+            padding: 0;
+            width: 100%;
         }
 
         .print_btn {
             display: none;
         }
+
+        tr {
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+
+        thead {
+            display: table-header-group;
+        }
     }
 
-    .logo-section {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-    }
-
-    .logo {
-        width: 38%;
-    }
-
-    .logo img {
-        /* width: 100%; */
-        height: 130px;
-    }
-
-    .header-text {
-        width: 62%;
-        /* background-color: #00a76c; */
-        color: #090909;
-        padding: 10px 70px;
-        font-size: 13px;
-        box-sizing: border-box;
-        line-height: 1.5;
-        height: 118px;
-        border: 1px solid black;
-    }
-
-    h1 {
-        padding-bottom: 5px;
-        font-size: 32px;
-        font-weight: 700;
-        color: #579742;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-    }
-
-    .td_font {
-        font-weight: bold;
-    }
-
-    .details-section {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 20px;
-
-    }
-
-    .td_bg {
-        background: #f3f3f3;
-        font-weight: bold;
-
-    }
-
-    .left,
-    .right {
-        width: 48%;
-        font-size: 14px;
-    }
-
-    .bill-section {
-        display: flex;
-        justify-content: space-between;
-        margin: 30px 0;
-
-    }
-
-    .bill-box {
-        width: 40%;
-    }
-
-    .bill-box button {
-        /*background-color: #00a76c;*/
-
-        color: black;
-        border: none;
-        padding: 8px 20px;
-        font-weight: bold;
+    .header-box {
+        border: 1px solid #000000;
+        padding: 10px;
+        margin-top: 5px;
         margin-bottom: 10px;
-        cursor: default;
-        width: 200px;
     }
 
-    table {
+    .client-table {
         width: 100%;
         border-collapse: collapse;
-        margin-bottom: 20px;
+        border: 1px solid #000000;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 
-    table th,
-    table td {
-        border: 1px solid #626868;
-        /* padding: 10px; */
+    .client-table td.client-info-col {
+        width: 60%;
+        padding: 10px;
+        text-align: left;
+        vertical-align: top;
+        font-size: 13px;
+        border: none;
+    }
+
+    .client-table td.estimate-info-col {
+        width: 40%;
+        padding: 10px;
+        text-align: left;
+        vertical-align: top;
+        font-size: 13px;
+        border: none;
+        border-left: 1px solid #000000;
+    }
+
+    .items-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #000000;
+    }
+
+    .items-table th,
+    .items-table td {
+        border: 1px solid #000000;
+        padding: 6px 4px;
         text-align: center;
-        font-size: 11px;
+        font-size: 12px;
+        color: #000000;
     }
 
-
-    thead th {
-        background-color: #f0f0f0;
-        ;
-        color: black;
+    .items-table th {
+        font-weight: bold;
+        background-color: #ffffff;
     }
-
-    .totals {
-        text-align: right;
-        font-size: 14px;
-        margin-top: 10px;
-    }
-
-    .totals .total {
-        background-color: #00a76c;
-        ;
-        color: white;
-        display: inline-block;
-        padding: 5px 15px;
-        margin-top: 10px;
+    
+    .items-table td {
         font-weight: bold;
     }
 
-    .terms {
+    .items-table tr.summary-row td {
+        border-top: 2px solid #000000;
+        border-bottom: 2px solid #000000;
+    }
+
+    .totals-table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid #000000;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .totals-table td.words-col {
+        width: 60%;
+        padding: 15px;
+        text-align: left;
+        vertical-align: middle;
         font-size: 13px;
-        margin-top: 30px;
+        font-weight: bold;
+        border: none;
     }
 
-    footer {
-        text-align: center;
-        margin-top: 40px;
-        font-size: 14px;
-    }
-
-    .rup td,
-    .rup th {
-        border: none !important;
-        font-size: 11px;
-        padding: 4px 6px;
-        text-align: justify;
-    }
-
-    .page-break {
-        page-break-before: always;
+    .totals-table td.summary-col {
+        width: 40%;
+        padding: 10px;
+        text-align: left;
+        vertical-align: top;
+        font-size: 13px;
+        border: none;
+        border-left: 1px solid #000000;
     }
 
     .print_btn {
         position: fixed;
         top: 15px;
         right: 15px;
-        background: #00a76c;
+        background: #579742;
         padding: 10px 15px;
         border: none;
         color: #fff;
@@ -209,188 +188,219 @@
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
         cursor: pointer;
         z-index: 999;
+        font-weight: bold;
     }
 </style>
 
 <body>
-    <button class="print_btn" onclick="window.print()"><i class="fa-solid fa-print" style="color: white"></i>
-        Print</button>
+    <button class="print_btn" onclick="window.print()">Print</button>
     <div class="quotation-container">
-        <!-- Header -->
-        <header>
-            <div class="logo-section">
-                <div class="logo">
-
-                    <img src="{{ $globalSetting && $globalSetting->logo ? asset($globalSetting->logo) : asset('assets/images/logo/ram_logo1.png') }}"
-                        alt="{{ $globalSetting->company_name ?? 'Logo' }}">
-                </div>
-                <div class="header-text">
-                    <h1>Estimate</h1>
-                    {{-- Lorem ipsum dolor sit amet. Et doloribus molestiae quo velit consectetur sed obcaecati dicta
-                    aut
-                    ipsum placeat et corporis blanditiis et laudantium ducimus aut enim nemo. Ut molestiae --}}
-                </div>
-            </div>
-
-
-        </header>
-        <div style="padding: 0px 40px;">
-            {{-- <h1>SALES QUOTATION</h1> --}}
-            <!-- Company Info and Quotation Info -->
-            <section class="details-section">
-                <div class="left">
-                    <strong style="padding-right: 50px;">Quotation Date:
-                        {{ date('d-m-Y', strtotime($productord->created_at)) }}</strong>
-
-                </div>
-                <div class="right" style="text-align: end">
-                    <p><strong style="padding-right: 50px;">Quotation No.</strong>{{ $productord->oeder_id }}<br>
-                        <!--<strong style="padding-right: 50px;">Quotation Date:</strong>-->
-                        <!--{{ date('d-m-Y', strtotime($productord->created_at)) }}<br>-->
-                        {{-- <strong style="padding-right: 50px;">Valid Date:</strong> {{ date('d-m-Y',
-                        strtotime($quotdetail->quot_date)) }} --}}
-                    </p>
-                </div>
-            </section>
-
-            <hr>
-
-
-            <section class="bill-section">
-                <div class="bill-box">
-                    <button>BILL TO</button>
-                    <p><strong>{{ $productord->name }}</strong><br>
-                        {{ $productord->address }}, {{ $productord->area_name ?? '' }} {{ $productord->area_name ? ',' : '' }} {{ $productord->city_name ?? $productord->city }}, {{ $productord->state_name ?? $productord->state }} - {{ $productord->pincode }}<br></p>
-                    <p>{{ $customer->phone_number }}</p>
-                </div>
-                <div class="bill-box">
-                    <button>SHIP TO</button>
-                    <p><strong>{{ $productord->name }}</strong><br>
-                        {{ $productord->address }}, {{ $productord->area_name ?? '' }} {{ $productord->area_name ? ',' : '' }} {{ $productord->city_name ?? $productord->city }}, {{ $productord->state_name ?? $productord->state }} - {{ $productord->pincode }}<br></p>
-                    <p>{{ $customer->phone_number }}</p>
-                </div>
-            </section>
-
-            <table class="">
-                <thead>
-                    <tr class="border">
-                        <th rowspan="2">S.NO</th>
-                        <th rowspan="2">Product Name</th>
-                        <th rowspan="2">Rate</th>
-
-                        <th rowspan="2">Qty</th>
-
-
-
-
-                        <th rowspan="2">Amount</th>
-                    </tr>
-
-                </thead>
-                <tbody>
-                    @php
-                        $calculatedSubTotal = 0;
-                    @endphp
-                    @foreach ($slot as $prod)
-                        @php
-                            $lineTotal = $prod->product_regular_price * $prod->qty;
-                            $calculatedSubTotal += $lineTotal;
-                        @endphp
-                        <tr>
-                            <td class="text-center">{{ $loop->iteration }}</td>
-                            <td class="text-start" style="padding-left: 15px;">
-                                {{ $prod->product_name }}
-                            </td>
-                            <td class="text-end" style="padding-right: 15px;">{{ number_format($prod->product_regular_price, 2) }}</td>
-                            <td class="text-center">{{ $prod->qty }}</td>
-                            <td class="text-end" style="padding-right: 15px;">{{ number_format($lineTotal, 2) }}</td>
-                        </tr>
-                    @endforeach
-
-                    <tr class="totals-row">
-                        <td colspan="3" style="border: none;"></td>
-                        <td class="td_font text-end" style="padding-right: 15px; border-top: 2px solid #626868;">Sub Total:</td>
-                        <td class="text-end fw-bold" style="padding-right: 15px; border-top: 2px solid #626868;">{{ number_format($calculatedSubTotal, 2) }}</td>
-                    </tr>
-                    @if($productord->shipping > 0)
-                    <tr class="totals-row">
-                        <td colspan="3" style="border: none;"></td>
-                        <td class="td_font text-end" style="padding-right: 15px;">Shipping:</td>
-                        <td class="text-end" style="padding-right: 15px;">{{ number_format($productord->shipping, 2) }}</td>
-                    </tr>
-                    @endif
-                    @if($productord->discount > 0)
-                    <tr class="totals-row">
-                        <td colspan="3" style="border: none;"></td>
-                        <td class="td_font text-end" style="padding-right: 15px;">Discount:</td>
-                        <td class="text-end text-danger" style="padding-right: 15px;">-{{ number_format($productord->discount, 2) }}</td>
-                    </tr>
-                    @endif
-                    @php
-                        $calculatedGrandTotal = $calculatedSubTotal + ($productord->shipping ?? 0) - ($productord->discount ?? 0);
-                    @endphp
-                    <tr class="grand-total-row">
-                        <td colspan="3" style="border: none;"></td>
-                        <td class="td_bg text-end fw-bold" style="padding-right: 15px; background: #579742; color: white;">Grand Total:</td>
-                        <td class="td_bg text-end fw-bold" style="padding-right: 15px; background: #579742; color: white;">{{ number_format($calculatedGrandTotal, 2) }}</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div class="row total-row" style="margin-top: 20px;width:50%;position:relative;">
-                <div class="col-lg-8" style="position: absolute;top:-119px;">
-                    {{-- <p style="font-size:11px;"><strong>Total In Words</strong></p>
-                    <p class="bot" style="font-size:11px;"><strong>Indian Rupee: <span id="words"
-                                style="font-size:11px;"></span> only</strong></p> --}}
-
-                    <!--<p class="bot" style='margin-top:30px;font-size:11px;'><b>Bank Details (NEFT/IMPS):</b></p>-->
-                    <!--<table class="rup">-->
-                    <!--    <tr>-->
-                    <!--        <td><b>Bank Name & Branch</b></td>-->
-                    <!--        <td><b>-</b></td>-->
-                    <!--        <td>Axis & Sivakasi Branch</td>-->
-                    <!--    </tr>-->
-                    <!--    <tr>-->
-                    <!--        <td><b>Account Name</b></td>-->
-                    <!--        <td><b>-</b></td>-->
-                    <!--        <td>PRAKASH</td>-->
-                    <!--    </tr>-->
-                    <!--    <tr>-->
-                    <!--        <td><b>Account Type</b></td>-->
-                    <!--        <td><b>-</b></td>-->
-                    <!--        <td>Current Account</td>-->
-                    <!--    </tr>-->
-                    <!--    <tr>-->
-                    <!--        <td><b>Account Number</b></td>-->
-                    <!--        <td><b>-</b></td>-->
-                    <!--        <td>922020057877047</td>-->
-                    <!--    </tr>-->
-                    <!--    <tr>-->
-                    <!--        <td><b>IFS Code</b></td>-->
-                    <!--        <td><b>-</b></td>-->
-                    <!--        <td>UTIB0000089</td>-->
-                    <!--    </tr>-->
-                    <!--    <tr>-->
-                    <!--        <td><b>Google Pay</b></td>-->
-                    <!--        <td><b>-</b></td>-->
-                    <!--        <td>9087980098</td>-->
-                    <!--    </tr>-->
-                    <!--</table>-->
-                </div>
-
-            </div>
-
-            <div class="signature" style="margin-top: 35px;text-align: end;">
-                <img src="{{ $globalSetting && $globalSetting->logo ? asset($globalSetting->logo) : asset('assets/images/logo/ram_logo1.png') }}"
-                    style="width: 25%" alt="{{ $globalSetting->company_name ?? 'Logo' }}">
-                <h5 style="margin: 4px 0;font-size: 14px;color: #579742;">
-                    {{ $globalSetting->company_name ?? 'Om Saravanabhava Pyrotech' }}
-                </h5>
-            </div>
-
-
+        <!-- Devotional Title outside main container -->
+        <div style="text-align: center; margin-bottom: 5px;">
+            <h2 style="font-size: 16px; font-weight: bold; text-transform: uppercase; margin: 0; letter-spacing: 2px; color: #000000;">Estimate</h2>
         </div>
 
+        <!-- Header Box -->
+        <header class="header-box">
+            <table style="width: 100%; border-collapse: collapse; border: none; margin: 0;">
+                <tr>
+                    <!-- Left: Logo -->
+                    <td style="width: 20%; text-align: left; vertical-align: middle; border: none; padding: 0;">
+                        @if($globalSetting && $globalSetting->logo)
+                            <img src="{{ asset($globalSetting->logo) }}" alt="{{ $globalSetting->company_name ?? 'Logo' }}" style="max-height: 110px; max-width: 110px; border-radius: 50%; object-fit: contain;">
+                        @else
+                            <img src="{{ asset('assets/images/logo/ram_logo1.png') }}" alt="Logo" style="max-height: 110px; max-width: 110px; border-radius: 50%; object-fit: contain;">
+                        @endif
+                    </td>
+                    
+                    <!-- Center: Slogans, Name, Address, Contact -->
+                    <td style="width: 60%; text-align: center; vertical-align: middle; border: none; padding: 0 10px; line-height: 1.4;">
+                        <!-- Tamil slogans -->
+                        <div style="font-size: 10px; margin-bottom: 1px; font-weight: bold; font-family: 'Arial Unicode MS', sans-serif;">உ</div>
+                        <div style="font-size: 11px; margin-bottom: 4px; font-weight: bold; font-family: 'Arial Unicode MS', sans-serif;">ஓம் முருகன் துணை</div>
+                        
+                        <!-- Company Name -->
+                        <h1 style="font-size: 20px; font-weight: bold; color: #000000; margin: 0 0 4px 0; text-transform: uppercase; letter-spacing: 0.5px;">
+                            {{ $globalSetting->company_name ?? 'OM SARAVANABHAVA PYROTECH' }}
+                        </h1>
+                        
+                        <!-- Address -->
+                        <div style="font-size: 11px; color: #000000; font-weight: bold; margin-bottom: 6px; line-height: 1.3;">
+                            {!! nl2br(e($globalSetting->address ?? 'D.No : 12/417/3, Rathinapuri Nagar, Meenampatti, Sivakasi-626189.')) !!}
+                        </div>
+                        
+                        <!-- Contact / WhatsApp -->
+                        <div style="display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: bold;">
+                            @if($globalSetting && $globalSetting->phone_number)
+                                <span style="display: inline-flex; align-items: center; justify-content: center;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#25D366" viewBox="0 0 16 16" style="vertical-align: middle; margin-right: 5px;">
+                                        <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.907h.003c4.368 0 7.926-3.559 7.93-7.93a7.897 7.897 0 0 0-2.326-5.645zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.69-4.98c-.202-.1-.1.195-.148-.024-.319-.16-1.89-1.097-2.002-1.14-.113-.043-.195-.065-.278.065-.082.13-.319.4-.392.483-.073.083-.146.092-.348.01A5.135 5.135 0 0 1 5.25 7.08a5.26 5.26 0 0 1-1.078-1.34c-.201-.347-.021-.534.152-.706.156-.155.348-.405.422-.508.073-.103.11-.173.165-.286.055-.113.028-.21-.013-.298-.042-.088-.372-.897-.509-1.229-.134-.325-.268-.28-.369-.285-.101-.005-.217-.005-.333-.005s-.305.044-.464.218C3.045 4.1 2.5 4.634 2.5 5.71c0 1.08.786 2.12 1.078 2.51.293.39 1.542 2.355 3.736 3.3c.523.225.93.36 1.25.463.525.167 1.003.143 1.38.087.42-.062 1.3-.532 1.484-1.047.185-.515.185-.956.13-1.047-.056-.09-.203-.142-.405-.243z"/>
+                                    </svg>
+                                    {{ $globalSetting->whatsapp_number ?? $globalSetting->phone_number }}
+                                </span>
+                            @endif
+                        </div>
+                    </td>
+                    
+                    <!-- Right: Murugan image -->
+                    <td style="width: 20%; text-align: right; vertical-align: middle; border: none; padding: 0;">
+                        <img src="{{ asset('assets/images/logo/lord_murugan.png') }}" alt="Lord Murugan" style="max-height: 110px; max-width: 90px; object-fit: contain;">
+                    </td>
+                </tr>
+            </table>
+        </header>
+
+        <!-- Client Table -->
+        <table class="client-table">
+            <tr>
+                <td class="client-info-col">
+                    <table style="width: 100%; border-collapse: collapse; border: none; margin: 0;">
+                        <tr>
+                            <td style="width: 70px; font-weight: bold; padding: 2px 0; border: none; text-align: left;">Name</td>
+                            <td style="width: 15px; padding: 2px 0; border: none; text-align: center;">:</td>
+                            <td style="font-weight: bold; padding: 2px 0; border: none; text-align: left;">{{ $productord->name }}</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold; padding: 2px 0; border: none; text-align: left; vertical-align: top;">Address</td>
+                            <td style="padding: 2px 0; border: none; text-align: center; vertical-align: top;">:</td>
+                            <td style="font-weight: bold; padding: 2px 0; border: none; text-align: left; vertical-align: top;">
+                                {{ $productord->address }}<br>
+                                {{ $productord->area_name ?? '' }}{{ $productord->area_name ? ', ' : '' }}{{ $productord->city_name ?? $productord->city }}{{ $productord->state_name ? ', ' : '' }}{{ $productord->state_name ?? $productord->state }}{{ $productord->pincode ? ' - ' . $productord->pincode : '' }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold; padding: 2px 0; border: none; text-align: left;">Contact</td>
+                            <td style="padding: 2px 0; border: none; text-align: center;">:</td>
+                            <td style="font-weight: bold; padding: 2px 0; border: none; text-align: left;">{{ $customer->phone_number }}</td>
+                        </tr>
+                    </table>
+                </td>
+                <td class="estimate-info-col">
+                    <table style="width: 100%; border-collapse: collapse; border: none; margin: 0;">
+                        <tr>
+                            <td style="width: 90px; font-weight: bold; padding: 2px 0; border: none; text-align: left;">Estimate No</td>
+                            <td style="width: 15px; padding: 2px 0; border: none; text-align: center;">:</td>
+                            <td style="font-weight: bold; padding: 2px 0; border: none; text-align: left;">{{ $productord->oeder_id }}</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold; padding: 2px 0; border: none; text-align: left;">Date</td>
+                            <td style="padding: 2px 0; border: none; text-align: center;">:</td>
+                            <td style="font-weight: bold; padding: 2px 0; border: none; text-align: left;">{{ date('d-m-Y', strtotime($productord->created_at)) }}</td>
+                        </tr>
+
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        <!-- Items Table -->
+        <table class="items-table">
+            <thead>
+                <tr>
+                    <th style="width: 5%;">Slno</th>
+                    <th style="width: 10%;">Code</th>
+                    <th style="width: 37%; text-align: left; padding-left: 10px;">Cracker name</th>
+                    <th style="width: 8%;">Quantity</th>
+                    <th style="width: 10%;">Rate</th>
+                    <th style="width: 10%;">Acutal</th>
+                    <th style="width: 8%;">Disc%</th>
+                    <th style="width: 10%;">Discount</th>
+                    <th style="width: 12%;">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @php
+                    $totalQty = 0;
+                    $totalActual = 0;
+                    $totalDiscount = 0;
+                    $totalRegular = 0;
+                @endphp
+                @foreach ($slot as $prod)
+                    @php
+                        $mrp = $prod->product_mrp_price > 0 ? $prod->product_mrp_price : $prod->product_regular_price;
+                        $regular = $prod->product_regular_price;
+                        $lineActual = $mrp * $prod->qty;
+                        $lineRegular = $regular * $prod->qty;
+                        $lineDiscount = $lineActual - $lineRegular;
+                        $discPercent = ($mrp > 0 && $mrp > $regular) ? round((1 - ($regular / $mrp)) * 100) : 0;
+                        
+                        $totalQty += $prod->qty;
+                        $totalActual += $lineActual;
+                        $totalDiscount += $lineDiscount;
+                        $totalRegular += $lineRegular;
+                    @endphp
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ sprintf('%03d', $prod->product_id) }}</td>
+                        <td style="text-align: left; padding-left: 10px;">{{ $prod->product_name }}</td>
+                        <td>{{ $prod->qty }}</td>
+                        <td>{{ number_format($mrp, 2) }}</td>
+                        <td>{{ number_format($lineActual, 2) }}</td>
+                        <td>{{ $discPercent > 0 ? $discPercent . '%' : '-' }}</td>
+                        <td>{{ number_format($lineDiscount, 2) }}</td>
+                        <td>{{ number_format($lineRegular, 2) }}</td>
+                    </tr>
+                @endforeach
+                
+                <!-- Summary Row inside table -->
+                <tr class="summary-row">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="font-weight: bold;">{{ $totalQty }}</td>
+                    <td></td>
+                    <td style="font-weight: bold; text-align: right; padding-right: 5px;">{{ number_format($totalActual, 2) }}</td>
+                    <td></td>
+                    <td style="font-weight: bold; text-align: right; padding-right: 5px;">{{ number_format($totalDiscount, 2) }}</td>
+                    <td style="font-weight: bold; text-align: right; padding-right: 5px;">{{ number_format($totalRegular, 2) }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Totals & Rupees Table -->
+        <table class="totals-table">
+            <tr>
+                <td class="words-col">
+                    Rupees : <span id="words" style="text-transform: capitalize;"></span>Only
+                </td>
+                <td class="summary-col">
+                    <table style="width: 100%; border-collapse: collapse; border: none; margin: 0;">
+                        <tr>
+                            <td style="text-align: left; font-weight: bold; padding: 3px 0; border: none;">Discount Items</td>
+                            <td style="text-align: right; font-weight: bold; padding: 3px 0; border: none;">{{ number_format($totalActual, 2) }}</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left; font-weight: bold; padding: 3px 0; border: none;">Discount</td>
+                            <td style="text-align: right; font-weight: bold; padding: 3px 0; border: none;">{{ number_format($totalDiscount, 2) }}</td>
+                        </tr>
+                        @if(isset($productord->shipping) && $productord->shipping > 0)
+                        <tr>
+                            <td style="text-align: left; font-weight: bold; padding: 3px 0; border: none;">Shipping</td>
+                            <td style="text-align: right; font-weight: bold; padding: 3px 0; border: none;">{{ number_format($productord->shipping, 2) }}</td>
+                        </tr>
+                        @endif
+                        @if(isset($productord->discount) && $productord->discount > 0)
+                        <tr>
+                            <td style="text-align: left; font-weight: bold; padding: 3px 0; border: none;">Extra Discount</td>
+                            <td style="text-align: right; font-weight: bold; padding: 3px 0; border: none;">{{ number_format($productord->discount, 2) }}</td>
+                        </tr>
+                        @endif
+                        @php
+                            $calculatedGrandTotal = $totalRegular + ($productord->shipping ?? 0) - ($productord->discount ?? 0);
+                        @endphp
+                        <tr style="border-top: 1px solid #000000;">
+                            <td style="text-align: left; font-weight: bold; padding: 6px 0 0 0; font-size: 14px; border: none;">Total amount</td>
+                            <td style="text-align: right; font-weight: bold; padding: 6px 0 0 0; font-size: 14px; border: none;">{{ number_format($calculatedGrandTotal, 2) }}</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        <!-- Thank you slogan -->
+        <div style="text-align: center; margin-top: 25px; font-size: 14px; font-weight: bold; color: #000000;">
+            Thank you for business with us!
+        </div>
     </div>
 
     <script>
@@ -413,17 +423,15 @@
             return str;
         }
 
-        var a1 = "{{ number_format($productord->total, 2, '.', '') }}";
+        var a1 = "{{ number_format($calculatedGrandTotal, 2, '.', '') }}";
 
         console.log(a1)
         var len = a1.toString().length
         len = len - 3
         var res = a1.substring(0, len);
-        //alert(len);
 
         document.getElementById('words').innerHTML = inWords(res);
     </script>
 </body>
-
 
 </html>

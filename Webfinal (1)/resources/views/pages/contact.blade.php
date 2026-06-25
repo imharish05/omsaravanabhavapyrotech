@@ -49,7 +49,7 @@
                         <div class="info-grid">
                             <!-- Address -->
                             <div class="info-block">
-                                <div class="ib-icon"><i class="fa-solid fa-location-dot"></i></div>
+                                <div class="ib-icon"><i class="fa-solid fa-location-dot ib-icon-location"></i></div>
                                 <div class="ib-content">
                                     <h6>Mailing Address</h6>
                                     <p>{{ $contact->address ?? 'No. 12, Main Bazaar, Sivakasi – 626123' }}</p>
@@ -58,7 +58,7 @@
 
                             <!-- Phone -->
                             <div class="info-block">
-                                <div class="ib-icon"><i class="fa-solid fa-phone-volume"></i></div>
+                                <div class="ib-icon"><i class="fa-solid fa-phone-volume ib-icon-phone"></i></div>
                                 <div class="ib-content">
                                     <h6>Speak to an Artisan</h6>
                                     <p>
@@ -73,7 +73,7 @@
 
                             <!-- Email -->
                             <div class="info-block">
-                                <div class="ib-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+                                <div class="ib-icon"><i class="fa-solid fa-envelope-open-text ib-icon-mail"></i></div>
                                 <div class="ib-content">
                                     <h6>Digital Inquiry</h6>
                                     <p><a href="mailto:{{ $contact->email ?? '' }}">{{ $contact->email ??
@@ -83,7 +83,7 @@
 
                             <!-- WhatsApp Highlight -->
                             <div class="info-block wa-highlight">
-                                <div class="ib-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                                <div class="ib-icon"><i class="fa-brands fa-whatsapp ib-icon-wa"></i></div>
                                 <div class="ib-content">
                                     <h6>WhatsApp Concierge</h6>
                                     <p><a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $contact->phone ?? '') }}"
@@ -109,7 +109,7 @@
                         </div>
                         @endif
 
-                        <form action="{{ url('/contact') }}" method="POST" class="luxury-form">
+                        <form action="{{ url('/contact') }}" method="POST" class="luxury-form" id="contactForm" onsubmit="return validateContactForm(event)">
                             @csrf
                             <div class="row g-4">
                                 <div class="col-md-6">
@@ -121,16 +121,17 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-group-f">
-                                        <label>Phone Number</label>
-                                        <input type="text" name="phone" value="{{ old('phone') }}"
-                                            placeholder="+91 00000 00000">
+                                        <label>Phone Number *</label>
+                                        <input type="tel" name="phone" value="{{ old('phone') }}"
+                                            placeholder="10 Digit Phone Number" required pattern="[0-9]{10}" maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="input-group-f">
-                                        <label>Email Address</label>
-                                        <input type="email" name="email" value="{{ old('email') }}"
-                                            placeholder="john@example.com" required>
+                                        <label>Email Address *</label>
+                                        <input type="email" name="email" id="contactEmail" value="{{ old('email') }}"
+                                            placeholder="john@example.com" required oninput="validateContactEmail(this)">
+                                        <span id="contactEmailError" style="color:#e53a12; font-size:0.82rem; margin-top:5px; display:none; font-weight:600;">Please enter a valid email address (e.g. name@domain.com).</span>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -538,12 +539,13 @@
         .ib-icon {
             width: 60px;
             height: 60px;
+            min-width: 60px;
             background: linear-gradient(135deg, #FFFFFF, #F0A832);
             border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.4rem;
+            font-size: 1.4rem;   /* default – overridden per-icon below */
             color: #111;
             border: 2px solid rgba(255, 255, 255, 0.6);
             transition: all .4s cubic-bezier(.23, 1, .32, 1);
@@ -551,6 +553,12 @@
                 0 0 0 4px rgba(255, 255, 255, .2),
                 0 8px 24px rgba(255, 255, 255, .15);
         }
+
+        /* Per-icon size tuning so every icon fills the box equally */
+        .ib-icon-location { font-size: 1.5rem; }
+        .ib-icon-phone    { font-size: 1.3rem; }
+        .ib-icon-mail     { font-size: 1.25rem; }
+        .ib-icon-wa       { font-size: 1.7rem; }
 
         .ib-content h6 {
             font-weight: 800;
@@ -981,6 +989,37 @@
             .step-item-glass {
                 padding: 40px 25px;
             }
+
+            .c-title {
+                font-size: 2.4rem;
+            }
+
+            .cta-btn-gold {
+                font-size: 0.95rem;
+                padding: 16px 36px;
+                gap: 10px;
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .c-title {
+                font-size: 2rem;
+                letter-spacing: -0.5px;
+            }
+
+            .cta-btn-gold {
+                font-size: 0.9rem;
+                padding: 14px 28px;
+                gap: 8px;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .cta-btn-gold i {
+                font-size: 1rem;
+            }
         }
 
         /* SCROLL PROMPT */
@@ -1217,6 +1256,40 @@
             });
         });
     });
+
+    /* ---------- Contact Form: live email validation ---------- */
+    const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    function validateContactEmail(input) {
+        const errorSpan = document.getElementById('contactEmailError');
+        const val = input.value.trim();
+        if (val === '') {
+            errorSpan.style.display = 'none';
+            input.style.borderColor = '';
+            return true;
+        }
+        if (!EMAIL_REGEX.test(val)) {
+            errorSpan.style.display = 'block';
+            input.style.borderColor = '#e53a12';
+            input.style.boxShadow  = '0 0 0 4px rgba(229,58,18,0.15)';
+            return false;
+        } else {
+            errorSpan.style.display = 'none';
+            input.style.borderColor = '';
+            input.style.boxShadow   = '';
+            return true;
+        }
+    }
+
+    function validateContactForm(e) {
+        const emailInput = document.getElementById('contactEmail');
+        if (!validateContactEmail(emailInput)) {
+            e.preventDefault();
+            emailInput.focus();
+            return false;
+        }
+        return true;
+    }
 </script>
 @endpush
 

@@ -228,7 +228,7 @@
 }
 
 /* 4. Table & Products */
-.estimate-content { padding-bottom: 120px; }
+/* .estimate-content { padding-bottom: 120px; }, */
 
 .search-wrap {
     max-width: 600px;
@@ -429,7 +429,7 @@ thead th {
 }
 
 .box-content {
-    font-weight: 500;
+    font-weight: 800;
     color: rgba(255, 255, 255, 0.88);
     font-size: 1rem;
     font-family: 'Outfit', sans-serif;
@@ -700,16 +700,8 @@ thead th {
         margin-bottom: 8px !important;
     }
 
-    /* Video Icon positioning */
-    .product-row td:nth-child(3) { 
-        /* position: absolute;  */
-        right: 15px; 
-        top: 20px; 
-        padding: 0 !important;
-    }
-    
     /* Box Content */
-    .product-row td:nth-child(4) { 
+    .product-row .box-content { 
         font-size: 0.85rem; 
         color: rgba(255,255,255,0.6); 
         margin-bottom: 8px !important;
@@ -718,8 +710,8 @@ thead th {
     }
     
     /* Pricing */
-    .product-row td:nth-child(5), 
-    .product-row td:nth-child(6) { 
+    .product-row .actual, 
+    .product-row .price { 
         display: inline-block !important; 
         margin-right: 12px; 
         vertical-align: middle;
@@ -728,26 +720,29 @@ thead th {
     .price { font-size: 1.3rem !important; }
     
     /* Quantity */
-    .product-row td:nth-child(7) { 
+    .product-row .qty-col { 
         margin-top: 15px !important; 
         padding-top: 15px !important;
         border-top: 1px solid rgba(255,255,255,0.1) !important;
+        display: block !important;
+        width: 100% !important;
     }
 
     .qty-wrapper { width: 100%; justify-content: space-between; }
     
     /* Total */
-    .product-row td:last-child { 
-        display: flex; 
+    .product-row .rowTotal { 
+        display: flex !important; 
         justify-content: space-between;
         align-items: center;
         font-size: 1rem; 
         padding-top: 12px !important; 
         color: #fff !important;
         font-weight: 800;
+        width: 100% !important;
     }
     
-    .product-row td:last-child::before { 
+    .product-row .rowTotal::before { 
         content: 'Item Total:'; 
         font-size: 0.75rem;
         text-transform: uppercase;
@@ -1373,6 +1368,7 @@ thead th,
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
     gap: 20px !important;
+    margin-top: 16px !important;
     margin-bottom: 20px !important;
 }
 
@@ -1388,6 +1384,7 @@ thead th,
     display: flex !important;
     flex-direction: column !important;
     gap: 6px !important;
+    margin-top: 16px !important;
 }
 
 .order-label {
@@ -1425,6 +1422,11 @@ thead th,
     background: #FFFFFF !important;
     outline: none !important;
     box-shadow: 0 0 0 4px rgba(255, 94, 54, 0.15) !important; /* Visible focus state */
+}
+
+.order-input.invalid-input {
+    border-color: #EF4444 !important;
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15) !important;
 }
 
 .order-textarea {
@@ -1625,7 +1627,7 @@ thead th,
                                         <td class="box-content notranslate">{{ $product->product_content }}</td>
                                         <td class="actual notranslate">{{ $product->product_mrp_price }}</td>
                                         <td class="price notranslate">{{ $product->product_regular_price }}</td>
-                                        <td>
+                                        <td class="qty-col">
                                             <div class="qty-wrapper">
                                                 <button type="button" class="qty-minus qty-btn"><i class="fa-solid fa-minus"></i></button>
                                                 <input type="number" class="qty" value="0" min="0" max="999">
@@ -1702,7 +1704,7 @@ thead th,
             
             <div class="order-modal-header">
                 <div class="order-modal-eyebrow">Final Step</div>
-                <h2 class="order-modal-title">Complete Order</h2>
+                <h2 class="order-modal-title">Complete Enquiry</h2>
                 <div class="order-modal-bar" style="width:40px; height:3px; background:var(--gold-deep); margin:15px auto;"></div>
             </div>
 
@@ -1727,13 +1729,14 @@ thead th,
                     </div>
                     <div class="order-field">
                         <label class="order-label">PHONE NUMBER *</label>
-                        <input type="tel" name="phone_number" id="orderPhone" required placeholder="10 Digit Number" onblur="lookupCustomer(this.value)" class="order-input">
+                        <input type="tel" name="phone_number" id="orderPhone" required placeholder="10 Digit Number" pattern="[0-9]{10}" maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" onblur="lookupCustomer(this.value)" class="order-input">
                     </div>
                 </div>
 
                 <div class="order-field">
-                    <label class="order-label">EMAIL ADDRESS *</label>
-                    <input type="email" name="email" id="orderEmail" required placeholder="Ex: info@example.com" class="order-input">
+                    <label class="order-label" style="color: #EF4444; font-size: 0.85rem; margin-top:">EMAIL ADDRESS *</label>
+                    <input type="email" name="email" id="orderEmail" required placeholder="Ex: info@example.com" class="order-input" oninput="validateEmailField(this)">
+                    <span id="orderEmailError" class="validation-error" style="color: #EF4444; font-size: 0.85rem; margin-top: 5px; display: none; font-weight: 500;">Please enter a valid email address.</span>
                 </div>
 
                 <div class="order-field">
@@ -1753,8 +1756,8 @@ thead th,
                 </div>
 
                 <div class="order-field">
-                    <label class="order-label">PINCODE</label>
-                    <input type="text" name="pincode" id="orderPincode" placeholder="600001" class="order-input">
+                    <label class="order-label">PINCODE *</label>
+                    <input type="tel" name="pincode" id="orderPincode" required placeholder="Ex: 600001" pattern="[0-9]{6}" maxlength="6" minlength="6" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="order-input">
                 </div>
 
                 <button type="button" onclick="placeOrder()" id="placeOrderBtn" class="order-submit-btn">
@@ -1998,6 +2001,28 @@ thead th,
     }
     */
 
+    function validateEmailField(input) {
+        const errorSpan = document.getElementById('orderEmailError');
+        const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const val = input.value.trim();
+        
+        if (val === '') {
+            errorSpan.style.display = 'none';
+            input.classList.remove('invalid-input');
+            return true;
+        }
+        
+        if (!regex.test(val)) {
+            errorSpan.style.display = 'block';
+            input.classList.add('invalid-input');
+            return false;
+        } else {
+            errorSpan.style.display = 'none';
+            input.classList.remove('invalid-input');
+            return true;
+        }
+    }
+
     function lookupCustomer(phone) {
         if(phone.length < 10) return;
         fetch(`/customer/lookup/${phone}`)
@@ -2005,7 +2030,9 @@ thead th,
             .then(data => {
                 if(data.found) {
                     document.getElementById('orderName').value = data.name;
-                    document.getElementById('orderEmail').value = data.email;
+                    const emailInput = document.getElementById('orderEmail');
+                    emailInput.value = data.email;
+                    validateEmailField(emailInput);
                     document.getElementById('orderAddress').value = data.address;
                 }
             });
@@ -2013,6 +2040,31 @@ thead th,
 
     function placeOrder() {
         const form = document.getElementById('orderForm');
+        
+        const phoneInput = document.getElementById('orderPhone');
+        const phoneVal = phoneInput.value.trim();
+        const phoneRegex = /^[0-9]{10}$/;
+        if (!phoneRegex.test(phoneVal)) {
+            Swal.fire('Validation Error', 'Please enter a valid 10-digit phone number.', 'warning');
+            phoneInput.focus();
+            return;
+        }
+
+        const pincodeInput = document.getElementById('orderPincode');
+        const pincodeVal = pincodeInput.value.trim();
+        const pincodeRegex = /^[0-9]{6}$/;
+        if (!pincodeRegex.test(pincodeVal)) {
+            Swal.fire('Validation Error', 'Please enter a valid 6-digit pincode.', 'warning');
+            pincodeInput.focus();
+            return;
+        }
+
+        const emailInput = document.getElementById('orderEmail');
+        if (!validateEmailField(emailInput)) {
+            emailInput.focus();
+            return;
+        }
+
         if(!form.checkValidity()) { form.reportValidity(); return; }
 
         let cartData = [];

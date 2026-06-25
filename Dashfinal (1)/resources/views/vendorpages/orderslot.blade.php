@@ -12,7 +12,7 @@
                     </button>
                 </div>
                 <div class="container overflow-hidden">
-                    <h2 class="mb-4">Orders Slots (Rs.{{ $orderamount->total }}.00)</h2>
+                    <h2 class="mb-4">Enquiry Slots (Rs.{{ $orderamount->total }}.00)</h2>
                     <table id="datatable-buttons" class="table table-bordered dt-responsive nowrap w-100">
 
 
@@ -22,7 +22,7 @@
                         <thead>
                             <tr>
                                  <th>S.NO</th>
-                                <th>Order NO</th>
+                                <th>Enquiry NO</th>
                                 <th>Product Name</th>
                                 <th>Qty</th>
                                 <th>Price</th>
@@ -129,7 +129,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5">Edit Order Slot</h1>
+                <h1 class="modal-title fs-5">Edit Enquiry Slot</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -177,7 +177,7 @@
                     
                     <div class="row mb-3 align-items-center">
                         <div class="col-md-6">
-                            <label class="form-label fw-bold">Order Total</label>
+                            <label class="form-label fw-bold">Enquiry Total</label>
                             <input type="text" id="total" class="form-control fw-bold text-primary" readonly style="font-size: 1.2rem; background-color: #f8f9fa;">
                         </div>
                         <div class="col-md-6 text-end pt-4">

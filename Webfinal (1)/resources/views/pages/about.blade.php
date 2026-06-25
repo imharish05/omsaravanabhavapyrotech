@@ -605,8 +605,8 @@
 
     /* Values Section */
     .values-section {
-        padding-top: 57px;
-        padding-bottom: 57px;
+        /* padding-top: 57px; */
+        /* padding-bottom: 57px; */
         background: #3c3c42;
         color: #fff;
         position: relative;

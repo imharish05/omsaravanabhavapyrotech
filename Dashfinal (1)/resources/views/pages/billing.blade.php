@@ -477,11 +477,11 @@
             <div class="stat-icon"><i class="fas fa-calendar-day"></i></div>
             <div class="stat-label">Today's Billing</div>
             <div class="stat-value">₹{{ number_format($todayBilled, 2) }}</div>
-            <div class="stat-sub">{{ $todayOrders }} orders today</div>
+            <div class="stat-sub">{{ $todayOrders }} enquiries today</div>
         </div>
         <div class="billing-stat-card amber fade-slide-up">
             <div class="stat-icon"><i class="fas fa-clock"></i></div>
-            <div class="stat-label">Pending Orders</div>
+            <div class="stat-label">Pending Enquiries</div>
             <div class="stat-value">{{ $pendingCount }}</div>
             <div class="stat-sub">Awaiting processing</div>
         </div>
@@ -503,7 +503,7 @@
         </div>
         <div class="col-lg-4">
             <div class="billing-chart-card fade-slide-up" style="height: calc(100% - 28px);">
-                <h5><i class="fas fa-chart-pie me-2" style="color: #eebe6c;"></i> Order Status Distribution</h5>
+                <h5><i class="fas fa-chart-pie me-2" style="color: #eebe6c;"></i> Enquiry Status Distribution</h5>
                 <div id="billing-status-chart" style="min-height: 260px;"></div>
             </div>
         </div>
@@ -518,7 +518,7 @@
             </div>
             <div>
                 <a href="{{ route('billing.create') }}" class="btn btn-warning fw-bold text-dark px-4 py-2" style="border-radius: 10px;">
-                    <i class="fas fa-plus-circle me-1"></i> New Bill / Order
+                    <i class="fas fa-plus-circle me-1"></i> New Bill / Enquiry
                 </a>
             </div>
         </div>
@@ -527,7 +527,7 @@
             <div class="row mb-4 bg-light p-3 mx-0 rounded-4 align-items-end" style="border: 1px solid #e8ecf4;">
                 <div class="col-lg-3">
                     <label class="form-label fw-bold small text-muted text-uppercase mb-1">
-                        <i class="fas fa-filter me-1"></i> Order Status
+                        <i class="fas fa-filter me-1"></i> Enquiry Status
                     </label>
                     <select id="statusFilter" class="form-select border-0 shadow-sm" style="border-radius: 10px; height: 42px;">
                         <option value="">All Statuses</option>
@@ -538,12 +538,12 @@
                 </div>
                 <div class="col-lg-2">
                     <label class="form-label fw-bold small text-muted text-uppercase mb-1">
-                        <i class="fas fa-layer-group me-1"></i> Order Type
+                        <i class="fas fa-layer-group me-1"></i> Enquiry Type
                     </label>
                     <select id="typeFilter" class="form-select border-0 shadow-sm" style="border-radius: 10px; height: 42px;">
                         <option value="">All Types</option>
-                        <option value="online">Online Order</option>
-                        <option value="billing">Billing Order</option>
+                        <option value="online">Online Enquiry</option>
+                        <option value="billing">Billing Enquiry</option>
                     </select>
                 </div>
                 <div class="col-lg-2">
@@ -574,7 +574,7 @@
                     <tr>
                         <th>S.No</th>
                         <th>Invoice Date</th>
-                        <th>Order No</th>
+                        <th>Enquiry No</th>
                         <th>Customer</th>
                         <th>Sub Total</th>
                         <th>Shipping</th>
