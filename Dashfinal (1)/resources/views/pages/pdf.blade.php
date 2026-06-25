@@ -301,10 +301,10 @@
                     <th style="width: 10%;">Code</th>
                     <th style="width: 37%; text-align: left; padding-left: 10px;">Cracker name</th>
                     <th style="width: 8%;">Quantity</th>
-                    <th style="width: 10%;">Rate</th>
-                    <th style="width: 10%;">Acutal</th>
+                    <th style="width: 10%;">MRP</th>
+                    <th style="width: 10%;">Total MRP</th>
                     <th style="width: 8%;">Disc%</th>
-                    <th style="width: 10%;">Discount</th>
+                    <th style="width: 10%;">Discounted Price</th>
                     <th style="width: 12%;">Total</th>
                 </tr>
             </thead>
@@ -366,11 +366,11 @@
                 <td class="summary-col">
                     <table style="width: 100%; border-collapse: collapse; border: none; margin: 0;">
                         <tr>
-                            <td style="text-align: left; font-weight: bold; padding: 3px 0; border: none;">Discount Items</td>
+                            <td style="text-align: left; font-weight: bold; padding: 3px 0; border: none;">Total MRP</td>
                             <td style="text-align: right; font-weight: bold; padding: 3px 0; border: none;">{{ number_format($totalActual, 2) }}</td>
                         </tr>
                         <tr>
-                            <td style="text-align: left; font-weight: bold; padding: 3px 0; border: none;">Discount</td>
+                            <td style="text-align: left; font-weight: bold; padding: 3px 0; border: none;">Discounted Price</td>
                             <td style="text-align: right; font-weight: bold; padding: 3px 0; border: none;">{{ number_format($totalDiscount, 2) }}</td>
                         </tr>
                         @if(isset($productord->shipping) && $productord->shipping > 0)
@@ -389,7 +389,7 @@
                             $calculatedGrandTotal = $totalRegular + ($productord->shipping ?? 0) - ($productord->discount ?? 0);
                         @endphp
                         <tr style="border-top: 1px solid #000000;">
-                            <td style="text-align: left; font-weight: bold; padding: 6px 0 0 0; font-size: 14px; border: none;">Total amount</td>
+                            <td style="text-align: left; font-weight: bold; padding: 6px 0 0 0; font-size: 14px; border: none;">Final Amount</td>
                             <td style="text-align: right; font-weight: bold; padding: 6px 0 0 0; font-size: 14px; border: none;">{{ number_format($calculatedGrandTotal, 2) }}</td>
                         </tr>
                     </table>

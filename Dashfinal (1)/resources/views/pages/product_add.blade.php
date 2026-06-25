@@ -73,9 +73,9 @@
                             <!--end::Input group-->
                             <div class="col-md-3">
                                 <div class="mb-3">
-                                    <label class="form-label" for="add_sale_price">Sale Price*</label>
-                                    <input type="number" class="form-control" id="add_sale_price" name="product_regular_price"
-                                        placeholder="Enter Sale Price" required>
+                                    <label class="form-label" for="add_mrp_price">MRP Price*</label>
+                                    <input type="number" class="form-control" id="add_mrp_price" name="product_mrp_price"
+                                        placeholder="Enter MRP Price" required>
                                 </div>
                             </div>
 
@@ -83,16 +83,15 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="add_discount_percentage">Discount Percentage (%)*</label>
                                     <input type="number" class="form-control" id="add_discount_percentage" name="discount_percentage"
-                                        placeholder="Enter Percentage (e.g., 90)" required>
+                                        placeholder="Enter Percentage (e.g., 10)" required>
                                 </div>
                             </div>
 
                             <div class="col-md-3">
                                 <div class="mb-3">
-                                    <label class="form-label" for="add_mrp_price">MRP Price (Auto-calculated)
-                                        *</label>
-                                    <input type="text" class="form-control" id="add_mrp_price" name="product_mrp_price"
-                                        placeholder="MRP Price" maxlength="200" readonly required>
+                                    <label class="form-label" for="add_sale_price">Sale Price (Auto-calculated)*</label>
+                                    <input type="text" class="form-control" id="add_sale_price" name="product_regular_price"
+                                        placeholder="Sale Price" maxlength="200" readonly required>
                                 </div>
                             </div>
 
@@ -149,28 +148,28 @@
  @section('scripts')
 <script>
     $(document).ready(function() {
-        // Auto-calculate MRP
-        function calculateMRP() {
-            let salePrice = parseFloat($('#add_sale_price').val()) || 0;
+        // Auto-calculate Sale Price from MRP and Discount
+        function calculateSalePrice() {
+            let mrp = parseFloat($('#add_mrp_price').val()) || 0;
             let discountPercent = parseFloat($('#add_discount_percentage').val()) || 0;
 
             if (discountPercent >= 100) {
-                $('#add_mrp_price').val('Invalid Discount');
+                $('#add_sale_price').val('Invalid Discount');
                 return;
             }
 
-            if (salePrice > 0 && discountPercent > 0) {
-                let mrp = salePrice / (1 - (discountPercent / 100));
-                $('#add_mrp_price').val(mrp.toFixed(2));
-            } else if (salePrice > 0 && discountPercent === 0) {
-                $('#add_mrp_price').val(salePrice.toFixed(2));
+            if (mrp > 0 && discountPercent > 0) {
+                let salePrice = mrp * (1 - (discountPercent / 100));
+                $('#add_sale_price').val(salePrice.toFixed(2));
+            } else if (mrp > 0 && discountPercent === 0) {
+                $('#add_sale_price').val(mrp.toFixed(2));
             } else {
-                $('#add_mrp_price').val('');
+                $('#add_sale_price').val('');
             }
         }
 
-        $('#add_sale_price, #add_discount_percentage').on('input', function() {
-            calculateMRP();
+        $('#add_mrp_price, #add_discount_percentage').on('input', function() {
+            calculateSalePrice();
         });
 
     $('.summernote').summernote({

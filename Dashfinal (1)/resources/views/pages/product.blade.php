@@ -254,23 +254,23 @@
                             </div>
                                      <div class="col-md-3">
                                 <div class="mb-3">
-                                    <label class="form-label" for="edit_sale_price">Sale Price*</label>
-                                    <input type="number" class="form-control" id="edit_sale_price" name="product_regular_price"
-                                        placeholder="Enter Sale Price" required>
+                                    <label class="form-label" for="edit_mrp_price">MRP Price*</label>
+                                    <input type="number" class="form-control" id="edit_mrp_price" name="product_mrp_price"
+                                        placeholder="Enter MRP Price" required>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="mb-3">
                                     <label class="form-label" for="edit_discount_percentage">Discount Percentage (%)*</label>
                                     <input type="number" class="form-control" id="edit_discount_percentage"
-                                        placeholder="Enter Percentage (e.g., 90)" required>
+                                        placeholder="Enter Percentage (e.g., 10)" required>
                                 </div>
                             </div>
                                      <div class="col-md-3">
                                 <div class="mb-3">
-                                    <label class="form-label" for="edit_mrp_price">MRP Price (Auto-calculated)*</label>
-                                    <input type="text" class="form-control" id="edit_mrp_price" name="product_mrp_price"
-                                        placeholder="MRP Price" maxlength="200" readonly required>
+                                    <label class="form-label" for="edit_sale_price">Sale Price (Auto-calculated)*</label>
+                                    <input type="text" class="form-control" id="edit_sale_price" name="product_regular_price"
+                                        placeholder="Sale Price" maxlength="200" readonly required>
                                 </div>
                             </div>
                             <!--  <div class="col-md-3">-->
@@ -388,27 +388,27 @@
         });
 
         // Add auto-calculation for edit modal
-        function calculateEditMRP() {
-            let salePrice = parseFloat($('#edit_sale_price').val()) || 0;
+        function calculateEditSalePrice() {
+            let mrp = parseFloat($('#edit_mrp_price').val()) || 0;
             let discountPercent = parseFloat($('#edit_discount_percentage').val()) || 0;
 
             if (discountPercent >= 100) {
-                $('#edit_mrp_price').val('Invalid Discount');
+                $('#edit_sale_price').val('Invalid Discount');
                 return;
             }
 
-            if (salePrice > 0 && discountPercent > 0) {
-                let mrpValue = salePrice / (1 - (discountPercent / 100));
-                $('#edit_mrp_price').val(mrpValue.toFixed(2));
-            } else if (salePrice > 0 && discountPercent === 0) {
-                $('#edit_mrp_price').val(salePrice.toFixed(2));
+            if (mrp > 0 && discountPercent > 0) {
+                let salePrice = mrp * (1 - (discountPercent / 100));
+                $('#edit_sale_price').val(salePrice.toFixed(2));
+            } else if (mrp > 0 && discountPercent === 0) {
+                $('#edit_sale_price').val(mrp.toFixed(2));
             } else {
-                $('#edit_mrp_price').val('');
+                $('#edit_sale_price').val('');
             }
         }
 
-        $(document).on('input', '#edit_sale_price, #edit_discount_percentage', function() {
-            calculateEditMRP();
+        $(document).on('input', '#edit_mrp_price, #edit_discount_percentage', function() {
+            calculateEditSalePrice();
         });
 
 

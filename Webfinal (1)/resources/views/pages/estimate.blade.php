@@ -1746,12 +1746,12 @@ thead th,
 
                 <div class="order-form-grid-2">
                     <div class="order-field">
-                        <label class="order-label">STATE *</label>
-                        <input type="text" name="state" id="stateSelect" required placeholder="Ex: Tamil Nadu" class="order-input">
-                    </div>
-                    <div class="order-field">
                         <label class="order-label">CITY *</label>
                         <input type="text" name="city" id="citySelect" required placeholder="Ex: Chennai" class="order-input">
+                    </div>
+                    <div class="order-field">
+                        <label class="order-label">STATE *</label>
+                        <input type="text" name="state" id="stateSelect" required placeholder="Ex: Tamil Nadu" class="order-input">
                     </div>
                 </div>
 
@@ -1760,7 +1760,7 @@ thead th,
                     <input type="tel" name="pincode" id="orderPincode" required placeholder="Ex: 600001" pattern="[0-9]{6}" maxlength="6" minlength="6" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="order-input">
                 </div>
 
-                <button type="button" onclick="placeOrder()" id="placeOrderBtn" class="order-submit-btn">
+                <button type="button" onclick="placeOrder()" id="placeOrderBtn" class="order-submit-btn" style="margin-top: 20px;">
                      Confirm & Send Estimate <i class="fa-solid fa-paper-plane"></i>
                 </button>
             </form>
