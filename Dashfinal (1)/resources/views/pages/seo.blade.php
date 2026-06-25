@@ -376,7 +376,16 @@
 
     <script>
         $(document).ready(function() {
-    
+        // Hide Copy, Excel, PDF, Column Visibility buttons for this page
+        if ($.fn.DataTable.isDataTable('#datatable-buttons')) {
+            $('#datatable-buttons').DataTable().destroy();
+        }
+        $('#datatable-buttons').DataTable({
+            lengthChange: false,
+            buttons: []
+        });
+
+
 
     // Initialize Summernote
     $('#conntent').summernote({

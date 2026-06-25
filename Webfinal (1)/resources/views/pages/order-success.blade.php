@@ -1026,10 +1026,10 @@
                                     <th style="padding:10px 5px; text-align:center; border: 1px solid #000000; font-size:14px; font-weight:bold;">Code</th>
                                     <th style="padding:10px 10px; text-align:left; border: 1px solid #000000; font-size:14px; font-weight:bold;">Cracker name</th>
                                     <th style="padding:10px 5px; text-align:center; border: 1px solid #000000; font-size:14px; font-weight:bold;">Quantity</th>
-                                    <th style="padding:10px 5px; text-align:center; border: 1px solid #000000; font-size:14px; font-weight:bold;">Rate</th>
-                                    <th style="padding:10px 5px; text-align:center; border: 1px solid #000000; font-size:14px; font-weight:bold;">Acutal</th>
+                                    <th style="padding:10px 5px; text-align:center; border: 1px solid #000000; font-size:14px; font-weight:bold;">MRP</th>
+                                    <th style="padding:10px 5px; text-align:center; border: 1px solid #000000; font-size:14px; font-weight:bold;">Total MRP</th>
                                     <th style="padding:10px 5px; text-align:center; border: 1px solid #000000; font-size:14px; font-weight:bold;">Disc%</th>
-                                    <th style="padding:10px 5px; text-align:center; border: 1px solid #000000; font-size:14px; font-weight:bold;">Discount</th>
+                                    <th style="padding:10px 5px; text-align:center; border: 1px solid #000000; font-size:14px; font-weight:bold;">Discounted Price</th>
                                     <th style="padding:10px 5px; text-align:center; border: 1px solid #000000; font-size:14px; font-weight:bold;">Total</th>
                                 </tr>
                             </thead>
@@ -1045,15 +1045,15 @@
                                 <td style="width: 40%; padding: 12px; text-align: left; vertical-align: top; font-size: 14px; border: none; border-left: 2px solid #000000;">
                                     <table style="width: 100%; border-collapse: collapse; border: none; margin: 0;">
                                         <tr>
-                                            <td style="text-align: left; font-weight: bold; padding: 4px 0; border: none;">Discount Items</td>
+                                            <td style="text-align: left; font-weight: bold; padding: 4px 0; border: none;">Total MRP</td>
                                             <td style="text-align: right; font-weight: bold; padding: 4px 0; border: none;">${totalActual.toFixed(2)}</td>
                                         </tr>
                                         <tr>
-                                            <td style="text-align: left; font-weight: bold; padding: 4px 0; border: none;">Discount</td>
+                                            <td style="text-align: left; font-weight: bold; padding: 4px 0; border: none;">Discounted Price</td>
                                             <td style="text-align: right; font-weight: bold; padding: 4px 0; border: none;">${totalDiscount.toFixed(2)}</td>
                                         </tr>
                                         <tr style="border-top: 2px solid #000000;">
-                                            <td style="text-align: left; font-weight: bold; padding: 8px 0 0 0; font-size: 15px; border: none;">Total amount</td>
+                                            <td style="text-align: left; font-weight: bold; padding: 8px 0 0 0; font-size: 15px; border: none;">Final Amount</td>
                                             <td style="text-align: right; font-weight: bold; padding: 8px 0 0 0; font-size: 15px; border: none;">${totalRegular.toFixed(2)}</td>
                                         </tr>
                                     </table>

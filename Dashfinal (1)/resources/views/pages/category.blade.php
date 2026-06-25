@@ -210,6 +210,16 @@
 
  @section('scripts')
     <script>
+        // Hide Copy, Excel, PDF, Column Visibility buttons for this page
+        $(document).ready(function() {
+            if ($.fn.DataTable.isDataTable('#datatable-buttons')) {
+                $('#datatable-buttons').DataTable().destroy();
+            }
+            $('#datatable-buttons').DataTable({
+                lengthChange: false,
+                buttons: []
+            });
+        });
         $('.editcatgory').on('click', function(){
 
             $('#categoryId').val($(this).attr('data-id'));
