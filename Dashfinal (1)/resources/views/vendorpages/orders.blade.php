@@ -1,30 +1,25 @@
 @extends('layout.app')
 @section('main_content')
     <div class="col-lg-12">
-        <div class="card card-h-100">
-            <div class="card-body">
-                {{-- <div class="mb-5 text-end">
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
-                        Add Product Stock
-                    </button>
-                </div> --}}
+        <div class="card shadow-lg border-0" style="border-radius: 20px; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px);">
+            <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+                    <div class="d-flex align-items-center flex-wrap gap-3">
+                        <h2 class="fw-bold text-primary m-0"><i class="fas fa-shopping-cart me-2"></i>Enquiries</h2>
+                        <span class="badge bg-success fs-6 py-2 px-3" style="border-radius: 10px;">Total Value: ₹{{ round($total) }}.00</span>
+                    </div>
+                </div>
                 <div class="container overflow-hidden">
-                  <div class="row">
-                        <div class="col-lg-2">
-                             <h2 class="mb-4">Enquiries</h2>
-                    <p style="font-weight: bold;font-size:16px">Total value: {{ round($total) }}.00 </p>
-                        </div>
-                         <div class="col-lg-10">
-        <div class="col-lg-12 col-xl-4">
-                                    <div class="card m-b-30">
-                                        <div class="card-body">
-                                            <h4 class="mt-0 header-title">Enquiry Chart</h4>
-                                           
-                                            <div id="pie-chart"></div>
-
-                                        </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="col-lg-12 col-xl-4 p-0">
+                                <div class="card m-b-30 shadow-sm border">
+                                    <div class="card-body">
+                                        <h5 class="mt-0 header-title fw-bold text-muted">Enquiry Chart</h5>
+                                        <div id="pie-chart"></div>
                                     </div>
-                                </div> <!-- end col -->
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <table id="datatable-buttons" class="table table-bordered dt-responsive nowrap w-100">

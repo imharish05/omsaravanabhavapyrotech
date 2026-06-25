@@ -1,15 +1,15 @@
 @extends('layout.app')
 @section('main_content')
     <div class="col-lg-12">
-        <div class="card card-h-100">
-            <div class="card-body">
-                <div class="mb-5 text-end">
+        <div class="card shadow-lg border-0" style="border-radius: 20px; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px);">
+            <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="fw-bold text-primary m-0"><i class="fas fa-percent me-2"></i>Offers</h2>
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
-                        Add Offers
+                        <i class="fas fa-plus-circle me-2"></i>Add Offers
                     </button>
                 </div>
                 <div class="container overflow-hidden">
-                    <h2 class="mb-4">Offers</h2>
                     <table id="projectsTable" class="table table-bordered table-hover nowrap w-100 mt-5">
                         <thead>
                             <tr class="">

@@ -10,10 +10,12 @@
 </div>
 
 <div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title mb-4">Manage Terms and Conditions Content</h4>
+        <div class="col-lg-12">
+            <div class="card shadow-lg border-0" style="border-radius: 20px; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px);">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2 class="fw-bold text-primary m-0"><i class="fas fa-file-contract me-2"></i>Terms & Conditions</h2>
+                    </div>
                 
                 @if(session('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">

@@ -1,13 +1,12 @@
 @extends('layout.app')
 @section('main_content')
 
-  <div class="col-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 class="card-title">Page Off</h4>
-
-                                    </div>
-                                    <div class="card-body">
+  <div class="col-12 mb-4">
+        <div class="card shadow-lg border-0" style="border-radius: 20px; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px);">
+            <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="fw-bold text-primary m-0"><i class="fas fa-power-off me-2"></i>Page Off</h2>
+                </div>
 
                                          <table id="" class="table table-bordered dt-responsive nowrap w-100">
                                             <thead>
@@ -48,13 +47,12 @@
 
 
 
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 class="card-title">Minimum Order Value</h4>
-
-                                    </div>
-                                    <div class="card-body">
+                             <div class="col-12 mb-4">
+                                <div class="card shadow-lg border-0" style="border-radius: 20px; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px);">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex justify-content-between align-items-center mb-4">
+                                            <h2 class="fw-bold text-primary m-0"><i class="fas fa-calculator me-2"></i>Minimum Order Value</h2>
+                                        </div>
 
                                          <table id="" class="table table-bordered dt-responsive nowrap w-100">
                                             <thead>

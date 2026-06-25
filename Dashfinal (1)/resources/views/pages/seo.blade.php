@@ -13,20 +13,14 @@
 </style>
 
     <div class="col-lg-12">
-        <div class="card card-h-100">
-            <div class="card-body">
-                <div class="mb-5 text-end">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#editproductBackdrop1">
-                        Add SEO
+        <div class="card shadow-lg border-0" style="border-radius: 20px; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px);">
+            <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="fw-bold text-primary m-0"><i class="fas fa-globe me-2"></i>SEO Details</h2>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editproductBackdrop1">
+                        <i class="fas fa-plus-circle me-2"></i>Add SEO
                     </button>
-
                 </div>
-
-
-                {{-- {{ $dataTable->table() }} --}}
-
-
                 <div class="container overflow-hidden">
 
 

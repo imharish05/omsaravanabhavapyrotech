@@ -5,7 +5,7 @@
             <div class="card-body p-4">
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h2 class="fw-bold text-primary m-0"><i class="fas fa-th-large me-2"></i>Categories</h2>
-                    <button type="button" class="btn btn-primary btn-lg shadow-sm" data-bs-toggle="modal" data-bs-target="#addcategoryModal" style="border-radius: 12px; padding: 10px 25px;">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addcategoryModal">
                         <i class="fas fa-plus-circle me-2"></i>Add Category
                     </button>
                 </div>

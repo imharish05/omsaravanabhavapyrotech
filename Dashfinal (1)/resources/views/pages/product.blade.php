@@ -1,35 +1,34 @@
 @extends('layout.app')
 @section('main_content')
+    @php
+        $discounts = App\Models\Discount::orderBy('created_at', 'desc')->take(2)->get();
+        $currentDiscount = $discounts->first() ? $discounts->first()->discount : 0;
+        $previousDiscount = $discounts->count() > 1 ? $discounts->last()->discount : 0;
+    @endphp
     <div class="col-lg-12">
-        <div class="card card-h-100">
-            <div class="card-body">
-                <div class="mb-5 text-end">
-                      <button type="button" class="btn btn-primary deleteproductall" >
-                       Delete All
-                    </button>
-                    <a href="{{ url('/product/addview') }}" class="btn btn-primary">
-                        Add Product
-                    </a> <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addcategoryModal">
-                        Add Discount
-                    </button>
-                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addpriceModal">
-                       Bulk Upload
-                    </button>
+        <div class="card shadow-lg border-0" style="border-radius: 20px; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px);">
+            <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+                    <div class="d-flex align-items-center flex-wrap gap-3">
+                        <h2 class="fw-bold text-primary m-0"><i class="fas fa-box me-2"></i>Products</h2>
+                        <span class="badge bg-danger fs-6 py-2 px-3 animate-pulse" style="border-radius: 10px;">Discount: {{ $currentDiscount }} %</span>
+                    </div>
+                    <div class="d-flex gap-2 flex-wrap">
+                        <button type="button" class="btn btn-danger deleteproductall">
+                            <i class="fas fa-trash-alt me-2"></i>Delete All
+                        </button>
+                        <a href="{{ url('/product/addview') }}" class="btn btn-primary">
+                            <i class="fas fa-plus-circle me-2"></i>Add Product
+                        </a>
+                        <button type="button" class="btn btn-warning text-dark fw-bold" data-bs-toggle="modal" data-bs-target="#addcategoryModal">
+                            <i class="fas fa-percent me-2"></i>Add Discount
+                        </button>
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addpriceModal">
+                            <i class="fas fa-upload me-2"></i>Bulk Upload
+                        </button>
+                    </div>
                 </div>
-
-
-                {{-- {{ $dataTable->table() }} --}}
-
-                    @php
-                     $discounts = App\Models\Discount::orderBy('created_at', 'desc')->take(2)->get();
-                     $currentDiscount = $discounts->first() ? $discounts->first()->discount : 0;
-                     $previousDiscount = $discounts->count() > 1 ? $discounts->last()->discount : 0;
-                @endphp
-             <div class="container overflow-hidden">
-                    <h2 class="mb-4">Products 
-                        {{-- <span style="margin-left:50px; font-size: 1.2rem; color: #6c757d;">Previous Discount: {{ $previousDiscount }} %</span> --}}
-                        <span style="margin-left:50px; color: #d9534f;">Discount: {{ $currentDiscount }} %</span>
-                    </h2>
+                <div class="container overflow-hidden">
 
                     <table id="datatable-buttons" class="table table-bordered dt-responsive nowrap w-100">
 
