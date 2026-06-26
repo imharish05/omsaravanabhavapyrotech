@@ -35,7 +35,9 @@ Route::get('/about', [AboutController::class, 'index']);
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.submit');
 Route::get('/bank', [BankController::class, 'index']);
-Route::get('/estimate', [EstimateController::class, 'index']);
+Route::get('/catalogue', [EstimateController::class, 'index'])->name('catalogue.index');
+// Backward-compat redirect: old /estimate links still work
+Route::redirect('/estimate', '/catalogue', 301);
 Route::get('/download-price-list', [EstimateController::class, 'downloadPDF'])->name('pricelist.download');
 Route::post('/order', [OrderController::class, 'store'])->name('order.store');
 Route::get('/order-success', [OrderController::class, 'success'])->name('order.success');

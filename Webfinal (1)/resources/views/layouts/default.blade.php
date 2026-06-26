@@ -438,7 +438,7 @@
 
     <!-- FAB GROUP -->
     <!-- LEFT FAB GROUP (Contact) -->
-    <div class="luxury-fab-group {{ (Request::is('estimate') || Request::is('order-success')) ? 'fab-hide-estimate-mobile' : '' }}">
+    <div class="luxury-fab-group {{ (Request::is('catalogue') || Request::is('order-success')) ? 'fab-hide-estimate-mobile' : '' }}">
         <a href="tel:{{ $global_settings->phone_number }}" class="l-fab ph" title="Call Concierge">
             <i class="fa-solid fa-phone"></i>
             <div class="fab-ripple"></div>
@@ -451,9 +451,9 @@
     </div>
 
     <!-- RIGHT FAB GROUP (Utilities) -->
-    <div class="luxury-fab-group-right {{ (Request::is('estimate') || Request::is('order-success')) ? 'fab-hide-estimate-mobile' : '' }}">
-        @if(!Request::is('estimate') && !Request::is('order-success'))
-            <a href="{{ url('estimate') }}" class="l-fab est" title="Enquire Now">
+    <div class="luxury-fab-group-right {{ (Request::is('catalogue') || Request::is('order-success')) ? 'fab-hide-estimate-mobile' : '' }}">
+        @if(!Request::is('catalogue') && !Request::is('order-success'))
+            <a href="{{ url('catalogue') }}" class="l-fab est" title="Enquire Now">
                 <i class="fa-solid fa-clipboard-list"></i>
                 <div class="fab-ripple"></div>
             </a>

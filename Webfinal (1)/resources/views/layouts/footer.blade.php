@@ -45,7 +45,7 @@
                 <h4 class="f-title">Category</h4>
                 <ul class="f-list">
                     @foreach($footerCategories as $category)
-                        <li><a href="{{ url('/estimate?category=' . urlencode(strtolower($category->category_name))) }}">{{ $category->category_name }}</a></li>
+                        <li><a href="{{ url('/catalogue?category=' . urlencode(strtolower($category->category_name))) }}">{{ $category->category_name }}</a></li>
                     @endforeach
                 </ul>
             </div>

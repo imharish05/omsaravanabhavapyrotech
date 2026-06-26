@@ -29,7 +29,7 @@
         <nav class="hdr-nav" id="hdrNav">
             <a href="{{ url('/') }}"        class="hdr-link {{ request()->is('/') ? 'hdr-link--active' : '' }}">Home</a>
             <a href="{{ url('/about') }}"   class="hdr-link {{ request()->is('about') ? 'hdr-link--active' : '' }}">About</a>
-            <a href="{{ url('/estimate') }}" class="hdr-link {{ request()->is('estimate') ? 'hdr-link--active' : '' }}">Catalogue</a>
+            <a href="{{ url('/catalogue') }}" class="hdr-link {{ request()->is('catalogue') ? 'hdr-link--active' : '' }}">Catalogue</a>
             {{-- <a href="{{ url('/bank') }}"    class="hdr-link {{ request()->is('bank') ? 'hdr-link--active' : '' }}">Payment</a> --}}
             <a href="{{ url('/safetytips') }}"    class="hdr-link {{ request()->is('safetytips*') ? 'hdr-link--active' : '' }}">Safety Tips</a>
             <a href="{{ url('/contact') }}" class="hdr-link {{ request()->is('contact') ? 'hdr-link--active' : '' }}">Contact</a>
@@ -52,7 +52,7 @@
             </div>
 
             <!-- Enquire Now CTA -->
-            <a href="{{ url('estimate') }}" class="hdr-cta">
+            <a href="{{ url('catalogue') }}" class="hdr-cta">
                 <i class="fa-solid fa-clipboard-list"></i>
                 <span>Enquire Now</span>
             </a>
@@ -77,7 +77,7 @@
         <nav class="hdr-mobile-nav">
             <a href="{{ url('/') }}"        class="hdr-mobile-link {{ request()->is('/') ? 'hdr-mobile-link--active' : '' }}"><i class="fa-solid fa-house"></i> Home</a>
             <a href="{{ url('/about') }}"   class="hdr-mobile-link {{ request()->is('about') ? 'hdr-mobile-link--active' : '' }}"><i class="fa-solid fa-feather-pointed"></i> About</a>
-            <a href="{{ url('/estimate') }}" class="hdr-mobile-link {{ request()->is('estimate') ? 'hdr-mobile-link--active' : '' }}"><i class="fa-solid fa-fire-extinguisher"></i> Catalogue</a>
+            <a href="{{ url('/catalogue') }}" class="hdr-mobile-link {{ request()->is('catalogue') ? 'hdr-mobile-link--active' : '' }}"><i class="fa-solid fa-fire-extinguisher"></i> Catalogue</a>
             {{-- <a href="{{ url('/bank') }}"    class="hdr-mobile-link {{ request()->is('bank') ? 'hdr-mobile-link--active' : '' }}"><i class="fa-solid fa-credit-card"></i> Payment</a> --}}
             <a href="{{ url('/safetytips') }}"    class="hdr-mobile-link {{ request()->is('safetytips*') ? 'hdr-mobile-link--active' : '' }}"><i class="fa-solid fa-shield-halved"></i> Safety Tips</a>
             <a href="{{ url('/contact') }}" class="hdr-mobile-link {{ request()->is('contact') ? 'hdr-mobile-link--active' : '' }}"><i class="fa-solid fa-paper-plane"></i> Contact</a>
@@ -88,7 +88,7 @@
                 <button onclick="changeLang('ta')" class="hdr-mlang-btn" id="btn-ta">தமிழ்</button>
                 <button onclick="changeLang('kn')" class="hdr-mlang-btn" id="btn-kn">ಕನ்ನಡ</button>
             </div>
-            <a href="{{ url('estimate') }}" class="hdr-mobile-cta">
+            <a href="{{ url('catalogue') }}" class="hdr-mobile-cta">
                 <i class="fa-solid fa-clipboard-list"></i> Enquire Now
             </a>
             <a href="tel:{{ $global_settings->phone_number }}" class="hdr-mobile-call">

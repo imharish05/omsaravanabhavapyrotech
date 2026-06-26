@@ -3446,7 +3446,7 @@
                             </h1>
                             <p class="hero-sub">{{ Str::limit(strip_tags($settings->welcome_text), 140) }}</p>
             <div class="hero-btns">
-                <a href="{{ url('estimate') }}" class="btn-primary">
+                <a href="{{ url('catalogue') }}" class="btn-primary">
                     <i class="fa-solid fa-download"></i> Get Price List
                 </a>
                 <a href="https://wa.me/{{ $settings->whatsapp_number ?? '' }}" class="btn-outline">
@@ -3460,7 +3460,7 @@
             </div>
             @else
             <div class="hero-btns">
-                <a href="{{ url('estimate') }}" class="btn-primary">Shop Now →</a>
+                <a href="{{ url('catalogue') }}" class="btn-primary">Shop Now →</a>
             </div>
             @endif
         </div> --}}
@@ -3548,7 +3548,7 @@
                 @endforeach
             </div>
 
-            <a href="{{ $settings->welcome_button_link ?? url('estimate') }}" class="about-cta-btn">
+            <a href="{{ $settings->welcome_button_link ?? url('catalogue') }}" class="about-cta-btn">
                 {{ $settings->welcome_button_text ?? 'Explore Collection' }}
                 <span class="btn-arrow">→</span>
             </a>
@@ -3669,7 +3669,7 @@
             ? $mainUrl . '/' . ltrim($category->category_image, '/')
             : asset('assets/img/categories/img1.jpg');
             @endphp
-            <a href="{{ url('estimate') }}?category={{ urlencode(strtolower($category->category_name)) }}" class="cat-card-premium">
+            <a href="{{ url('catalogue') }}?category={{ urlencode(strtolower($category->category_name)) }}" class="cat-card-premium">
                 <div class="cat-img-stage skeleton-loader">
                     <img src="{{ $catImage }}" alt="{{ $category->category_name }}" class="cat-real-image" loading="lazy" onload="this.classList.add('loaded'); this.parentElement.classList.remove('skeleton-loader')" onerror="this.src='{{ asset('assets/img/categories/img1.jpg') }}'; this.classList.add('loaded'); this.parentElement.classList.remove('skeleton-loader')">
                 </div>
