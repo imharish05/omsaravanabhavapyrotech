@@ -11313,7 +11313,7 @@ Go Top CSS
 
 .stat-number {
 
-  font-size: clamp(20px, 3vw, 32px);
+  font-size: clamp(16px, 2.5vw, 28px);
   font-weight: 900;
   background: var(--c-hover);
   -webkit-background-clip: text;
@@ -15774,7 +15774,7 @@ body {}
 
 .stat-number {
   /* font-family: 'Cinzel Decorative', cursive; */
-  font-size: clamp(22px, 3vw, 36px);
+  font-size: clamp(16px, 2.5vw, 30px);
   font-weight: 900;
   background: var(--c-hover);
   -webkit-background-clip: text;
@@ -15784,6 +15784,15 @@ body {}
   margin-bottom: 8px;
   display: block;
   animation: countGlow 3s ease-in-out infinite alternate;
+}
+
+@media (max-width: 768px) {
+  .stat-number {
+    font-size: 1.2rem !important;
+  }
+  .stat-cell {
+    padding: 18px 8px !important;
+  }
 }
 
 @keyframes countGlow {

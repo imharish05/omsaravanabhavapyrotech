@@ -43,7 +43,6 @@
             .hero-bg {
                 position: absolute;
                 inset: 0;
-                background-image: url('{{ asset('brain/4d8ae542-7bd4-4c30-876d-25d65ee76364/success_light_heritage_1776426911549.png') }}');
                 background-size: cover;
                 background-position: center;
                 transform: scale(1.1);

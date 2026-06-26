@@ -173,20 +173,43 @@ class OrderController extends Controller
         $order = \App\Models\Order::where('oeder_id', $data['order_id'])->first();
         $customer = $order ? \App\Models\Customer::find($order->user_id) : null;
 
-        // Base64 encode logo and Lord Murugan image to bypass CORS in canvas
+        // Base64 encode logo — try multiple paths for local + live compatibility
         $logo_base64 = null;
         $global_settings = \App\Models\GlobalSetting::first();
         if ($global_settings && $global_settings->logo) {
-            $logo_path = base_path('../Dashfinal (1)/public/' . ltrim($global_settings->logo, '/'));
+            $logoRelative = ltrim($global_settings->logo, '/');
+
+            // 1. Try within this app's public folder
+            $logo_path = public_path($logoRelative);
+
+            // 2. Try the dashboard app's public folder (local dev)
+            if (!file_exists($logo_path)) {
+                $logo_path = base_path('../Dashfinal (1)/public/' . $logoRelative);
+            }
+
             if (file_exists($logo_path)) {
-                $logo_base64 = 'data:image/png;base64,' . base64_encode(file_get_contents($logo_path));
+                $ext  = strtolower(pathinfo($logo_path, PATHINFO_EXTENSION));
+                $mime = in_array($ext, ['jpg', 'jpeg']) ? 'image/jpeg' : 'image/png';
+                $logo_base64 = "data:{$mime};base64," . base64_encode(file_get_contents($logo_path));
+            } else {
+                // 3. HTTP fallback — works on live even if file path differs
+                try {
+                    $logoUrl = rtrim(env('MAIN_URL', ''), '/') . '/' . $logoRelative;
+                    $response = \Illuminate\Support\Facades\Http::timeout(10)->get($logoUrl);
+                    if ($response->successful()) {
+                        $logo_base64 = 'data:image/png;base64,' . base64_encode($response->body());
+                    }
+                } catch (\Exception $e) {
+                    \Log::error('PDF Logo fetch error: ' . $e->getMessage());
+                }
             }
         }
 
+        // Base64 encode deity image (Murugan) for PDF header
         $murugan_base64 = null;
-        $murugan_path = public_path('assets/images/lord_murugan.png');
-        if (file_exists($murugan_path)) {
-            $murugan_base64 = 'data:image/png;base64,' . base64_encode(file_get_contents($murugan_path));
+        $deity_path = public_path('assets/images/lord_murugan.jpg');
+        if (file_exists($deity_path)) {
+            $murugan_base64 = 'data:image/jpeg;base64,' . base64_encode(file_get_contents($deity_path));
         }
 
         return view('pages.order-success', [

@@ -999,11 +999,10 @@ thead th {
     .order-submit-btn { border-radius: 0 0 30px 30px; margin-top: 20px; padding: 25px; }
 }
 
-/* Dark premium polish aligned with home/about/contact */
+/* Page background — light theme */
 .estimate-page {
-    background:
-        linear-gradient(180deg, rgba(8,8,16,0.98), rgba(12,12,24,0.98));
-    color: #fff;
+    background: #ffffff;
+    color: var(--ink, #1a1a2e);
 }
 
 .estimate-hero {
@@ -1029,9 +1028,7 @@ thead th {
 
 .estimate-content {
     padding-top: 1px;
-    background:
-        radial-gradient(circle at 50% 0, rgba(212,134,10,0.1), transparent 28rem),
-        linear-gradient(180deg, rgba(8,8,16,0.98), rgba(12,12,24,0.98));
+    background: #ffffff;
 }
 
 .top-summary,
@@ -1781,6 +1778,12 @@ thead th,
                         @endforeach
                     </tbody>
                 </table>
+
+                <!-- No Products Found Message -->
+                <div id="noProductsMsg" style="display:none; background:#ffffff; text-align:center; padding:60px 20px; border-radius:16px; margin-top:10px;">
+                    <i class="fa-solid fa-box-open" style="font-size:2.5rem; color:#e53a12; display:block; margin-bottom:12px;"></i>
+                    <span style="font-size:1.1rem; font-weight:700; color:#222222; letter-spacing:0.5px;">No Products Found</span>
+                </div>
             </div>
         </div>
     </section>
@@ -1979,6 +1982,10 @@ thead th,
                 }
                 catRow.classList.toggle("d-none", !hasVisible);
             });
+
+            // Show/hide No Products Found message
+            const anyVisible = document.querySelectorAll(".product-row:not(.d-none)").length > 0;
+            document.getElementById("noProductsMsg").style.display = anyVisible ? "none" : "block";
         });
 
         // Clear Filter Button

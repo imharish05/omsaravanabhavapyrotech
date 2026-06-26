@@ -881,11 +881,11 @@
             background-size: 200% 100%;
             color: #111;
             font-weight: 900;
-            font-size: .92rem;
-            letter-spacing: 1.5px;
+            font-size: .84rem;
+            letter-spacing: 1px;
             text-transform: uppercase;
             text-decoration: none;
-            padding: 17px 38px;
+            padding: 11px 26px;
             border-radius: 50px;
             border: 1px solid rgba(255, 255, 255, .6);
             box-shadow:
@@ -944,10 +944,10 @@
         /* ── Mobile: smaller CTA button ── */
         @media (max-width: 600px) {
             .about-cta-btn {
-                font-size: .75rem;
-                padding: 12px 22px;
+                font-size: .72rem;
+                padding: 9px 18px;
                 gap: 8px;
-                letter-spacing: 1px;
+                letter-spacing: 0.5px;
             }
             .about-cta-btn .btn-arrow {
                 width: 22px;
@@ -2208,7 +2208,7 @@
 
         .stat-number {
             font-family: var(--font-display);
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 900;
             color: #FFF;
             display: block;
@@ -3031,6 +3031,23 @@
 
             .why-stats {
                 grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                margin-top: 30px;
+            }
+
+            .stat-number {
+                font-size: 1.3rem !important;
+            }
+
+            .stat-cell {
+                padding: 18px 8px !important;
+            }
+
+            .stat-icon-wrap {
+                width: 44px;
+                height: 44px;
+                font-size: 1.1rem;
+                margin-bottom: 10px;
             }
 
             .how-steps {
@@ -3370,6 +3387,16 @@
             .banner-video {
                 object-fit: fill !important;
             }
+            .btn-primary {
+                padding: 10px 22px !important;
+                font-size: .78rem !important;
+                letter-spacing: 1px !important;
+            }
+            .btn-outline {
+                padding: 9px 20px !important;
+                font-size: .78rem !important;
+                letter-spacing: 1px !important;
+            }
         }
 
     </style>
@@ -3499,22 +3526,18 @@
                 @php
                 // Smart number/label extraction — handles "Min Order : 2500", "200+ Products", "81% Off"
                 $text = trim($badge['text']);
-                // First try: does it start with a number-like token?
-                $parts = preg_split('/\s+/', $text, 2);
-                if (preg_match('/[0-9]/', $parts[0])) {
-                    $number = $parts[0];
-                    $label  = $parts[1] ?? '';
+                $number = '';
+                $label = '';
+
+                // Match a number sequence, potentially with leading currency symbol (₹, $) and trailing suffix (+, %)
+                if (preg_match('/(?:[₹$]\s*)?\d+(?:[\d,.]*\d)?(?:\s*[+%+])?/u', $text, $m)) {
+                    $number = $m[0];
+                    // Remove the number and any surrounding spaces/colons
+                    $label = preg_replace('/[:\s]*' . preg_quote($number, '/') . '[:\s]*/u', ' ', $text);
+                    $label = trim(preg_replace('/\s+/', ' ', $label));
                 } else {
-                    // Second try: find any number (with optional suffix like +, %) anywhere in the text
-                    // and use the rest as label
-                    if (preg_match('/([\d][\d,]*[+%₹$]?)/u', $text, $m)) {
-                        $number = $m[1];
-                        $label  = preg_replace('/[:\s]*' . preg_quote($number, '/') . '[+%₹$]?[:\s]*/u', ' ', $text);
-                        $label  = trim($label);
-                    } else {
-                        $number = '•';
-                        $label  = $text;
-                    }
+                    $number = '•';
+                    $label = $text;
                 }
                 @endphp
                 <div class="fact-item">
