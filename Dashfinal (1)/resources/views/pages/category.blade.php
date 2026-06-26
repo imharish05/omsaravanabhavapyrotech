@@ -26,7 +26,7 @@
                               <tr class="category-row" data-id="{{ $cat->id }}">
                                 <td class="text-center fw-medium text-muted">{{ $i++ }}</td>
                                  <td>
-                                    <span class="fw-bold text-dark fs-5">{{ $cat->category_name }}</span>
+                                    <span class="text-dark fs-5">{{ $cat->category_name }}</span>
                                     <div class="small text-muted">ID: #{{ $cat->id }}</div>
                                  </td>
                                  <td class="text-center">

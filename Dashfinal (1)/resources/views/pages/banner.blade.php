@@ -58,7 +58,7 @@
     </div>
 
 
-    <div class="col-lg-12">
+    <!-- <div class="col-lg-12">
         <div class="card card-h-100">
             <div class="card-body">
                 <div class="mb-5 text-end">
@@ -66,7 +66,7 @@
                         Add Banner
                     </button> --}}
                 </div>
-                <!-- <div class="container overflow-hidden">
+                <div class="container overflow-hidden">
                     <h2 class="mb-4">Section Banner</h2>
                     <table id="datatable-buttons" class="table table-bordered dt-responsive nowrap w-100">
 
@@ -111,10 +111,10 @@
                         </tbody>
 
                     </table>
-                </div> -->
+                </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
 
 @push('modals')

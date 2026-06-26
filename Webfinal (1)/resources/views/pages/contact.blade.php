@@ -85,7 +85,7 @@
                             <div class="info-block wa-highlight">
                                 <div class="ib-icon"><i class="fa-brands fa-whatsapp ib-icon-wa"></i></div>
                                 <div class="ib-content">
-                                    <h6>WhatsApp Concierge</h6>
+                                    <h6>WhatsApp</h6>
                                     <p><a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $contact->phone ?? '') }}"
                                             target="_blank">Chat with us instantly</a></p>
                                 </div>
@@ -604,21 +604,20 @@
         }
 
         .wa-highlight .ib-icon {
-            background: rgba(37, 211, 102, 0.15);
-            color: #25D366;
-            border: 1px solid rgba(37, 211, 102, 0.3);
+            background: linear-gradient(135deg, #FFFFFF, #F0A832);
+            color: #111;
+            border: 2px solid rgba(255, 255, 255, 0.6);
         }
 
         .wa-highlight .ib-content a {
-            color: #25D366;
+            color: rgba(255, 255, 255, 0.74);
             font-weight: 700;
-            border-bottom: 1px solid rgba(37, 211, 102, 0.2);
         }
 
         .wa-highlight:hover .ib-icon {
-            background: #25D366;
-            color: #0b0b14;
-            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+            background: linear-gradient(135deg, #FFFFFF, #F0A832);
+            color: #111;
+            box-shadow: 0 10px 20px rgba(240, 168, 50, 0.3);
         }
 
         /* Form Glass */
