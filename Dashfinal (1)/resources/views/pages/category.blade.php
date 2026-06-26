@@ -11,7 +11,7 @@
                 </div>
 
                 <div class="table-responsive">
-                    <table id="datatable-buttons" class="table table-hover align-middle custom-table">
+                    <table id="datatable-buttons" class="table table-bordered dt-responsive nowrap w-100 align-middle">
                         <thead class="bg-light">
                             <tr>
                                 <th class="text-center" style="width: 80px;">S.NO</th>
@@ -56,34 +56,6 @@
     </div>
 
     <style>
-        .custom-table {
-            border-collapse: separate;
-            border-spacing: 0 10px;
-        }
-        .custom-table thead th {
-            border: none;
-            color: #6c757d;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-            padding: 15px;
-        }
-        .custom-table tbody tr {
-            background: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-            transition: all 0.3s ease;
-        }
-        .custom-table tbody tr:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        }
-        .custom-table tbody td {
-            border: none;
-            padding: 15px;
-        }
-        .custom-table tbody td:first-child { border-radius: 12px 0 0 12px; }
-        .custom-table tbody td:last-child { border-radius: 0 12px 12px 0; }
-
         .category-img-container {
             width: 80px;
             height: 55px;

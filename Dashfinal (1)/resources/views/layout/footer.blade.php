@@ -9,7 +9,7 @@
             </div>
             <div class="col-sm-6">
                 <div class="text-sm-end d-none d-sm-block">
-                    Design & Develop by <a href="https://saitechnosolutions.com/" class="text-decoration-underline">Sai Techno Solutions</a>
+                    Design & Develop by <a href="https://saitechnosolutions.com/" target = "_blanck" class="text-decoration-underline">Sai Techno Solutions</a>
                 </div>
             </div>
         </div>
