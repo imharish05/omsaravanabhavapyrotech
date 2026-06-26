@@ -78,7 +78,8 @@
                     <form action="" id="logo_list_data" >
                         <div class="mb-3">
                             <label for="category_add_input" class="form-label">logo <small class="text-danger">(90 x 80 px)</small></label>
-                           <input type="file" class="form-control" name="section_image"  placeholder="Upload price list">
+                           <input type="file" class="form-control" name="section_image"  placeholder="Upload price list" accept="image/*"
+                               data-validation-width="90" data-validation-height="80">
 
                         </div>
 
@@ -136,7 +137,9 @@
                     <form action="" id="Brand_update_data" >
                         <div class="mb-3">
                             <label for="category_add_input" class="form-label">Brand Logo <small class="text-danger">(90 x 80 px)</small></label>
-                           <input type="file" class="form-control" name="section_image"  placeholder="Upload price list">
+                           <input type="file" class="form-control" name="section_image"  placeholder="Upload price list" accept="image/*"
+                               data-validation-width="90" data-validation-height="80"
+                               data-validation-preview="#sectionimage">
 
                         </div>
                         <img src="" style="width: 50px" id="sectionimage">

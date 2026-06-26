@@ -129,8 +129,8 @@
                     <form action="" id="section_list_data" >
                         <div class="mb-3">
                             <label for="category_add_input" class="form-label">Banner</label>
-                           <input type="file" class="form-control image-validation" name="section_image"  placeholder="Upload price list" accept="image/*">
-                           <small class="text-danger">(1920 x 900 px)</small>
+                           <input type="file" class="form-control image-validation" name="section_image"  placeholder="Upload price list" accept="image/*" data-validation-width="1600" data-validation-height="532">
+                           <small class="text-danger">(1600 x 532 px)</small>
                         </div>
 
 
@@ -160,8 +160,8 @@
 
                          <div class="mb-3" id="positiondiv">
                             <label for="category_add_input" class="form-label">Banner </label>
-                           <input type="file" class="form-control image-validation" name="banner_image"  placeholder="Upload price list" accept="image/*">
-                           <small class="text-danger">(1920 x 900 px)</small>
+                           <input type="file" class="form-control image-validation" name="banner_image"  placeholder="Upload price list" accept="image/*" data-validation-width="1920" data-validation-height="600" data-validation-preview="#bannerimage">
+                           <small class="text-danger">(1920 x 600 px)</small>
 
                             <img src="" style="width: 50px" id="bannerimage">
 
@@ -205,8 +205,8 @@
                     <form action="" id="Section_update_data" >
                         <div class="mb-3">
                             <label for="category_add_input" class="form-label">Section Banner</label>
-                           <input type="file" class="form-control image-validation" name="section_image"  placeholder="Upload price list" accept="image/*">
-                           <small class="text-danger">(1920 x 900 px)</small>
+                           <input type="file" class="form-control image-validation" name="section_image"  placeholder="Upload price list" accept="image/*" data-validation-width="1600" data-validation-height="532" data-validation-preview="#sectionimage">
+                           <small class="text-danger">(1600 x 532 px)</small>
                         </div>
                         <img src="" style="width: 50px" id="sectionimage">
                         <input type="hidden" name="sectionid" id="sectionid">
@@ -255,21 +255,6 @@
             $('#sectionid').val($(this).attr('data-ids'));
             const imagePaths = $(this).attr("data-images");
             $('#sectionimage').attr("src", `/${imagePaths}`);
-        });
-
-        $('.image-validation').on('change', function() {
-            var file = this.files[0];
-            var $input = $(this);
-            if (file) {
-                var img = new Image();
-                img.onload = function() {
-                    if (this.width !== 1920 || this.height !== 900) {
-                        alert('Image dimensions must be exactly 1920x900 pixels.');
-                        $input.val(''); // Clear the input
-                    }
-                };
-                img.src = URL.createObjectURL(file);
-            }
         });
     </script>
 @endsection

@@ -150,6 +150,64 @@
         };
     </script>
 
+    <!-- Global Image Dimension Validation -->
+    <script>
+        /**
+         * Universal image dimension validator.
+         * Works for:
+         *  1. Any input[type="file"] with data-validation-width + data-validation-height attributes.
+         *  2. Premium image inputs (.premium-image-input) with data-validation-width + data-validation-height attributes.
+         *
+         * Usage:
+         *   <input type="file" accept="image/*"
+         *          data-validation-width="1600" data-validation-height="532"
+         *          data-validation-preview="#previewImgId">
+         */
+        $(document).on('change', 'input[type="file"][data-validation-width]', function() {
+            const file = this.files[0];
+            const $input = $(this);
+            const reqWidth  = parseInt($input.attr('data-validation-width'));
+            const reqHeight = parseInt($input.attr('data-validation-height'));
+            const previewSelector = $input.attr('data-validation-preview');
+
+            // Remove any previous error
+            $input.siblings('.img-dimension-error').remove();
+            $input.next('.img-dimension-error').remove();
+            $input.removeClass('is-invalid');
+
+            if (!file || !file.type.startsWith('image/')) return;
+
+            const objectUrl = URL.createObjectURL(file);
+            const img = new Image();
+            img.onload = function() {
+                URL.revokeObjectURL(objectUrl);
+                if (this.width !== reqWidth || this.height !== reqHeight) {
+                    const errorHtml = `<div class="img-dimension-error text-danger fw-bold mt-1" style="font-size:0.85rem;">
+                        <i class="fas fa-exclamation-circle me-1"></i>
+                        Image must be exactly <strong>${reqWidth}&times;${reqHeight} px</strong>.
+                        (Uploaded: ${this.width}&times;${this.height} px)
+                    </div>`;
+                    $input.addClass('is-invalid');
+                    $input.after(errorHtml);
+                    $input.val(''); // Clear the selection
+
+                    // Reset preview image
+                    if (previewSelector) {
+                        $(previewSelector).attr('src', '').addClass('d-none');
+                    }
+                    // For premium-image-input, revert card preview to placeholder
+                    const previewId = $input.attr('data-preview');
+                    if (previewId) {
+                        const $preview = $('#' + previewId);
+                        const placeholder = $preview.attr('data-placeholder') || '';
+                        if (placeholder) $preview.attr('src', placeholder);
+                    }
+                }
+            };
+            img.src = objectUrl;
+        });
+    </script>
+
     @yield('scripts')
     @stack('scripts')
     @stack('modals')

@@ -158,11 +158,11 @@
 
 
                             <div class="mb-3" id="add_category_image">
-                                <label class="form-label" for="add_product_image">Image*(370 *
-                                    400)</label>
+                                <label class="form-label" for="add_product_image">Image* <small class="text-danger">(370 x 400 px)</small></label>
 
                                 <input type="file" class="form-control needsclick"
-                                    placeholder="Category Image" accept="image/*" name="page_image" >
+                                    placeholder="Category Image" accept="image/*" name="page_image"
+                                    data-validation-width="370" data-validation-height="400">
 
 
                             </div>

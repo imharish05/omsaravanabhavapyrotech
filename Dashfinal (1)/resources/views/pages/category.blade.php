@@ -150,7 +150,9 @@
                             <label class="form-label" for="add_category_image">Category Image* <small class="text-danger">(750 x 500 px)</small></label>
 
                             <input type="file" class="form-control needsclick" id="add_category_image"
-                                placeholder="Category Image" accept="image/*" name="category_image" required>
+                                placeholder="Category Image" accept="image/*" name="category_image" required
+                                data-validation-width="750" data-validation-height="500"
+                                data-validation-preview="#add_category_preview">
                             <div class="mt-2 text-center d-none" id="add_category_preview_container">
                                 <img src="" id="add_category_preview" style="max-width: 150px; border-radius: 8px; border: 1px solid #ddd; padding: 5px;">
                             </div>
@@ -190,7 +192,9 @@
                             <label class="form-label" for="update_category_image">Category Image* <small class="text-danger">(750 x 500 px)</small></label>
 
                             <input type="file" class="form-control needsclick" id="update_category_image"
-                                placeholder="Category Image" accept="image/*" name="category_image">
+                                placeholder="Category Image" accept="image/*" name="category_image"
+                                data-validation-width="750" data-validation-height="500"
+                                data-validation-preview="#catimage">
 
                             <div class="mt-2 text-center">
                                 <img src="" style="max-width: 150px; border-radius: 8px; border: 1px solid #ddd; padding: 5px;" id="catimage" class="mt-2">

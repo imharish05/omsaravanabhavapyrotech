@@ -145,15 +145,21 @@
             color: rgba(255, 255, 255, .75);
         }
 
-        /* ========================
-       HERO SLIDER
-       ======================== */
+        /* ==============================================
+           HERO SLIDER — Exact Aspect Ratio
+           Fits the exact 1920x600 banner image perfectly
+           across all screens (Desktop, iPad, Mobile).
+           No extra colors or space top/bottom.
+           ============================================== */
         .hero-slider {
             position: relative;
-            height: 100vh;
-            min-height: 640px;
+            width: 100%;
+            height: auto !important;
+            min-height: auto !important;
+            aspect-ratio: 1920 / 600 !important;
             overflow: hidden;
-            background: var(--cream);
+            background: transparent;
+            display: block;
         }
 
         .slide {
@@ -165,38 +171,34 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            background: #3d3d43;
+            background: transparent;
         }
 
         .slide.active {
             opacity: 1;
         }
 
-        /* Blurred background for premium "Full Image" look */
+        /* Disable blurred background completely */
         .slide-bg-blur {
-            position: absolute;
-            inset: -20px;
-            background-size: cover;
-            background-position: center;
-            filter: blur(40px) brightness(0.4);
-            opacity: 0.6;
-            z-index: 1;
+            display: none !important;
         }
 
         .banner-image,
         .banner-video {
-            position: relative;
+            position: absolute;
+            inset: 0;
             z-index: 2;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            object-position: center;
-            transition: transform 1.3s ease;
+            object-fit: contain;
+            object-position: center center;
+            transition: opacity 0.8s ease;
+            margin-top: 0 !important; /* Overrides 30px top margin from responsive.css */
         }
 
         .slide.active .banner-image,
         .slide.active .banner-video {
-            transform: scale(1.02);
+            opacity: 1;
         }
 
         .slide-content {
@@ -3020,13 +3022,29 @@
                 grid-template-columns: 1fr;
             }
 
-            /* .offer-strip-inner {
+            .offer-strip-inner {
                 flex-direction: column;
+                align-items: center;
                 text-align: center;
-            } */
+                gap: 24px;
+            }
+
+            .offer-strip-text {
+                text-align: center;
+                width: 100%;
+            }
+
+            .offer-btn {
+                align-self: center;
+                margin: 0 auto;
+                display: block;
+                width: fit-content;
+                text-align: center;
+            }
 
             .offer-counters {
                 justify-content: center;
+                width: 100%;
             }
 
             .hero-float-card {
@@ -3038,11 +3056,67 @@
             }
         }
 
+        /* ========================
+           PHONE — OFFER STRIP FULL CENTER FIX
+           ======================== */
+        @media screen and (max-width: 600px) {
+            .offer-strip {
+                padding: 36px 20px !important;
+            }
+
+            .offer-strip-inner {
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
+                text-align: center !important;
+                gap: 24px !important;
+                width: 100% !important;
+            }
+
+            .offer-strip-text {
+                width: 100% !important;
+                text-align: center !important;
+            }
+
+            .offer-strip-text h3 {
+                text-align: center !important;
+                font-size: clamp(1.3rem, 5vw, 1.8rem) !important;
+            }
+
+            .offer-strip-text p {
+                text-align: center !important;
+            }
+
+            .offer-counters {
+                display: flex !important;
+                justify-content: center !important;
+                gap: 8px !important;
+                width: 100% !important;
+                flex-wrap: wrap !important;
+            }
+
+            .counter-box {
+                min-width: 60px !important;
+                padding: 10px 14px !important;
+            }
+
+            .counter-num {
+                font-size: 1.6rem !important;
+            }
+
+            .offer-btn {
+                display: block !important;
+                width: fit-content !important;
+                margin: 0 auto !important;
+                text-align: center !important;
+            }
+        }
+
         @media screen and (max-width: 852px) {
-            .hero-slider {
+            /* .hero-slider {
                 height: 25vh !important;
                 min-height: 207px !important;
-            }
+            } */
 
             .a-right {
                 display: none !important;
@@ -3078,9 +3152,9 @@
         }
 
         @media screen and (width: 768px) and (height: 1024px) {
-            .hero-slider {
+            /* .hero-slider {
                 height: 42vh !important;
-            }
+            } */
 
             .categories-grid {
                 grid-template-columns: 1fr 1fr;
@@ -3100,9 +3174,9 @@
         }
 
         @media screen and (width: 820px) and (height: 1180px) {
-            .hero-slider {
+            /* .hero-slider {
                 height: 42vh !important;
-            }
+            } */
 
             .categories-grid {
                 grid-template-columns: 1fr 1fr;
@@ -3136,10 +3210,10 @@
 
        @media screen and (max-height:1367px) and (min-height: 1366px)  {
 
-            .hero-slider {
+            /* .hero-slider {
                 height: 45vh !important;
                 min-height: 207px !important;
-            }
+            } */
 
             .about-inner {
                 grid-template-columns: 1fr;
@@ -3158,10 +3232,10 @@
 
         @media screen and (width: 912px) and (height: 1368px) {
 
-            .hero-slider {
+            /* .hero-slider {
                 height: 45vh !important;
                 min-height: 207px !important;
-            }
+            } */
 
             .about-inner {
                 grid-template-columns: 1fr;
@@ -3186,19 +3260,19 @@
 
         }
 
-        @media screen and (width: 540px) and (height: 720px) {
+        /* @media screen and (width: 540px) and (height: 720px) {
             .hero-slider {
                 height: 40vh !important;
                 min-height: 207px !important;
             }
-        }
+        } */
 
         @media screen and (max-width: 854px) and (min-width: 850px) {
 
-            .hero-slider {
+            /* .hero-slider {
                 height: 45vh !important;
                 min-height: 207px !important;
-            }
+            } */
 
             .about-inner {
                 grid-template-columns: 1fr;
@@ -3222,19 +3296,19 @@
             }
 
         }
-        @media screen and (width: 1280px) and (height: 800px) {
+        /* @media screen and (width: 1280px) and (height: 800px) {
             .hero-slider {
                 height: 95vh !important;
                 min-height: 207px !important;
             }
 
-        }
+        } */
         @media screen and (width: 1024px) and (height: 600px) {
 
-            .hero-slider {
+            /* .hero-slider {
                 height: 95vh !important;
                 min-height: 207px !important;
-            }
+            } */
 
             .about-inner {
                 grid-template-columns: 1fr;
@@ -3258,7 +3332,18 @@
             }
 
         }
-    
+
+        /* Mobile specific slider aspect-ratio adjustment to make it taller without visible stretch */
+        @media screen and (max-width: 767px) {
+            .hero-slider {
+                aspect-ratio: 1920 / 950 !important;
+            }
+            .banner-image,
+            .banner-video {
+                object-fit: fill !important;
+            }
+        }
+
     </style>
 
     <!-- Clean layout - no animations -->
@@ -3940,19 +4025,20 @@ alt="Order Process">
     const dots = document.querySelectorAll('.dot');
     let current = 0;
 
-    function goToSlide(n) {
+    /* Exposed globally so inline onclick="goToSlide(n)" handlers can call it */
+    window.goToSlide = function(n) {
         if (!slides.length) return;
         slides[current].classList.remove('active');
         if (dots[current]) dots[current].classList.remove('active');
         current = (n + slides.length) % slides.length;
         slides[current].classList.add('active');
         if (dots[current]) dots[current].classList.add('active');
-    }
+    };
 
     if (slides.length > 1) {
         slides[current].classList.add('active');
         if (dots[current]) dots[current].classList.add('active');
-        setInterval(() => goToSlide(current + 1), 5000);
+        setInterval(() => window.goToSlide(current + 1), 5000);
     }
 
     const revealEls = document.querySelectorAll('.product-card, .why-cell, .step-item, .testi-card, .cat-card, .process-step, .safety-tip, .fact-item, .faq-item, .stat-cell');

@@ -11,14 +11,22 @@
             <div class="f-brand-tag">Om Saravanabhava Pyrotech</div>
             <div class="f-license">License No 655/2025</div>
             <div class="f-social-row">
+                @if(!empty($global_settings->facebook_link))
                 <a href="{{ $global_settings->facebook_link }}" target="_blank" class="s-link" title="Facebook"><i
                         class="fa-brands fa-facebook-f"></i></a>
+                @endif
+                @if(!empty($global_settings->instagram_link))
                 <a href="{{ $global_settings->instagram_link }}" target="_blank" class="s-link" title="Instagram"><i
                         class="fa-brands fa-instagram"></i></a>
+                @endif
+                @if(!empty($global_settings->whatsapp_number))
                 <a href="https://wa.me/{{ $global_settings->whatsapp_number }}" target="_blank" class="s-link"
                     title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                @endif
+                @if(!empty($global_settings->youtube_link))
                 <a href="{{ $global_settings->youtube_link }}" target="_blank" class="s-link" title="YouTube"><i
                         class="fa-brands fa-youtube"></i></a>
+                @endif
             </div>
         </div>
 
@@ -28,7 +36,7 @@
                 <h4 class="f-title">Company</h4>
                 <ul class="f-list">
                     <li><a href="{{ url('/about') }}">About Us</a></li>
-                    <li><a href="{{ url('/blog') }}">Safety Tips</a></li>
+                    <li><a href="{{ url('/safetytips') }}">Safety Tips</a></li>
                     <li><a href="{{ url('/contact') }}">Contact Us</a></li>
                     {{-- <li><a href="{{ url('/bank') }}">Bank Details</a></li> --}}
                 </ul>

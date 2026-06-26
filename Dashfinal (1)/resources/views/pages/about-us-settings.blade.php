@@ -92,7 +92,8 @@
                                             <img id="bannerImgPreview" src="{{ (isset($aboutUs) && $aboutUs->banner_image) ? asset($aboutUs->banner_image) : 'https://placehold.co/800x200?text=Banner+Image' }}" alt="Banner">
                                             <div class="mt-2 text-muted small"><i class="fas fa-upload"></i> Change Banner</div>
                                         </div>
-                                        <input type="file" name="banner_image" class="hide-input premium-image-input" data-preview="bannerImgPreview" accept="image/*">
+                                        <input type="file" name="banner_image" class="hide-input premium-image-input" data-preview="bannerImgPreview" accept="image/*"
+                                            data-validation-width="1224" data-validation-height="864">
                                     </div>
                                     <div class="col-md-6 mb-custom">
                                         <label class="form-label">Main Content Image <small class="text-danger">(1224 x 816 px)</small></label>
@@ -100,7 +101,8 @@
                                             <img id="mainImgPreview" src="{{ (isset($aboutUs) && $aboutUs->main_image) ? asset($aboutUs->main_image) : 'https://placehold.co/400x400?text=Main+Image' }}" alt="Main">
                                             <div class="mt-2 text-muted small"><i class="fas fa-upload"></i> Change Image</div>
                                         </div>
-                                        <input type="file" name="main_image" class="hide-input premium-image-input" data-preview="mainImgPreview" accept="image/*">
+                                        <input type="file" name="main_image" class="hide-input premium-image-input" data-preview="mainImgPreview" accept="image/*"
+                                            data-validation-width="1224" data-validation-height="816">
                                     </div>
                                     <div class="col-md-4 mb-custom">
                                         <label for="hero_eyebrow" class="form-label">Hero Eyebrow</label>

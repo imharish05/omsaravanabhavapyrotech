@@ -56,7 +56,8 @@
                                     <label class="form-label" for="add_product_image">Product Image* <small class="text-danger">(670 x 800 px)</small></label>
 
                                     <input type="file" class="form-control needsclick" id="add_product_image"
-                                        placeholder="Product Image" accept="image/*" name="product_image">
+                                        placeholder="Product Image" accept="image/*" name="product_image"
+                                        data-validation-width="670" data-validation-height="800">
                                 </div>
                             </div>
 

@@ -39,8 +39,11 @@ Route::get('/estimate', [EstimateController::class, 'index']);
 Route::get('/download-price-list', [EstimateController::class, 'downloadPDF'])->name('pricelist.download');
 Route::post('/order', [OrderController::class, 'store'])->name('order.store');
 Route::get('/order-success', [OrderController::class, 'success'])->name('order.success');
-Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
-Route::get('/blog/{url}', [BlogController::class, 'show'])->name('blog.show');
+Route::get('/safetytips', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/safetytips/{url}', [BlogController::class, 'show'])->name('blog.show');
+// Backward-compat redirect: old /blog links still work
+Route::redirect('/blog', '/safetytips', 301);
+Route::redirect('/blog/{url}', '/safetytips/{url}', 301);
 Route::get('/terms-condition', [LegalController::class, 'terms'])->name('terms.index');
 
 Route::get('/ajax/cities/{stateId}', [CityController::class, 'getCities']);

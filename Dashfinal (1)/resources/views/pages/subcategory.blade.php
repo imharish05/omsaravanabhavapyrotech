@@ -43,7 +43,8 @@
                         <div class="mb-3">
                             <label class="form-label" for="add_subcategory_image">Sub-Category Image <small class="text-danger">(200 x 200 px)</small></label>
                             <input type="file" class="form-control needsclick" id="add_subcategory_image"
-                                placeholder="Sub-Category Image" accept="image/*" name="subcategory_image">
+                                placeholder="Sub-Category Image" accept="image/*" name="subcategory_image"
+                                data-validation-width="200" data-validation-height="200">
                         </div>
                         <div class="text-end gap-4">
                             <button type="submit" class="btn btn-primary">Save changes</button>

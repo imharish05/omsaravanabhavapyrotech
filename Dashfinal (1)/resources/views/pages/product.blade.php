@@ -247,7 +247,9 @@
                                     <label class="form-label" for="add_product_image">Product Image* <small class="text-danger">(670 x 800 px)</small></label>
 
                                     <input type="file" class="form-control needsclick" id="add_product_image"
-                                        placeholder="Product Image" accept="image/*" name="product_image" >
+                                        placeholder="Product Image" accept="image/*" name="product_image"
+                                        data-validation-width="670" data-validation-height="800"
+                                        data-validation-preview="#proimage">
                                 </div>
                                  <img src="" style="width: 50px" id="proimage">
                             </div>
@@ -327,11 +329,11 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="mb-3">
-                                    <label class="form-label" for="add_product_image">Add Product Image*(750 *
-                                        600)</label>
+                                    <label class="form-label" for="add_product_image">Add Product Image* <small class="text-danger">(750 x 600 px)</small></label>
 
                                     <input type="file" class="form-control needsclick" id="add_product_image"
-                                        placeholder="Product Image" accept="image/*" name="product_image" >
+                                        placeholder="Product Image" accept="image/*" name="product_image"
+                                        data-validation-width="750" data-validation-height="600">
                                 </div>
 
                                 <input type="hidden" class="form-control" id="delte_id" name="product_id"

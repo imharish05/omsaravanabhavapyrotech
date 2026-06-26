@@ -85,7 +85,8 @@
                                 <label class="form-label" for="add_product_image">Image* <small class="text-danger">(300 x 300 px)</small></label>
 
                                 <input type="file" class="form-control needsclick" id="add_category_image"
-                                    placeholder="Category Image" accept="image/*" name="test_name_image" >
+                                    placeholder="Category Image" accept="image/*" name="test_name_image"
+                                    data-validation-width="300" data-validation-height="300">
                             </div>
 
                               <div class="mb-3" id="add_price_list">
@@ -132,7 +133,9 @@
                                 <label class="form-label" for="add_product_image">Image* <small class="text-danger">(300 x 300 px)</small></label>
 
                                 <input type="file" class="form-control needsclick" id="add_category_image"
-                                    placeholder="Category Image" accept="image/*" name="test_image">
+                                    placeholder="Category Image" accept="image/*" name="test_image"
+                                    data-validation-width="300" data-validation-height="300"
+                                    data-validation-preview="#catimage">
 
                                 <img src="" style="width: 50px" id="catimage">
                             </div>
