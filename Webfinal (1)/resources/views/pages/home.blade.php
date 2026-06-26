@@ -941,6 +941,21 @@
             transform: translateX(5px);
         }
 
+        /* ── Mobile: smaller CTA button ── */
+        @media (max-width: 600px) {
+            .about-cta-btn {
+                font-size: .75rem;
+                padding: 12px 22px;
+                gap: 8px;
+                letter-spacing: 1px;
+            }
+            .about-cta-btn .btn-arrow {
+                width: 22px;
+                height: 22px;
+                font-size: .85rem;
+            }
+        }
+
 
 
 
@@ -3149,6 +3164,19 @@
                 grid-template-columns: repeat(1, 1fr) !important;
             }
 
+            /* Responsive: make fact-items smaller on tablets */
+            .fact-number {
+                font-size: 1.6rem !important;
+            }
+
+            .fact-item {
+                padding: 16px 18px !important;
+            }
+
+            .about-cta-btn {
+                font-size: .8rem !important;
+                padding: 13px 26px !important;
+            }
         }
 
         @media screen and (width: 768px) and (height: 1024px) {
@@ -3469,14 +3497,29 @@
                 @endphp
                 @foreach($dynamicBadges as $badge)
                 @php
-                // Attempt to split number and label for consistent styling
-                $parts = explode(' ', $badge['text'], 2);
-                $number = (preg_match('/[0-9%+\$₹]/', $parts[0])) ? $parts[0] : '';
-                $label = $number ? ($parts[1] ?? '') : $badge['text'];
+                // Smart number/label extraction — handles "Min Order : 2500", "200+ Products", "81% Off"
+                $text = trim($badge['text']);
+                // First try: does it start with a number-like token?
+                $parts = preg_split('/\s+/', $text, 2);
+                if (preg_match('/[0-9]/', $parts[0])) {
+                    $number = $parts[0];
+                    $label  = $parts[1] ?? '';
+                } else {
+                    // Second try: find any number (with optional suffix like +, %) anywhere in the text
+                    // and use the rest as label
+                    if (preg_match('/([\d][\d,]*[+%₹$]?)/u', $text, $m)) {
+                        $number = $m[1];
+                        $label  = preg_replace('/[:\s]*' . preg_quote($number, '/') . '[+%₹$]?[:\s]*/u', ' ', $text);
+                        $label  = trim($label);
+                    } else {
+                        $number = '•';
+                        $label  = $text;
+                    }
+                }
                 @endphp
                 <div class="fact-item">
                     <span class="fact-icon">{{ $badge['icon'] }}</span>
-                    <span class="fact-number">{{ $number ?: '•' }}</span>
+                    <span class="fact-number">{{ $number }}</span>
                     <div class="fact-label">{{ $label }}</div>
                 </div>
                 @endforeach
