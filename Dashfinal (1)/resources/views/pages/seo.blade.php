@@ -172,7 +172,8 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="add_product_name">Image* <small class="text-danger">(1200 x 630 px)</small></label>
                                     <input type="file" class="form-control" id="add_product_name" name="seo_image"
-                                        placeholder="" >
+                                        placeholder=""
+                                        data-validation-width="1200" data-validation-height="630">
 
                                 </div>
                             </div>
@@ -302,7 +303,8 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="add_product_name">Image* <small class="text-danger">(1200 x 630 px)</small></label>
                                     <input type="file" class="form-control" id="image" name="seo_image"
-                                        placeholder=""  >
+                                        placeholder=""
+                                        data-validation-width="1200" data-validation-height="630">
 
                                 </div>
                                 <img src="" style="width: 50px" id="seoimage">

@@ -156,24 +156,66 @@
          * Universal image dimension validator.
          * Works for:
          *  1. Any input[type="file"] with data-validation-width + data-validation-height attributes.
-         *  2. Premium image inputs (.premium-image-input) with data-validation-width + data-validation-height attributes.
+         *  2. Premium/hidden image inputs (.premium-image-input) — error shown after the visible preview card.
          *
-         * Usage:
-         *   <input type="file" accept="image/*"
-         *          data-validation-width="1600" data-validation-height="532"
-         *          data-validation-preview="#previewImgId">
+         * Behaviour:
+         *  - Shows error and DISABLES the form's submit button(s) when wrong dimensions are uploaded.
+         *  - Re-enables submit button(s) only when ALL dimension-validated inputs in the same form pass.
+         *  - Intercepts form submit as a final safety net to prevent saving invalid images.
          */
+
+        /** Re-checks all validated inputs in a form and updates submit button state */
+        function updateFormSubmitState($form) {
+            const hasError = $form.find('input[type="file"][data-validation-width].is-invalid').length > 0;
+            const $btns = $form.find('[type="submit"], button.btn-save, button[name="submit"]');
+            if (hasError) {
+                $btns.prop('disabled', true)
+                     .attr('title', 'Fix image dimension errors before saving.')
+                     .addClass('dim-error-disabled');
+            } else {
+                $btns.prop('disabled', false)
+                     .removeAttr('title')
+                     .removeClass('dim-error-disabled');
+            }
+        }
+
+        /**
+         * For a given input, find the best visible anchor element to attach the error after.
+         * - For hidden/premium inputs: use the sibling preview card (.image-preview-card, .qr-preview-card)
+         * - For normal inputs: use the input itself
+         */
+        function getErrorAnchor($input) {
+            if ($input.hasClass('hide-input') || $input.hasClass('premium-image-input')) {
+                // Try sibling preview card first
+                const $card = $input.siblings('.image-preview-card, .qr-preview-card').last();
+                if ($card.length) return $card;
+                // Fallback: parent div
+                return $input.parent();
+            }
+            return $input;
+        }
+
+        /** Remove previous error for a given input */
+        function clearDimError($input) {
+            const $anchor = getErrorAnchor($input);
+            $anchor.siblings('.img-dimension-error').remove();
+            $anchor.next('.img-dimension-error').remove();
+            $input.removeClass('is-invalid');
+        }
+
         $(document).on('change', 'input[type="file"][data-validation-width]', function() {
             const file = this.files[0];
             const $input = $(this);
             const reqWidth  = parseInt($input.attr('data-validation-width'));
             const reqHeight = parseInt($input.attr('data-validation-height'));
             const previewSelector = $input.attr('data-validation-preview');
+            const $form = $input.closest('form');
 
-            // Remove any previous error
-            $input.siblings('.img-dimension-error').remove();
-            $input.next('.img-dimension-error').remove();
-            $input.removeClass('is-invalid');
+            // Remove any previous error for this input
+            clearDimError($input);
+
+            // Re-check submit state after clearing old error
+            updateFormSubmitState($form);
 
             if (!file || !file.type.startsWith('image/')) return;
 
@@ -182,14 +224,19 @@
             img.onload = function() {
                 URL.revokeObjectURL(objectUrl);
                 if (this.width !== reqWidth || this.height !== reqHeight) {
-                    const errorHtml = `<div class="img-dimension-error text-danger fw-bold mt-1" style="font-size:0.85rem;">
+                    /* ---- INVALID dimensions ---- */
+                    const errorHtml = `<div class="img-dimension-error text-danger fw-bold mt-2" style="font-size:0.85rem;">
                         <i class="fas fa-exclamation-circle me-1"></i>
                         Image must be exactly <strong>${reqWidth}&times;${reqHeight} px</strong>.
                         (Uploaded: ${this.width}&times;${this.height} px)
                     </div>`;
                     $input.addClass('is-invalid');
-                    $input.after(errorHtml);
-                    $input.val(''); // Clear the selection
+
+                    // Insert error after the visible anchor (preview card or input itself)
+                    const $anchor = getErrorAnchor($input);
+                    $anchor.after(errorHtml);
+
+                    $input.val(''); // Clear the bad file
 
                     // Reset preview image
                     if (previewSelector) {
@@ -202,11 +249,47 @@
                         const placeholder = $preview.attr('data-placeholder') || '';
                         if (placeholder) $preview.attr('src', placeholder);
                     }
+
+                    // Disable submit buttons in this form
+                    updateFormSubmitState($form);
+                } else {
+                    /* ---- VALID dimensions ---- */
+                    $input.removeClass('is-invalid');
+                    updateFormSubmitState($form);
                 }
+            };
+            // If browser cannot read the image dimensions (e.g. .ico), show error and block save
+            img.onerror = function() {
+                URL.revokeObjectURL(objectUrl);
+                const errorHtml = `<div class="img-dimension-error text-danger fw-bold mt-2" style="font-size:0.85rem;">
+                    <i class="fas fa-exclamation-circle me-1"></i>
+                    Could not read image. Please upload a valid <strong>PNG</strong> file (${reqWidth}&times;${reqHeight} px).
+                </div>`;
+                $input.addClass('is-invalid');
+                const $anchor = getErrorAnchor($input);
+                $anchor.after(errorHtml);
+                $input.val('');
+                updateFormSubmitState($form);
             };
             img.src = objectUrl;
         });
+
+        /* Final safety net: block form submission if any dimension error remains */
+        $(document).on('submit', 'form', function(e) {
+            const $form = $(this);
+            if ($form.find('input[type="file"][data-validation-width].is-invalid').length > 0) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                // Scroll to first error
+                const $firstError = $form.find('.img-dimension-error').first();
+                if ($firstError.length) {
+                    $firstError[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                return false;
+            }
+        });
     </script>
+
 
     @yield('scripts')
     @stack('scripts')

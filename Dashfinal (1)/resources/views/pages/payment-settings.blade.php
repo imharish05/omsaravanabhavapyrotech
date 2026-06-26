@@ -190,20 +190,22 @@
                                 <h5 class="settings-section-title"><i class="fas fa-qrcode"></i> UPI QR Codes</h5>
                                 <div class="row">
                                     <div class="col-md-6 mb-custom">
-                                        <label class="form-label">Google Pay QR</label>
+                                        <label class="form-label">Google Pay QR <small class="text-danger">(300 x 300 px)</small></label>
                                         <div class="qr-preview-card" onclick="$(this).next().click()">
                                             <img id="gpayQrPreview" src="{{ (isset($paymentSetting) && $paymentSetting->gpay_qr_code) ? asset($paymentSetting->gpay_qr_code) : 'https://placehold.co/200x200?text=GPay+QR' }}" alt="GPay QR">
                                             <div class="text-primary small"><i class="fas fa-upload"></i> Upload QR Image</div>
                                         </div>
-                                        <input type="file" name="gpay_qr_code" class="hide-input premium-image-input" data-preview="gpayQrPreview" accept="image/*">
+                                        <input type="file" name="gpay_qr_code" class="hide-input premium-image-input" data-preview="gpayQrPreview" accept="image/*"
+                                            data-validation-width="300" data-validation-height="300">
                                     </div>
                                     <div class="col-md-6 mb-custom">
-                                        <label class="form-label">PhonePe QR</label>
+                                        <label class="form-label">PhonePe QR <small class="text-danger">(300 x 300 px)</small></label>
                                         <div class="qr-preview-card" onclick="$(this).next().click()">
                                             <img id="phonepeQrPreview" src="{{ (isset($paymentSetting) && $paymentSetting->phonepe_qr_code) ? asset($paymentSetting->phonepe_qr_code) : 'https://placehold.co/200x200?text=PhonePe+QR' }}" alt="PhonePe QR">
                                             <div class="text-primary small"><i class="fas fa-upload"></i> Upload QR Image</div>
                                         </div>
-                                        <input type="file" name="phonepe_qr_code" class="hide-input premium-image-input" data-preview="phonepeQrPreview" accept="image/*">
+                                        <input type="file" name="phonepe_qr_code" class="hide-input premium-image-input" data-preview="phonepeQrPreview" accept="image/*"
+                                            data-validation-width="300" data-validation-height="300">
                                     </div>
                                 </div>
                             </div>

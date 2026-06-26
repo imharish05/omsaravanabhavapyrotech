@@ -777,7 +777,7 @@
             font-size: 1.02rem;
             line-height: 1.92;
             margin-bottom: 38px;
-            padding-left: 18px;
+            /* padding-left: 18px; */
             border-left: 3px solid rgba(255, 255, 255, .6);
             text-shadow: 0 1px 4px rgba(255, 255, 255, .2);
         }

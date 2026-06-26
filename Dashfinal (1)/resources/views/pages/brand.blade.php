@@ -106,7 +106,8 @@
                     <form action="" id="Banner_update_data" >
                         <div class="mb-3">
                             <label for="category_add_input" class="form-label">Banner</label>
-                           <input type="file" class="form-control" name="banner_image"  placeholder="Upload price list">
+                           <input type="file" class="form-control" name="banner_image"  placeholder="Upload price list"
+                               accept="image/*" data-validation-width="1920" data-validation-height="600">
 
                         </div>
                         <img src="" style="width: 50px" id="bannerimage">

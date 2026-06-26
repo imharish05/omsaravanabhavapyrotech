@@ -143,7 +143,8 @@
                                             <img id="welcomeImgPreview" src="{{ (isset($homeSetting) && $homeSetting->welcome_image) ? asset($homeSetting->welcome_image) : 'https://placehold.co/400x300?text=No+Image' }}" alt="Preview">
                                             <div class="mt-2 text-muted small"><i class="fas fa-cloud-upload-alt"></i> Click to upload</div>
                                         </div>
-                                        <input type="file" name="welcome_image" class="hide-input premium-image-input" data-preview="welcomeImgPreview" accept="image/*">
+                                        <input type="file" name="welcome_image" class="hide-input premium-image-input" data-preview="welcomeImgPreview" accept="image/*"
+                                            data-validation-width="1920" data-validation-height="686">
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-custom">

@@ -105,7 +105,8 @@
                                             </div>
                                             <input type="file" name="logo"
                                                 class="hide-input premium-image-input @error('logo') is-invalid @enderror"
-                                                data-preview="logoPreview" accept="image/*">
+                                                data-preview="logoPreview" accept="image/*"
+                                                data-validation-width="140" data-validation-height="69">
                                             @error('logo')
                                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                             @enderror
@@ -121,7 +122,8 @@
                                                 </div>
                                             </div>
                                             <input type="file" name="favicon" class="hide-input premium-image-input"
-                                                data-preview="faviconPreview" accept="image/x-icon,image/png">
+                                                data-preview="faviconPreview" accept="image/png,image/x-icon"
+                                                data-validation-width="40" data-validation-height="40">
                                         </div>
                                     </div>
                                 </div>
