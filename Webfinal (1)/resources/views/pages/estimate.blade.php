@@ -384,6 +384,7 @@ thead th {
 
 .actual { text-decoration: line-through; color: var(--muted); font-size: 0.9rem; }
 .price { color: var(--gold-deep); font-weight: 900; font-size: 1.25rem; font-family: 'Outfit', sans-serif; }
+.discount-badge { display: none; }
 
 .qty-wrapper {
     display: inline-flex;
@@ -653,28 +654,46 @@ thead th {
     
     thead { display: none !important; }
     
-    table { border-spacing: 0 10px; }
+    table { 
+        display: block !important;
+        width: 100% !important;
+        border-spacing: 0 !important;
+    }
+    
+    tbody {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+        width: 100% !important;
+    }
+
+    .category {
+        grid-column: span 2 !important;
+        display: block !important;
+        width: 100% !important;
+    }
 
     /* Product Grid for Mobile */
     .product-row {
-        display: block !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
         position: relative !important;
-        padding: 16px 16px 65px 120px !important;
-        min-height: 145px !important;
-        margin-bottom: 16px !important;
+        padding: 12px !important;
         background: #ffffff !important;
-        border-radius: 18px !important;
+        border-radius: 16px !important;
         border: 1.5px solid rgba(0, 0, 0, 0.06) !important;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
         transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1) !important;
+        height: 100% !important;
+        box-sizing: border-box !important;
+        margin-bottom: 0 !important;
     }
 
     .product-row.selected {
         background: #fffdf5 !important;
         border-color: rgba(229, 58, 18, 0.3) !important;
-        box-shadow: 
-            0 12px 32px rgba(229, 58, 18, 0.08),
-            0 2px 4px rgba(229, 58, 18, 0.02) !important;
+        box-shadow: 0 8px 20px rgba(229, 58, 18, 0.08) !important;
     }
     
     .product-row td { 
@@ -686,44 +705,62 @@ thead th {
         background: transparent !important;
     }
     
-    /* Absolute Image on Left */
+    /* Product Image at Top */
     .product-row td:first-child { 
-        position: absolute !important; 
-        left: 16px !important; 
-        top: 16px !important; 
-        width: 85px !important; 
-        height: 85px !important;
+        width: 100% !important; 
+        height: 115px !important;
+        margin-bottom: 10px !important;
+        position: relative !important;
         padding: 0 !important;
+    }
+
+    .discount-badge {
+        display: block !important;
+        position: absolute !important;
+        top: 8px !important;
+        left: 8px !important;
+        background: #e53a12 !important;
+        color: #ffffff !important;
+        font-size: 0.7rem !important;
+        font-weight: 800 !important;
+        padding: 3px 6px !important;
+        border-radius: 6px !important;
+        box-shadow: 0 4px 8px rgba(229, 58, 18, 0.2) !important;
+        z-index: 10 !important;
     }
     
     .product-row td:first-child img { 
-        width: 85px !important;
-        height: 85px !important;
+        width: 100% !important;
+        height: 100% !important;
         object-fit: cover !important;
-        border-radius: 12px !important; 
-        border: 1px solid rgba(0, 0, 0, 0.06) !important;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04) !important;
+        border-radius: 10px !important; 
+        border: 1px solid rgba(0, 0, 0, 0.05) !important;
     }
 
     /* Product Name */
     .product-name { 
-        font-size: 1.05rem !important; 
+        font-size: 0.92rem !important; 
         font-weight: 800 !important;
         color: #1e293b !important;
-        line-height: 1.35 !important;
-        margin: 0 0 6px 0 !important; 
+        line-height: 1.3 !important;
+        margin: 0 0 4px 0 !important; 
         padding: 0 !important;
-        display: block !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        height: 2.45rem !important;
         width: 100% !important;
     }
 
     /* Box Content Badge */
     .product-row .box-content { 
-        font-size: 0.78rem !important; 
+        font-size: 0.72rem !important; 
         color: #64748b !important; 
         background: #f1f5f9 !important;
-        padding: 3px 10px !important;
-        border-radius: 6px !important;
+        padding: 2px 8px !important;
+        border-radius: 5px !important;
         display: inline-block !important;
         font-weight: 700 !important;
         margin-bottom: 8px !important;
@@ -739,64 +776,57 @@ thead th {
 
     /* MRP Strikethrough */
     .product-row .actual {
-        font-size: 0.85rem !important;
+        font-size: 0.75rem !important;
         color: #94a3b8 !important;
         text-decoration: line-through !important;
-        margin-right: 8px !important;
+        margin-right: 6px !important;
         font-weight: 500 !important;
     }
     .product-row .actual::before {
-        content: "MRP: ₹" !important;
-        font-size: 0.75rem !important;
-        text-transform: uppercase !important;
-        font-weight: 600 !important;
-        color: #94a3b8 !important;
-        text-decoration: none !important;
-        display: inline-block !important;
+        content: "₹" !important;
     }
 
     /* Offer Price */
     .price { 
-        font-size: 1.2rem !important; 
+        font-size: 1.1rem !important; 
         color: #e53a12 !important;
         font-weight: 900 !important;
         font-family: 'Outfit', sans-serif !important;
     }
     .product-row .price::before {
         content: "₹" !important;
-        margin-right: 1px !important;
     }
     
-    /* Quantity Action Block (Absolute positioned bottom-right) */
+    /* Quantity Action Block (Pushed to bottom of card) */
     .product-row .qty-col { 
-        position: absolute !important;
-        bottom: 14px !important;
-        right: 16px !important;
-        width: auto !important;
-        padding: 0 !important;
-        margin: 0 !important;
+        margin-top: auto !important;
+        padding-top: 10px !important;
+        border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
+        width: 100% !important;
+        display: block !important;
     }
 
     .qty-wrapper { 
-        display: inline-flex !important; 
+        display: flex !important; 
         align-items: center !important;
+        justify-content: space-between !important;
         background: #f1f5f9 !important;
-        padding: 3px !important;
+        padding: 2px !important;
         border-radius: 30px !important;
-        border: 1px solid rgba(0, 0, 0, 0.08) !important;
-        width: auto !important;
+        border: 1px solid rgba(0, 0, 0, 0.06) !important;
+        width: 100% !important;
         box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02) !important;
-        transition: background-color 0.3s !important;
+        box-sizing: border-box !important;
     }
     
     .product-row.selected .qty-wrapper {
-        background: #ffebdf !important; /* Soft warm orange when selected */
+        background: #ffebdf !important;
         border-color: rgba(229, 58, 18, 0.18) !important;
     }
 
     .qty-btn {
-        width: 32px !important;
-        height: 32px !important;
+        width: 30px !important;
+        height: 30px !important;
         border-radius: 50% !important;
         background: #ffffff !important;
         color: #0f172a !important;
@@ -804,8 +834,9 @@ thead th {
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.05) !important;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
         font-size: 0.8rem !important;
+        padding: 0 !important;
     }
     .qty-btn:hover {
         background: #e53a12 !important;
@@ -813,37 +844,35 @@ thead th {
     }
     
     .qty {
-        width: 38px !important;
+        width: 30px !important;
         background: none !important;
         border: none !important;
         text-align: center !important;
         font-weight: 800 !important;
-        font-size: 0.95rem !important;
+        font-size: 0.9rem !important;
         color: #0f172a !important;
     }
     
-    /* Total Action Block (Absolute positioned bottom-left) */
+    /* Total Action Block (Hidden by default, shown only when selected) */
     .product-row .rowTotal { 
-        position: absolute !important;
-        bottom: 18px !important;
-        left: 16px !important;
-        width: auto !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        font-size: 1.1rem !important; 
-        color: #000000 !important;
-        font-weight: 900 !important;
-        display: flex !important;
-        align-items: center !important;
+        display: none !important;
     }
     
     .product-row.selected .rowTotal {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        font-size: 0.85rem !important; 
         color: #e53a12 !important;
+        font-weight: 900 !important;
+        margin-top: 6px !important;
+        width: 100% !important;
+        text-align: center !important;
     }
     
-    .product-row .rowTotal::before { 
+    .product-row.selected .rowTotal::before { 
         content: 'Total: ₹' !important; 
-        font-size: 0.78rem !important;
+        font-size: 0.72rem !important;
         text-transform: uppercase !important;
         letter-spacing: 0.5px !important;
         color: #64748b !important;
@@ -851,18 +880,15 @@ thead th {
         margin-right: 2px !important;
     }
 
-    .product-row.selected .rowTotal::before {
-        color: #e53a12 !important;
-        opacity: 0.8 !important;
-    }
-
     .category td { 
-        padding: 40px 16px 12px !important; 
-        font-size: 1.6rem !important; 
+        padding: 30px 8px 10px !important; 
+        font-size: 1.3rem !important; 
         font-weight: 900 !important;
         background: transparent !important;
         color: #000000 !important;
         text-shadow: none !important;
+        border: none !important;
+        display: block !important;
     }
 
     .mobile-sticky-bar {
@@ -1078,16 +1104,7 @@ thead th,
         height: 62vh;
     }
 
-    .product-row {
-        /* background: rgba(15,15,28,0.92); */
-        border: 1px solid rgba(240,168,50,0.18);
-        border-radius: 18px;
-        padding: 14px 14px 14px 110px !important;
-    }
-
-    .product-row td {
-        background: transparent;
-    }
+    /* Redundant mobile overrides cleaned to prevent layout and padding overlap on small devices */
 }
 .table-wrap{
     overflow: hidden;
@@ -1636,6 +1653,9 @@ thead th,
     }
 }
 
+.d-none {
+    display: none !important;
+}
 </style>
 @endpush
 
@@ -1728,6 +1748,17 @@ thead th,
                                     <tr class="product-row" data-product-id="{{ $product->id }}" data-category="{{ strtolower($category->category_name) }}">
                                         <td>
                                             <img src="{{ $product->product_image ? env('MAIN_URL') . $product->product_image : 'https://via.placeholder.com/100' }}" alt="{{ $product->product_name }}" loading="lazy">
+                                            @php
+                                                $mrp = (float)$product->product_mrp_price;
+                                                $price = (float)$product->product_regular_price;
+                                                $discount = 0;
+                                                if ($mrp > 0 && $mrp > $price) {
+                                                    $discount = round((($mrp - $price) / $mrp) * 100);
+                                                }
+                                            @endphp
+                                            @if($discount > 0)
+                                                <span class="discount-badge">{{ $discount }}% OFF</span>
+                                            @endif
                                         </td>
                                         <td class="product-name">{{ $product->product_name }}</td>
                                         <!-- <td>
@@ -1932,17 +1963,21 @@ thead th,
             document.querySelectorAll(".product-row").forEach(row => {
                 const name = row.querySelector(".product-name").innerText.toLowerCase();
                 const category = row.getAttribute("data-category") || "";
-                row.style.display = (name.includes(value) || category.includes(value)) ? "" : "none";
+                const isMatch = name.includes(value) || category.includes(value);
+                row.classList.toggle("d-none", !isMatch);
             });
             // Hide categories if no products visible
             document.querySelectorAll(".category").forEach(catRow => {
                 let next = catRow.nextElementSibling;
                 let hasVisible = false;
-                while(next && !next.classList.contains('category')) {
-                    if(next.style.display !== 'none') { hasVisible = true; break; }
+                while (next && !next.classList.contains("category")) {
+                    if (next.classList.contains("product-row") && !next.classList.contains("d-none")) {
+                        hasVisible = true;
+                        break;
+                    }
                     next = next.nextElementSibling;
                 }
-                catRow.style.display = hasVisible ? "" : "none";
+                catRow.classList.toggle("d-none", !hasVisible);
             });
         });
 
