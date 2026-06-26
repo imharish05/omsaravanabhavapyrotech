@@ -28,7 +28,13 @@
                                                  <tr>
                                                 <td>{{ $i++ }}</td>
                                                 <td><img src="/{{ $page->image }}" style="width: 50px"></td>
-                                                <td>{{ $page->status == 0 ? 'Show' : 'Hide' }}</td>
+                                                <td>
+                                                    @if($page->status == 1)
+                                                        <span class="badge bg-success">Show</span>
+                                                    @else
+                                                        <span class="badge bg-danger">Hide</span>
+                                                    @endif
+                                                </td>
                                                 <td><button type="button" class="btn btn-success waves-effect waves-light editpage" data-bs-toggle="modal" data-bs-target="#staticBackdrop1" data-id="{{ $page->id }}" data-image="{{ $page->image }}" data-name="{{ $page->status }}">
                                         <i class="bx bx-link-external font-size-16 align-middle me-2"></i></button></td>
 
@@ -144,12 +150,11 @@
                             <label for="category_add_input" class="form-label">Page Status</label>
 
 
-                                <select  class="form-control status" name="statusoff" id="showdata" required>
-                            <option>Select option</option>
-                             <option value="0">Hide</option>
-                              <option value="1">Show</option>
-
-                        </select>
+                                <select class="form-control status" name="statusoff" id="showdata" required>
+                    <option>Select option</option>
+                    <option value="1">Show</option>
+                    <option value="0">Hide</option>
+                </select>
 
                                    {{-- <input type="hidden" class="form-control" id="categoryId" name="categoryId"
                                 placeholder="Enter CategoryId"> --}}
@@ -267,16 +272,16 @@
 
 <script>
 $(document).ready(function(){
-    $('#showdata').on('change',function(){
-         var selectedVal = $(this).val();
-
-
-          if (selectedVal === "0") {
-        $("#add_category_image").hide();
-    } else {
-        $("#add_category_image").show();
-    }
-});
+    $('#showdata').on('change', function() {
+        var selectedVal = $(this).val();
+        // When Hide (0) is selected — website goes offline, so image is needed
+        if (selectedVal === "0") {
+            $("#add_category_image").show();
+        } else {
+            // When Show (1) — website is live, no maintenance image needed
+            $("#add_category_image").hide();
+        }
+    });
 
    $('#showdataprice').on('change',function(){
          var selectedVal = $(this).val();

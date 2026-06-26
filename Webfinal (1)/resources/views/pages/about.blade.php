@@ -1111,15 +1111,15 @@
         position: relative;
         background: linear-gradient(135deg, var(--gold-light), var(--gold));
         color: #0b0b14 !important;
-        padding: 20px 50px;
+        padding: 13px 32px;
         border-radius: 50px;
         font-weight: 900;
-        font-size: 1.2rem;
+        font-size: 0.95rem;
         text-decoration: none;
         display: inline-flex;
         align-items: center;
-        gap: 15px;
-        box-shadow: 0 15px 40px rgba(240, 168, 50, 0.3);
+        gap: 10px;
+        box-shadow: 0 10px 30px rgba(240, 168, 50, 0.3);
         transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
         overflow: hidden;
     }
